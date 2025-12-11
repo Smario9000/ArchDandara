@@ -42,8 +42,6 @@ This project is a work-in-progress reverse-engineering and mod development effor
 | **Newtonsoft.Json** | 12.x | Included through NuGet |
 
 ---
-
-## 📁 Repo Structure
 ## ⚙ Installation (End-Users)
 
 1. Install **MelonLoader** for Dandara.
