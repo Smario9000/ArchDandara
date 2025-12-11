@@ -14,11 +14,11 @@ This project is a work-in-progress reverse-engineering and mod development effor
   - Automatically scans rooms for `Door` components.
   - Exports door metadata (position, target scene, spawn IDs, etc.) to JSON.
   - Helps map out the entire game from just entering rooms.
+
+### 🔄 In Progress
 - **DoorJsonManager**
   - Creates and maintains JSON files for all detected doors.
   - Automatically updates entries when new data is found.
-
-### 🔄 In Progress
 - **Archipelago Client**
   - Connection handling
   - Item receive/send
