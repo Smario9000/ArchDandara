@@ -1,170 +1,173 @@
-//MainMod.cs
+// MainMod.cs
 
 // ====================================================================================================
-//  ArchDandara — Fully Commented Mod File
-//  This version contains MAXIMUM explanation for beginners and future maintainers.
-//  Every system is documented: MelonLoader, Harmony, logging, HSV → RGB, patching, filtering, etc.
+//  ArchDandara — Fully Commented Mod File (DOCUMENTED)
+//  This file contains the main MelonLoader mod entry point (MainMod) and global static objects.
 // ====================================================================================================
-
-// This manager handles saving and loading door metadata to/from JSON.
-// It is designed for Unity (Mono) + MelonLoader mods.
-// The goal: Allow you to rewrite what door leads to what room by editing JSON.
-// This version is clean, commented, and expandable.
 
 using System;
-using MelonLoader;                // Main MelonLoader API (MelonMod, MelonInfo, logging system)
-using HarmonyLib;
-using MelonLoader.Logging;
-using UnityEngine;                // Unity game engine types (Debug.Log, GameObject, Time, etc.)
+using MelonLoader;                // MelonLoader API: MelonMod base class and logger helpers
+using HarmonyLib;                 // Harmony for runtime patching
+using MelonLoader.Logging;        // MelonLogger types
+using UnityEngine;                // Unity types, used in Harmony patches below
 
-
-// ====================================================================================================
-//  MELON-LOADER METADATA ATTRIBUTES
-// ----------------------------------------------------------------------------------------------------
-//  • MelonInfo tells MelonLoader what your mod is called, version, and who made it
-//  • MelonGame restricts the mod so it only loads when the targeted game is running
-// ====================================================================================================
-//[assembly: MelonInfo(typeof(ArchDandara.MainMod), "ArchDandara", "0.0.1", "Smores9000")]
+// MELON-LOADER ATTRIBUTES
+// These assembly attributes inform MelonLoader about this mod. Keep them intact.
 [assembly: MelonInfo(typeof(ArchDandara.MainMod), "ArchDandara", "0.0.4", "Smores9000")]
 [assembly: MelonGame("Long Hat House", "Dandara")]
 
 namespace ArchDandara
 {
+    /// <summary>
+    /// MainMod is the root MelonMod class. MelonLoader will construct this and call lifecycle hooks such
+    /// as OnInitializeMelon() when the mod is loaded. It is responsible for:
+    ///  - Initializing global services (config, JSON manager, scanner, etc.)
+    ///  - Applying Harmony patches
+    ///  - Controlling which systems are enabled (based on your config)
+    /// </summary>
     public class MainMod : MelonMod
     {
-        //Object Oriented Programming
+        // ------------------------
+        // Shared/global objects
+        // ------------------------
+        // These static properties let other classes reference the central services easily:
         public static ArchDandaraConfig Config{ get; private set; }
         public static ArchDandaraAPConfig APConfig{ get; private set; }
         public static DoorJsonManager DoorJsonManager { get; private set; }
         public static RoomDoorScanner RoomDoorScanner { get; private set; }
-        // ============================================================================================
-        //  HARMONY — Runtime Code Patching
-        // --------------------------------------------------------------------------------------------
-        // Harmony allows us to modify existing game functions at runtime.
-        // Example: patching UnityEngine.Debug.Log so all logs pass through our colored logger.
-        // ============================================================================================
+
+        // Harmony instance used to patch methods at runtime (namespace+id identifies the patcher)
         private HarmonyLib.Harmony _harmony;
 
-        // ============================================================================================
-        //  LOGGING MODE ENUM — determines how logs are printed
-        // --------------------------------------------------------------------------------------------
-        // Normal → white only
-        // Color  → fixed color per log level
-        // RGB    → full rainbow (HSV cycling)
-        // ============================================================================================
-        private enum LogColorMode
-        {
-            Normal, // No colors, pure white
-            Color, // Static color per category
-            RGB // Smoothly changing hue per log
-        }
-
-        // Set current mode here (RGB = animated rainbow)
+        // Simple local enum controlling how our custom logger chooses color
+        private enum LogColorMode { Normal, Color, RGB }
         private static readonly LogColorMode LOGMode = LogColorMode.RGB;
 
-        // ============================================================================================
-        //  FIXED COLOR SET — ColorARGB from MelonLoader (NOT System.ConsoleColor!)
-        // --------------------------------------------------------------------------------------------
-        //  ColorARGB uses 0–255 bytes per channel and works with MelonLogger.
-        // ============================================================================================
-        private static readonly ColorARGB InfoColor = ColorARGB.Cyan; // Bright cyan
-        private static readonly ColorARGB WarningColor = ColorARGB.Yellow; // Warning yellow
-        private static readonly ColorARGB ErrorColor = ColorARGB.Red; // Critical red
-        private static readonly ColorARGB DebugColor = ColorARGB.Green; // Debug green
-        private static readonly ColorARGB DefaultColor = ColorARGB.White; // Default white
+        // Fixed ColorARGB values from MelonLoader (used for pretty console output)
+        private static readonly ColorARGB InfoColor = ColorARGB.Cyan;
+        private static readonly ColorARGB WarningColor = ColorARGB.Yellow;
+        private static readonly ColorARGB ErrorColor = ColorARGB.Red;
+        private static readonly ColorARGB DebugColor = ColorARGB.Green;
+        private static readonly ColorARGB DefaultColor = ColorARGB.White;
 
-        // ============================================================================================
-        //  HSV HUE TRACKER — stores our current rainbow cycle value
-        // --------------------------------------------------------------------------------------------
-        // hue goes 0 → 1 and wraps around. This animates the rainbow color.
-        // ============================================================================================
-        private static float _rgbHue;
-        // ============================================================================================
-        //  MOD INITIALIZATION — runs ONE TIME when MelonLoader loads the mod
-        // --------------------------------------------------------------------------------------------
-        //  PERFECT for:
-        //  • Applying Harmony patches
-        //  • Loading config/settings
-        //  • Initial logging
-        // ============================================================================================
+        private static float _rgbHue; // hue state for rainbow logging
+
+        // Purpose:
+        //  - Called once by MelonLoader when your mod is loaded into the game process.
+        //  - Use this to create and initialize any global systems your mod needs.
+        //
+        // Key rules:
+        //  - Keep heavy work off this thread if it could block. (Your code here does file I/O
+        //    and initialization; those are fine as they are quick.)
+        //  - Initialize systems in a deterministic order: config -> services -> optional subsystems -> patches.
+        //
+        // What this implementation does (step-by-step):
+        //  1. Print a short startup message so you *know* the mod was discovered by MelonLoader.
+        //  2. Initialize configuration (this creates the cfg file if missing and loads values).
+        //  3. Load the Archipelago AP config (separate .cfg for AP settings).
+        //  4. Initialize the DoorJsonManager (makes sure your JSON folder and file paths exist).
+        //  5. Construct instances for Config and APConfig objects (so you can access them from other classes).
+        //  6. Check config flags to selectively enable/disable logging and scanning — this prevents
+        //     unnecessary work and spam when the user turned features off.
+        //  7. Create the RoomDoorScanner only if scanning was enabled.
+        //  8. Create and apply Harmony patches last. Doing patches last reduces the window where your
+        //     patchable target code is unpatched but services are running.
+        //
+        // Why this order matters:
+        //  - Config must be loaded early so features (like RoomDoorScanner) can query user preferences
+        //  - DoorJsonManager should exist before the scanner so the scanner can immediately write door entries
+        //  - Patches are applied last to avoid patching partially-initialized state
+        //
+        // If something fails here, MelonLoader will still continue loading other mods; log and handle exceptions
+        // so users can diagnose issues (you already have logging calls which is perfect).
+
         public override void OnInitializeMelon()
         {
-            // The first message confirming the mod loaded successfully
-            //MainMod.DoorJsonManager = DoorJsonManager; <----- This is how to call it
+            // Small, colored startup message — confirms the mod entry executed.
             MelonLogger.Msg(DefaultColor, "[MainMod] ArchDandara Mod Loaded — Now with Full Documentation!");
+
+            // ---- CONFIGURATION ----
+            // Initialize the main config subsystem. This will ensure the file exists and load values.
             ArchDandaraConfig.Init();
+
+            // Load Archipelago-specific config (separate file).
             ArchDandaraAPConfig.Load();
+
+            // DoorJsonManager.Init() ensures the JSON folder/file are prepared.
+            // Use the Init/Load pattern for static managers that require disk IO early.
             DoorJsonManager.Init();
+
+            // Helpful message so you can see the debug flag state loading early in the log.
             MelonLogger.Msg("[MainMod] Debug Flags loaded.");
-            
-            Config          = new ArchDandaraConfig();
-            APConfig        = new ArchDandaraAPConfig();
+
+            // Create instances of your object-oriented config wrappers so other classes can use them.
+            Config = new ArchDandaraConfig();
+            APConfig = new ArchDandaraAPConfig();
+
+            // Optional: if the user disabled archipelago debug logs, bail out early.
+            // (Note: this returns from the whole method and prevents further initialization.)
             if (!ArchDandaraConfig.LogAPDebug)
             {
                 MelonLogger.Msg("[Archipelago] Logs is Off");
                 return;
             }
-            
 
-            DoorJsonManager = new DoorJsonManager(); // MUST run before scanner
+            // Build runtime services next.
+            DoorJsonManager = new DoorJsonManager(); // ensures runtime instance is ready for scanner
+
+            // If user turned off the DoorJsonManager logs, inform and continue (not fatal).
             if (!ArchDandaraConfig.LogDoorJsonManager)
             {
                 MelonLogger.Msg("[DoorJsonManager] Logs is Off");
-                return; // logging disabled
+                // Note: we continue — logging being off does not disable the system itself.
             }
-            // 🟢 ONLY ENABLE SCANNER IF CONFIG SAYS SO
+
+            // Enable RoomDoorScanner only if config says so. This avoids unnecessary scene hooks.
             if (!ArchDandaraConfig.EnableRoomScanning)
             {
                 MelonLogger.Msg("[MainMod] RoomDoorScanner DISABLED by config");
+                // Intentionally do not create the RoomDoorScanner instance.
+                // We still create Harmony patches below (if you want patches only with scanner, gate those too).
                 return;
             }
+
+            // Create the scanner now that config and DoorJsonManager are ready.
             RoomDoorScanner = new RoomDoorScanner();
+
+            // If room scanner logging is disabled — just note it.
             if (!ArchDandaraConfig.LogRoomDoorScanner)
             {
                 MelonLogger.Msg("[RoomDoorScanner] Logs is Off");
-                return; // logging disabled
+                // Again: logging off doesn't disable functionality; it's about console noise.
             }
-            // Create a Harmony instance and apply all patches inside this assembly
-            _harmony        = new HarmonyLib.Harmony("com.you.archdandara");
+
+            // Finally: create and apply Harmony patches for runtime instrumentation.
+            _harmony = new HarmonyLib.Harmony("com.you.archdandara");
             _harmony.PatchAll();
         }
 
-
-
-        // ============================================================================================
-        //  PrintWithColor — Core logging function for ALL colored logs
-        // --------------------------------------------------------------------------------------------
-        //  Behavior:
-        //   • NORMAL → Always white
-        //   • COLOR  → Uses provided static color
-        //   • RGB    → Converts hue → RGB smoothly and increments hue
-        // ============================================================================================
+        // =====================================================================================
+        // Helper: PrintWithColor
+        // =====================================================================================
+        // Converts a message to a color (if RGB mode) and sends to MelonLogger.
         private static void PrintWithColor(string msg, ColorARGB baseColor)
         {
-            // If RGB mode: convert current hue → color
             if (LOGMode == LogColorMode.RGB)
             {
                 baseColor = HueToStaticRainbow(_rgbHue);
-
-                // Advance hue for next log
-                _rgbHue += 0.03f; // Controls speed of rainbow
-                if (_rgbHue > 1f)
-                    _rgbHue -= 1f; // Wrap hue back to 0
+                _rgbHue += 0.03f;
+                if (_rgbHue > 1f) _rgbHue -= 1f;
             }
 
-            // If NORMAL mode: override everything to white
-            if (LOGMode == LogColorMode.Normal)
-                baseColor = DefaultColor;
-
-            // Final colored output to MelonLoader console
+            if (LOGMode == LogColorMode.Normal) baseColor = DefaultColor;
             MelonLogger.Msg(baseColor, msg);
         }
 
+        // Convert simplified hue to ColorARGB (chunked colors — simple and robust).
         private static ColorARGB HueToStaticRainbow(float hue)
         {
-            hue = hue - (float)Math.Floor(hue);
+            hue = hue - (float) Math.Floor(hue);
             float zone = hue * 6f;
-
             if (zone < 1f) return ColorARGB.Red;
             if (zone < 2f) return ColorARGB.Magenta;
             if (zone < 3f) return ColorARGB.Blue;
@@ -172,14 +175,12 @@ namespace ArchDandara
             if (zone < 5f) return ColorARGB.Green;
             return ColorARGB.Yellow;
         }
-        
-        // ============================================================================================
-        //  HARMONY PATCH — Intercepts UnityEngine.Debug.Log(object)
-        // --------------------------------------------------------------------------------------------
-        //  Behavior:
-        //   • Any call to Debug.Log from the game is intercepted BEFORE executing
-        //   • We can filter, rewrite, recolor, or entirely suppress logs
-        // ============================================================================================
+
+        // =====================================================================================
+        // Harmony patch: intercept Debug.Log(object)
+        // =====================================================================================
+        // We patch UnityEngine.Debug.Log(object) so we can re-route or filter in-game logs.
+        // Guarded by your config flag (ArchDandaraConfig.LogDebugPatch).
         [HarmonyPatch(typeof(Debug), "Log", new[] { typeof(object) })]
         private static class DebugLogPatch
         {
@@ -187,29 +188,18 @@ namespace ArchDandara
             {
                 if (!ArchDandaraConfig.LogDebugPatch)
                     return;
-                // Convert object → string safely
+
                 string msg = message?.ToString() ?? "";
 
-                // ------------------------------------------------------------------------------------
-                // FILTER OUT NOISY LOG SPAM
-                // (Game constantly prints controller/keyboard input mode spam — we remove it)
-                // ------------------------------------------------------------------------------------
+                // Basic filter example — user wanted to remove the repetitive "[INPUT MODE]" spam.
                 if (msg.IndexOf("[INPUT MODE]", StringComparison.OrdinalIgnoreCase) >= 0)
-                    return; // Skip entirely
-                
-                // ------------------------------------------------------------------------------------
-                // Send message to our custom colorful logger
-                // ------------------------------------------------------------------------------------
+                    return;
+
                 PrintWithColor($"[DebugLogPatch] {msg}", DebugColor);
             }
         }
 
-
-        // ============================================================================================
-        //  OPTIONAL CLEAN WRAPPERS FOR LOG LEVELS
-        // --------------------------------------------------------------------------------------------
-        //  Use these anywhere in your code instead of PrintWithColor directly.
-        // ============================================================================================
+        // Small wrappers for structured logging
         private static void LogInfo(string msg) => PrintWithColor($"[INFO]  {msg}", InfoColor);
         private static void LogWarn(string msg) => PrintWithColor($"[WARN]  {msg}", WarningColor);
         private static void LogError(string msg) => PrintWithColor($"[ERROR] {msg}", ErrorColor);

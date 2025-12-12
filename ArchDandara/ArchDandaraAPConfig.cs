@@ -6,20 +6,55 @@ using System.IO;
 
 namespace ArchDandara
 {
-    public class ArchDandaraAPConfig :  MelonLogger
+    /* ============================================================================================================
+     *  ArchDandaraAPConfig
+     * ------------------------------------------------------------------------------------------------------------
+     *  PURPOSE:
+     *      This class manages a standalone configuration file specifically for Archipelago network settings.
+     *      Unlike ArchDandaraConfig (general mod options), this file stores:
+     *          • Server address
+     *          • Port
+     *          • Player name
+     *          • Password
+     *
+     *  DESIGN OVERVIEW:
+     *      • Uses *ConfigFile.cs* for loading + saving instead of MelonPreferences.
+     *      • Automatically creates folder:
+     *            UserData/ArchDandara/ArchDandaraAP.cfg
+     *      • All values load through Load() and automatically saved via Save().
+     * ============================================================================================================*/
+
+    public class ArchDandaraAPConfig : MelonLogger
     {
-        private static string ServerAddress { get; set; }
-        private static int Port { get; set; }
-        private static string PlayerName { get; set; }
-        private static string Password { get; set; }
+        // ========================================================================================================
+        //  CONFIG VALUES
+        // --------------------------------------------------------------------------------------------------------
+        //  These hold the loaded configuration results. Using static ensures the settings are global to the mod.
+        // ========================================================================================================
 
+        private static string ServerAddress { get; set; }  
+        private static int    Port          { get; set; }  
+        private static string PlayerName    { get; set; }  
+        private static string Password      { get; set; }  
+
+        // The ConfigFile object that handles disk IO for this .cfg file.
         private static ConfigFile _file;
-
+        
+        // ========================================================================================================
+        //  PRINT — Logging helper
+        // --------------------------------------------------------------------------------------------------------
+        //      This method prints logs only when AP debugging is enabled.  
+        //      Uses three levels of severity:
+        //          • level 1 → normal message
+        //          • level 2 → warning
+        //          • level 3 → error
+        //      All output is wrapped in "[Archipelago]" prefix to allow filtering in MelonLoader.
+        // ========================================================================================================
         private static void Print(string msg, int level = 1)
         {
             if (!ArchDandaraConfig.LogAPDebug)
-                return; // logging disabled
-            
+                return; // Logging disabled globally for AP-related messages.
+
             switch (level)
             {
                 case 1:
@@ -35,10 +70,20 @@ namespace ArchDandara
                     break;
             }
         }
-        // =====================================================================
-        // CONSTRUCTOR — creates folder + config file object
-        // (Does NOT load values until Load() is manually called)
-        // =====================================================================
+        
+        // ========================================================================================================
+        //  CONSTRUCTOR — Sets up the AP config file
+        // --------------------------------------------------------------------------------------------------------
+        //      The constructor is responsible for:
+        //          1. Ensuring the folder exists
+        //          2. Creating the ConfigFile object
+        //          3. Calling Load() to import values
+        //
+        //  IMPORTANT:
+        //      The config does NOT load automatically by having static fields — you MUST instantiate this class
+        //      in MainMod.OnInitializeMelon or call Load() manually.
+        //      Path: UserData/ArchDandara/ArchDandaraAP.cfg
+        // ========================================================================================================
         public ArchDandaraAPConfig()
         {
             string folder = Path.Combine(MelonEnvironment.UserDataDirectory, "ArchDandara");
@@ -51,28 +96,41 @@ namespace ArchDandara
             Print("Loading cfg from: " + cfgPath);
 
             _file = new ConfigFile(cfgPath);
+
+            // Load config values into static properties
             Load();
         }
-
-        // =====================================================================
-        // LOAD — Reads values from .cfg file (creates missing keys)
-        // =====================================================================
+        
+        // ========================================================================================================
+        //  LOAD — Import values from file
+        // --------------------------------------------------------------------------------------------------------
+        //      Loads each key from ArchDandaraAP.cfg.
+        //      If a key is missing:
+        //          → A default value is written into the ConfigFile instance.
+        //          → Save() writes missing defaults back to disk.
+        //      Called automatically by constructor.
+        // ========================================================================================================
         public static void Load()
         {
             if (_file == null)
-                return;
-            
+                return; // Prevent null crash if Load() called too early.
+
             ServerAddress = _file.Get("ServerAddress", "localhost");
             Port          = _file.GetInt("Port", 38281);
             PlayerName    = _file.Get("PlayerName", "Player");
             Password      = _file.Get("Password", "");
 
-            Save(); // optional but ensures new keys get written to disk
+            // Save ensures any missing keys get written immediately.
+            Save();
         }
-
-        // =====================================================================
-        // SAVE — Writes updated values back to the .cfg file
-        // =====================================================================
+        
+        // ========================================================================================================
+        //  SAVE — Commit all values to disk
+        // --------------------------------------------------------------------------------------------------------
+        //      Writes all configuration settings into ArchDandaraAP.cfg.
+        //      Save() must be called whenever a value is updated.
+        //      Relies on ConfigFile.Set() and ConfigFile.Save().
+        // ========================================================================================================
         private static void Save()
         {
             _file.Set("ServerAddress", ServerAddress);
@@ -82,10 +140,13 @@ namespace ArchDandara
 
             _file.Save();
         }
-
-        // =====================================================================
-        // OPTIONAL: Methods to update values safely
-        // =====================================================================
+        
+        // ========================================================================================================
+        //  MODIFYING CONFIG VALUES — Safe setters
+        // --------------------------------------------------------------------------------------------------------
+        //      Changing a value automatically writes to disk.
+        //      These are convenience wrappers for external UI or network logic.
+        // ========================================================================================================
         public void SetServer(string value)
         {
             ServerAddress = value;
