@@ -1,3 +1,5 @@
+//MainMod.cs
+
 // ====================================================================================================
 //  ArchDandara — Fully Commented Mod File
 //  This version contains MAXIMUM explanation for beginners and future maintainers.
@@ -10,10 +12,8 @@
 // This version is clean, commented, and expandable.
 
 using System;
-
 using MelonLoader;                // Main MelonLoader API (MelonMod, MelonInfo, logging system)
 using HarmonyLib;
-
 using MelonLoader.Logging;
 using UnityEngine;                // Unity game engine types (Debug.Log, GameObject, Time, etc.)
 
@@ -32,8 +32,9 @@ namespace ArchDandara
 {
     public class MainMod : MelonMod
     {
-        public static DoorJsonManager DoorJsonManager;
-        public static RoomDoorScanner RoomDoorScanner;
+        //Object Oriented Programming
+        public static DoorJsonManager DoorJsonManager { get; private set; }
+        public static RoomDoorScanner RoomDoorScanner { get; private set; }
         // ============================================================================================
         //  HARMONY — Runtime Code Patching
         // --------------------------------------------------------------------------------------------

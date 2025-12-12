@@ -1,12 +1,14 @@
-using System;
-using UnityEngine;
+//DoorRecord.cs
+using Newtonsoft.Json;
 
 namespace ArchDandara
 {
 
     public class DoorRecord
     {
-        public string sceneName;
+        [JsonIgnore] 
+        public string sceneName;   // used at runtime, NOT serialized
+        
         public string doorName;
         public string otherSideScene;
         public string fakeSpawnID;
@@ -18,8 +20,7 @@ namespace ArchDandara
 
         public override string ToString()
         {
-            return $"SceneName: {sceneName} DoorName: {doorName} " +
-                   $"OtherSpawnSide: {otherSideScene} Pos: ({posX}, {posY}, {posZ})";
+            return $"{doorName} → {otherSideScene}";
         }
     }
 }

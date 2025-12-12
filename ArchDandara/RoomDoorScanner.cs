@@ -1,3 +1,5 @@
+//RoomDoorScanner.cs
+
 using System;
 using MelonLoader;
 using UnityEngine;
@@ -187,8 +189,8 @@ namespace ArchDandara
             }
 
             MelonLogger.Msg($"[RoomDoorScanner] Total Doors Found: {doorsFound}");
-            // Save JSON after finishing this room
-            MainMod.DoorJsonManager.Save();
+            // Print JSON ONLY ONCE PER SCENE
+            MainMod.DoorJsonManager.PrintJsonToLog();
             MelonLogger.Msg("===========================================\n");
 
         }
