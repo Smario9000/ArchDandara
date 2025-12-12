@@ -8,6 +8,7 @@ This project is a work-in-progress reverse-engineering and mod development effor
 ---
 
 ## ✨ Features (Current & Planned)
+### 🛠️ Working on
 - Making the Json File still
 ### ✔ Implemented
 - **RoomDoorScanner**
