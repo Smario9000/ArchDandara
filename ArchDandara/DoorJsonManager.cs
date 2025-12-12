@@ -9,48 +9,70 @@ using Newtonsoft.Json;
 
 namespace ArchDandara
 {
-    public class DoorJsonManager
+    public class DoorJsonManager :  MelonLogger
     {
-        private string _jsonDirectory;
-        private string _jsonFile;
-        private DoorDatabase _database;
+        private static string _jsonFile;
+        private static DoorDatabase _database;
         //This is the constructor 
+        public static void Print(string msg, int level = 1)
+        {
+            if (!ArchDandaraConfig.LogDoorJsonManager)
+                return; 
+            
+            switch (level)
+            {
+                case 1:
+                    MelonLogger.Msg("[DoorJsonManager] " + msg);
+                    break;
+
+                case 2:
+                    MelonLogger.Warning("[DoorJsonManager] " + msg);
+                    break;
+
+                case 3:
+                    MelonLogger.Error("[DoorJsonManager] " + msg);
+                    break;
+            }
+        }
         // ============================================================================================
         // CONSTRUCTOR
         // ============================================================================================
-        public DoorJsonManager()
+        public static void Init()
         {
-            MelonLogger.Msg("[DoorJsonManager] Initializing...");
-
-            // Initialize new database using the NEW grouped system:
-            _database = new DoorDatabase()
             {
-                scenes = new List<SceneDoorGroup>()
-            };
+                Print("Initializing...");
 
-            _jsonDirectory = Path.Combine(MelonEnvironment.UserDataDirectory, "Dandara_Doors");
-            MelonLogger.Msg("[DoorJsonManager] Directory Path = " + _jsonDirectory);
+                // Initialize a new database using the NEW grouped system:
+                _database = new DoorDatabase()
+                {
+                    Scenes = new List<SceneDoorGroup>()
+                };
 
-            if (!Directory.Exists(_jsonDirectory))
-            {
-                MelonLogger.Msg("[DoorJsonManager] Creating Directory...");
-                Directory.CreateDirectory(_jsonDirectory);
-            }
+                var jsonDirectory = Path.Combine(MelonEnvironment.UserDataDirectory, "Dandara_Doors");
+                Print("Directory Path = " + jsonDirectory);
 
-            _jsonFile = Path.Combine(_jsonDirectory, "door_database.json");
-            MelonLogger.Msg("[DoorJsonManager] JSON File = " + _jsonFile);
+                if (!Directory.Exists(jsonDirectory))
+                {
+                    Print("Creating Directory...");
+                    Directory.CreateDirectory(jsonDirectory);
+                }
 
-            Load();
+                _jsonFile = Path.Combine(jsonDirectory, "door_database.json");
+                Print("JSON File = " + _jsonFile);
+                
+                Load();
+                RoomDoorScanner.Init();
+            } 
         }
 
         // ============================================================================================
         // LOAD — JSON → DoorDatabase using Newtonsoft
         // ============================================================================================
-        private void Load()
+        private static void Load()
         {
             if (!File.Exists(_jsonFile))
             {
-                MelonLogger.Msg("[DoorJsonManager] No JSON found — creating new DB.");
+                Print("No JSON found — creating new DB.", 2);
                 _database = new DoorDatabase();
                 Save();
                 return;
@@ -64,18 +86,18 @@ namespace ArchDandara
                 // SAFETY CHECKS
                 if (loaded == null)
                 {
-                    MelonLogger.Warning("[DoorJsonManager] JSON was NULL — rebuilding database.");
+                    Print("JSON was NULL — rebuilding database.", 2);
                     _database = new DoorDatabase();
                     Save();
                     return;
                 }
 
                 _database = loaded;
-                MelonLogger.Msg("[DoorJsonManager] Loaded door database.");
+                Print("Loaded door database.");
             }
             catch (Exception e)
             {
-                MelonLogger.Error("[DoorJsonManager] ERROR Loading: " + e);
+                Print("ERROR Loading: " + e, 3);
                 _database = new DoorDatabase();
             }
         }
@@ -83,19 +105,19 @@ namespace ArchDandara
         // ============================================================================================
         // SAVE — DoorDatabase → JSON using Newtonsoft
         // ============================================================================================
-        private void Save()
+        private static void Save()
         {
             try
             {
-                MelonLogger.Msg($"[DoorJsonManager] This is _database: {_database}");
+                Print("This is _database:" + _database);
 
                 string json = JsonConvert.SerializeObject(_database, Formatting.Indented);
                 File.WriteAllText(_jsonFile, json);
-                MelonLogger.Msg("[DoorJsonManager] Saved grouped database.");
+                Print("Saved grouped database.");
             }
             catch (Exception e)
             {
-                MelonLogger.Error("[DoorJsonManager] ERROR Saving: " + e);
+                Print("ERROR Saving: " + e, 3);
             }
         }
 
@@ -104,26 +126,30 @@ namespace ArchDandara
         // ============================================================================================
         public void AddOrUpdateDoor(DoorRecord entry)
         {
+            // ❌ Do nothing if scanning disabled
+            if (!ArchDandaraConfig.EnableRoomScanning)
+                return;
+            
             // 1 — Find a group for this scene
-            var group = _database.scenes.Find(s => s.sceneName == entry.sceneName);
+            var group = _database.Scenes.Find(s => s.SceneName == entry.SceneName);
 
-            // 2 — Create new group if missing
+            // 2 — Create a new group if missing
             if (group == null)
             {
                 group = new SceneDoorGroup
                 {
-                    sceneName = entry.sceneName,
-                    doors = new List<DoorRecord>()
+                    SceneName = entry.SceneName,
+                    Doors = new List<DoorRecord>()
                 };
 
-                _database.scenes.Add(group);
+                _database.Scenes.Add(group);
             }
 
-            // 3 — Remove any old door with same name
-            group.doors.RemoveAll(d => d.doorName == entry.doorName);
+            // 3 — Remove any old door with the same name
+            group.Doors.RemoveAll(d => d.DoorName == entry.DoorName);
 
-            // 4 — Add new door object
-            group.doors.Add(entry);
+            // 4 — Add a new door object
+            group.Doors.Add(entry);
 
             // 5 — Save grouped structure
             Save();
@@ -133,11 +159,11 @@ namespace ArchDandara
             try
             {
                 string json = JsonConvert.SerializeObject(_database, Formatting.Indented);
-                MelonLogger.Msg("[DoorJsonManager] FINAL JSON OUTPUT:\n" + json);
+                Print("FINAL JSON OUTPUT:\n" + json);
             }
             catch (Exception e)
             {
-                MelonLogger.Error("[DoorJsonManager] ERROR Printing JSON: " + e);
+                Print("ERROR Printing JSON: " + e, 3);
             }
         }
     }

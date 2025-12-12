@@ -6,12 +6,12 @@ namespace ArchDandara
 {
     public class SceneDoorGroup
     {
-        public string sceneName;
-        public List<DoorRecord> doors = new List<DoorRecord>();
+        public string SceneName;
+        public List<DoorRecord> Doors = new List<DoorRecord>();
         
         public override string ToString()
         {
-            return $"{sceneName} ({doors.Count} doors)";
+            return $"{SceneName} ({Doors.Count} doors)";
         }
     }
 }

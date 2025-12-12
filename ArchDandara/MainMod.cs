@@ -19,13 +19,13 @@ using UnityEngine;                // Unity game engine types (Debug.Log, GameObj
 
 
 // ====================================================================================================
-//  MELONLOADER METADATA ATTRIBUTES
+//  MELON-LOADER METADATA ATTRIBUTES
 // ----------------------------------------------------------------------------------------------------
 //  • MelonInfo tells MelonLoader what your mod is called, version, and who made it
 //  • MelonGame restricts the mod so it only loads when the targeted game is running
 // ====================================================================================================
 //[assembly: MelonInfo(typeof(ArchDandara.MainMod), "ArchDandara", "0.0.1", "Smores9000")]
-[assembly: MelonInfo(typeof(ArchDandara.MainMod), "ArchDandara", "0.0.3", "Smores9000")]
+[assembly: MelonInfo(typeof(ArchDandara.MainMod), "ArchDandara", "0.0.4", "Smores9000")]
 [assembly: MelonGame("Long Hat House", "Dandara")]
 
 namespace ArchDandara
@@ -33,6 +33,8 @@ namespace ArchDandara
     public class MainMod : MelonMod
     {
         //Object Oriented Programming
+        public static ArchDandaraConfig Config{ get; private set; }
+        public static ArchDandaraAPConfig APConfig{ get; private set; }
         public static DoorJsonManager DoorJsonManager { get; private set; }
         public static RoomDoorScanner RoomDoorScanner { get; private set; }
         // ============================================================================================
@@ -77,9 +79,6 @@ namespace ArchDandara
         // hue goes 0 → 1 and wraps around. This animates the rainbow color.
         // ============================================================================================
         private static float _rgbHue;
-
-
-
         // ============================================================================================
         //  MOD INITIALIZATION — runs ONE TIME when MelonLoader loads the mod
         // --------------------------------------------------------------------------------------------
@@ -90,13 +89,43 @@ namespace ArchDandara
         // ============================================================================================
         public override void OnInitializeMelon()
         {
-            // First message confirming the mod loaded successfully
-            MelonLogger.Msg(DefaultColor, "ArchDandara Mod Loaded — Now with Full Documentation!");
-            DoorJsonManager = new DoorJsonManager(); // MUST run before scanner
+            // The first message confirming the mod loaded successfully
             //MainMod.DoorJsonManager = DoorJsonManager; <----- This is how to call it
-            RoomDoorScanner = new RoomDoorScanner();       // Scanner registers events but does NOT manually call scene load
-            // Create Harmony instance and apply all patches inside this assembly
-            _harmony = new HarmonyLib.Harmony("com.you.archdandara");
+            MelonLogger.Msg(DefaultColor, "[MainMod] ArchDandara Mod Loaded — Now with Full Documentation!");
+            ArchDandaraConfig.Init();
+            ArchDandaraAPConfig.Load();
+            DoorJsonManager.Init();
+            MelonLogger.Msg("[MainMod] Debug Flags loaded.");
+            
+            Config          = new ArchDandaraConfig();
+            APConfig        = new ArchDandaraAPConfig();
+            if (!ArchDandaraConfig.LogAPDebug)
+            {
+                MelonLogger.Msg("[Archipelago] Logs is Off");
+                return;
+            }
+            
+
+            DoorJsonManager = new DoorJsonManager(); // MUST run before scanner
+            if (!ArchDandaraConfig.LogDoorJsonManager)
+            {
+                MelonLogger.Msg("[DoorJsonManager] Logs is Off");
+                return; // logging disabled
+            }
+            // 🟢 ONLY ENABLE SCANNER IF CONFIG SAYS SO
+            if (!ArchDandaraConfig.EnableRoomScanning)
+            {
+                MelonLogger.Msg("[MainMod] RoomDoorScanner DISABLED by config");
+                return;
+            }
+            RoomDoorScanner = new RoomDoorScanner();
+            if (!ArchDandaraConfig.LogRoomDoorScanner)
+            {
+                MelonLogger.Msg("[RoomDoorScanner] Logs is Off");
+                return; // logging disabled
+            }
+            // Create a Harmony instance and apply all patches inside this assembly
+            _harmony        = new HarmonyLib.Harmony("com.you.archdandara");
             _harmony.PatchAll();
         }
 
@@ -156,6 +185,8 @@ namespace ArchDandara
         {
             static void Prefix(object message)
             {
+                if (!ArchDandaraConfig.LogDebugPatch)
+                    return;
                 // Convert object → string safely
                 string msg = message?.ToString() ?? "";
 

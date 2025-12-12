@@ -7,8 +7,28 @@ using UnityEngine.SceneManagement;
 
 namespace ArchDandara
 {
-    public class RoomDoorScanner 
+    public class RoomDoorScanner :  MelonLogger
     {
+        public static void Print(string msg, int level = 1)
+        {
+            if (!ArchDandaraConfig.LogRoomDoorScanner) 
+                return; // logging disabled
+            
+            switch (level)
+            {
+                case 1:
+                    MelonLogger.Msg("[RoomDoorScanner] " + msg);
+                    break;
+
+                case 2:
+                    MelonLogger.Warning("[RoomDoorScanner] " + msg);
+                    break;
+
+                case 3:
+                    MelonLogger.Error("[RoomDoorScanner] " + msg);
+                    break;
+            }
+        }
         // ===============================================================
         //  CONFIG FLAGS
         // ===============================================================
@@ -19,24 +39,30 @@ namespace ArchDandara
         // Keep track of the last scanned scene so we avoid duplicates.
         private static string _lastSceneName = "";
         
-        public RoomDoorScanner() 
-        { 
-            MelonLogger.Msg("[RoomDoorScanner] is Starting up"); 
+        public static void Init()
+        {// ❌ Scanner disabled
+            if (!ArchDandaraConfig.EnableRoomScanning)
+            {
+                Print("Scanner disabled — skipping room scan.");
+                return;
+            }
+            
+            Print("is Starting up");
             // Register proper MelonLoader callback instead
             MelonEvents.OnSceneWasLoaded.Subscribe(OnSceneWasLoaded); 
         }
         // ===============================================================
         //  MELON LOADER HOOK — Runs when the game finishes loading a scene
         // ===============================================================
-        private void OnSceneWasLoaded(int buildIndex, string sceneName)
+        private static void OnSceneWasLoaded(int buildIndex, string sceneName)
         {
             if (string.IsNullOrEmpty(sceneName))
             {
-                MelonLogger.Warning("[RoomDoorScanner] Scene name was NULL — skipping scan.");
+                Print("Scene name was NULL — skipping scan.", 2);
                 return;
             }
 
-            MelonLogger.Msg($"[RoomDoorScanner] Scene Loaded: {sceneName}");
+            Print("Scene Loaded: {sceneName}");
             MelonLogger.Msg("===========================================\n");
 
             if (sceneName == _lastSceneName)
@@ -52,7 +78,7 @@ namespace ArchDandara
         // ===============================================================
         //  MAIN DOOR SCANNER
         // ===============================================================
-        public void ScanRoom(string sceneName)
+        private static void ScanRoom(string sceneName)
         {
             MelonLogger.Msg("===========================================");
             MelonLogger.Msg($"    ROOM SCAN — {sceneName}");
@@ -159,36 +185,36 @@ namespace ArchDandara
                     // ---------------------------
                     // PRETTY MULTILINE DUMP (keeps your current format)
                     // ---------------------------
-                    MelonLogger.Msg("[RoomDoorScanner]──────────────────────────────────────────");
+                    Print("──────────────────────────────────────────");
                     MelonLogger.Msg($" Door: {doorName}");
                     MelonLogger.Msg($" Position:");
                     MelonLogger.Msg($"   X = {pos.x}");
                     MelonLogger.Msg($"   Y = {pos.y}");
                     MelonLogger.Msg($"   Z = {pos.z}");
                     MelonLogger.Msg($" Leads To Scene: {leadsToScene}");
-                    MelonLogger.Msg("[RoomDoorScanner]──────────────────────────────────────────");
+                    Print("──────────────────────────────────────────");
                     // ----------------------------------------------------
                     // WRITE DOOR TO JSON DATABASE
                     // ----------------------------------------------------
                     var entry = new DoorRecord
                     {
-                        doorName = doorName,
-                        sceneName = sceneName,
-                        otherSideScene = leadsToScene,
-                        fakeSpawnID = "",
+                        DoorName = doorName,
+                        SceneName = sceneName,
+                        OtherSideScene = leadsToScene,
+                        FakeSpawnID = "",
                         
-                        posX = pos.x,
-                        posY = pos.y,
-                        posZ = pos.z
+                        PosX = pos.x,
+                        PosY = pos.y,
+                        PosZ = pos.z
                     };
                     MelonLogger.Msg("===========================================\n");
-                    MelonLogger.Msg("[DoorJsonManager] DoorJsonManager Updated");
+                    DoorJsonManager.Print("DoorJsonManager Updated");
                     MainMod.DoorJsonManager.AddOrUpdateDoor(entry);
                     MelonLogger.Msg("===========================================\n");
                 }
             }
 
-            MelonLogger.Msg($"[RoomDoorScanner] Total Doors Found: {doorsFound}");
+            Print("Total Doors Found: {doorsFound}");
             // Print JSON ONLY ONCE PER SCENE
             MainMod.DoorJsonManager.PrintJsonToLog();
             MelonLogger.Msg("===========================================\n");
