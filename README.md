@@ -8,17 +8,18 @@ This project is a work-in-progress reverse-engineering and mod development effor
 ---
 
 ## ✨ Features (Current & Planned)
-
+- Making the Json File still
 ### ✔ Implemented
 - **RoomDoorScanner**
   - Automatically scans rooms for `Door` components.
   - Exports door metadata (position, target scene, spawn IDs, etc.) to JSON.
   - Helps map out the entire game from just entering rooms.
-
-### 🔄 In Progress
 - **DoorJsonManager**
   - Creates and maintains JSON files for all detected doors.
   - Automatically updates entries when new data is found.
+  
+### 🔄 In Progress
+
 - **Archipelago Client**
   - Connection handling
   - Item receive/send
@@ -49,6 +50,5 @@ This project is a work-in-progress reverse-engineering and mod development effor
 3. Place `ArchDandara.dll` in: :...\ArchDandara\Dandara\Mods
 4. Launch the game.
 5. The mod will automatically begin scanning rooms and generating:
-A file that scan all sceens and make a json that shows u all the door info as you play
-`Doesnt work yet`
-it does show you info in the MelonLoader Logs about the doors.1
+A file that scan all sceens and make a json that shows u all the door info as you play `Works`
+it does show you info in the MelonLoader Logs about the doors.
