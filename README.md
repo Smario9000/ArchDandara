@@ -1,3 +1,5 @@
+<img width="512" height="512" alt="Banner" src="https://github.com/user-attachments/assets/af0eae36-4102-4f6d-a376-159b78497892" />
+
 # Dandara Archipelago Mod
 A MelonLoader mod for **Dandara: Trials of Fear Edition** that connects the game to the
 **Archipelago multiworld randomizer system**, enabling item sending/receiving, door scanning,
