@@ -1,5 +1,6 @@
 //RoomDoorScanner.cs
 
+using System.Linq;
 using MelonLoader;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -38,16 +39,16 @@ namespace ArchDandara
         //
         // If LogRoomDoorScanner = false, nothing prints.
         // ============================================================================================
-        public static void Print(string msg, int level = 1)
+        private static void Print(string msg, int level = 1)
         {
             if (!ArchDandaraConfig.LogRoomDoorScanner)
                 return;
 
             switch (level)
             {
-                case 1: MelonLogger.Msg("[RoomDoorScanner] " + msg); break;
-                case 2: MelonLogger.Warning("[RoomDoorScanner] " + msg); break;
-                case 3: MelonLogger.Error("[RoomDoorScanner] " + msg); break;
+                case 1: Msg("[RoomDoorScanner] " + msg); break;
+                case 2: Warning("[RoomDoorScanner] " + msg); break;
+                case 3: Error("[RoomDoorScanner] " + msg); break;
             }
         }
 
@@ -81,11 +82,6 @@ namespace ArchDandara
         // ============================================================================================
         public static void Init()
         {
-            if (!ArchDandaraConfig.EnableRoomScanning)
-            {
-                Print("Scanner disabled — skipping room scan.");
-                return;
-            }
             Print("is Starting up");
             MelonEvents.OnSceneWasLoaded.Subscribe(OnSceneWasLoaded);
         }
@@ -107,6 +103,14 @@ namespace ArchDandara
         // ============================================================================================
         private static void OnSceneWasLoaded(int buildIndex, string sceneName)
         {
+            if (sceneName == "MainMenu" ||
+                sceneName == "LoadingScreen" ||
+                sceneName == "InitGame")
+            {
+                Print($"Skipping non-gameplay scene: {sceneName}", 2);
+                return;
+            }
+            
             if (string.IsNullOrEmpty(sceneName))
             {
                 Print("Scene name was NULL — skipping scan.", 2);
@@ -150,20 +154,30 @@ namespace ArchDandara
         // ============================================================================================
         private static void ScanRoom(string sceneName)
         {
-            MelonLogger.Msg("===========================================");
-            MelonLogger.Msg($"    ROOM SCAN — {sceneName}");
-            MelonLogger.Msg("===========================================");
+            Print("===========================================");
+            Print($"        ROOM SCAN — {sceneName}");
+            Print("===========================================");
 
             // Step 1 — Get Unity Scene object
             Scene scene = SceneManager.GetSceneByName(sceneName);
+            if (!scene.IsValid())
+            {
+                Print("Invalid scene — skipping scan.", 2);
+                return;
+            }
+
             var roots = scene.GetRootGameObjects();
+            if (roots == null || roots.Length == 0)
+            {
+                Print("Scene has no root objects — skipping.", 2);
+                return;
+            }
 
             int doorsFound = 0;
 
             // Step 2 — Walk all GameObject trees
             foreach (var root in roots)
             {
-                // Professional-level summary comment:
                 // Get ALL components under this root (even inactive)
                 Component[] comps = root.GetComponentsInChildren<Component>(true);
 
@@ -173,7 +187,9 @@ namespace ArchDandara
                     if (comp.gameObject == null) continue;
 
                     var compType = comp.GetType();
-
+                    string spawnID = "";
+                    string fakeSpawnID = "";
+                    
                     // Identify "Door" by name only (best method for obfuscated builds)
                     if (compType.Name != "Door")
                         continue;
@@ -198,8 +214,7 @@ namespace ArchDandara
                         "_destination",
                         "destinationScene"
                     };
-
-                    // Option B — professional-level concise comment:
+                    
                     // Try fields first, then properties.
                     foreach (var fname in possibleNames)
                     {
@@ -235,40 +250,77 @@ namespace ArchDandara
                             }
                         }
                     }
+                    // --------------------------
+                    // Extract Spawn IDs
+                    // --------------------------
+                    foreach (var f in compType.GetFields(
+                                 System.Reflection.BindingFlags.Instance |
+                                 System.Reflection.BindingFlags.Public |
+                                 System.Reflection.BindingFlags.NonPublic))
+                    {
+                        object val = f.GetValue(comp);
+                        Print($"[FIELD] {f.Name} = {val}");
+                    }
+                    
+                    var spawnField = compType.GetField("spawnID",
+                        System.Reflection.BindingFlags.Instance |
+                        System.Reflection.BindingFlags.Public |
+                        System.Reflection.BindingFlags.NonPublic);
 
+                    if (spawnField != null)
+                    {
+                        object val = spawnField.GetValue(comp);
+                        spawnID = val?.ToString() ?? "";
+                        Print($"Raw spawnID value type: {val?.GetType().FullName}");
+                        Print($"Raw spawnID value: {val}");
+                    }
+
+                    var fakeSpawnField = compType.GetField("fakeSpawnID",
+                        System.Reflection.BindingFlags.Instance |
+                        System.Reflection.BindingFlags.Public |
+                        System.Reflection.BindingFlags.NonPublic);
+
+                    if (fakeSpawnField != null)
+                    {
+                        object val = fakeSpawnField.GetValue(comp);
+                        fakeSpawnID = val?.ToString() ?? "";
+                        Print($"Raw fakeSpawn value type: {val?.GetType().FullName}");
+                        Print($"Raw fakeSpawn value: {val}");
+                    }
                     // --------------------------
                     // Printed summary
                     // --------------------------
                     Print("──────────────────────────────────────────");
-                    MelonLogger.Msg($" Door: {doorName}");
-                    MelonLogger.Msg($" Position:");
-                    MelonLogger.Msg($"   X = {pos.x}");
-                    MelonLogger.Msg($"   Y = {pos.y}");
-                    MelonLogger.Msg($"   Z = {pos.z}");
-                    MelonLogger.Msg($" Leads To Scene: {leadsToScene}");
+                    Print($" Door: {doorName}");
+                    Print($" SpawnID: {spawnID}");
+                    Print($" FakeSpawnID: {fakeSpawnID}");
+                    Print($" Position:");
+                    Print($"   X = {pos.x}");
+                    Print($"   Y = {pos.y}");
+                    Print($"   Z = {pos.z}");
+                    Print($" Leads To Scene: {leadsToScene}");
                     Print("──────────────────────────────────────────");
 
                     // --------------------------
                     // Write to JSON database
                     // --------------------------
                     DoorJsonManager.Print("DoorJsonManager Updated");
-                    MainMod.DoorJsonManager.AddOrUpdateDoor(new DoorRecord
+                    DoorJsonManager.AddOrUpdateDoor(new DoorRecord
                     {
                         DoorName = doorName,
                         SceneName = sceneName,
                         OtherSideScene = leadsToScene,
-                        FakeSpawnID = "",
-                        PosX = pos.x,
-                        PosY = pos.y,
-                        PosZ = pos.z
+                        SpawnID = spawnID,
+                        FakeSpawnID = fakeSpawnID,
+                        PosX = pos.x,PosY = pos.y,PosZ = pos.z
                     });
                 }
             }
 
             // Final output
             Print($"Total Doors Found: {doorsFound}");
-            MainMod.DoorJsonManager.PrintJsonToLog();
-            MelonLogger.Msg("===========================================\n");
+            DoorJsonManager.PrintJsonToLog();
+            Print("===========================================\n");
         }
     }
 }

@@ -69,9 +69,9 @@ namespace ArchDandara
 
             switch (level)
             {
-                case 1: MelonLogger.Msg("[DoorJsonManager] " + msg); break;
-                case 2: MelonLogger.Warning("[DoorJsonManager] " + msg); break;
-                case 3: MelonLogger.Error("[DoorJsonManager] " + msg); break;
+                case 1: Msg("[DoorJsonManager] " + msg); break;
+                case 2: Warning("[DoorJsonManager] " + msg); break;
+                case 3: Error("[DoorJsonManager] " + msg); break;
             }
         }
         
@@ -153,6 +153,11 @@ namespace ArchDandara
                 }
 
                 _database = loaded;
+                if (_database.Scenes == null)
+                {
+                    Print("Scenes list was NULL — rebuilding.", 2);
+                    _database.Scenes = new List<SceneDoorGroup>();
+                }
                 Print("Loaded door database.");
             }
             catch (Exception e)
@@ -162,7 +167,23 @@ namespace ArchDandara
                 _database = new DoorDatabase();
             }
         }
-        
+        // ============================================================================================
+        // QUERY — Get a specific door record by scene + door name
+        // ============================================================================================
+        public static DoorRecord GetDoorRecord(string sceneName, string doorName)
+        {
+            if (_database == null)
+            {
+                Print("Database not initialized", 2);
+                return null;
+            }
+
+            var scene = _database.Scenes.Find(s => s.SceneName == sceneName);
+            if (scene == null)
+                return null;
+
+            return scene.Doors.Find(d => d.DoorName == doorName);
+        }
         // ====================================================================================================
         //  Save() — Writes DoorDatabase to JSON file
         // ----------------------------------------------------------------------------------------------------
@@ -173,6 +194,11 @@ namespace ArchDandara
         // ====================================================================================================
         private static void Save()
         {
+            if (ArchDandaraConfig.DoorDatabaseReadonly)
+            {
+                Print("Read-Only mode enable - skipping JSON save.", 2);
+                return;
+            }
             try
             {
                 Print("This is _database: " + _database);
@@ -199,11 +225,28 @@ namespace ArchDandara
         //
         //  If EnableRoomScanning == false, this function does nothing.
         // ====================================================================================================
-        public void AddOrUpdateDoor(DoorRecord entry)
+        public static void AddOrUpdateDoor(DoorRecord entry)
         {
+            if (ArchDandaraConfig.DoorDatabaseReadonly)
+            {
+                Print("Read-only mode enable - door update blocked.", 2);
+                return;
+            }
             if (!ArchDandaraConfig.EnableRoomScanning)
                 return;
 
+            if (_database == null)
+            {
+                Print("Database NULL — cannot add door.", 3);
+                return;
+            }
+
+            if (_database.Scenes == null)
+            {
+                Print("Scenes list NULL — rebuilding.", 2);
+                _database.Scenes = new List<SceneDoorGroup>();
+            }
+            
             // Try finding existing scene group
             var group = _database.Scenes.Find(s => s.SceneName == entry.SceneName);
 
@@ -235,8 +278,20 @@ namespace ArchDandara
         //  Serializes the database and prints it to the MelonLoader console.
         //  Useful for debugging JSON output without opening files manually.
         // ====================================================================================================
-        public void PrintJsonToLog()
+        public static void PrintJsonToLog()
         {
+            if (_database == null)
+            {
+                Print("Database NULL — cannot print JSON.", 2);
+                return;
+            }
+
+            if (_database.Scenes == null)
+            {
+                Print("Scenes list NULL — cannot print JSON.", 2);
+                return;
+            }
+            
             try
             {
                 string json = JsonConvert.SerializeObject(_database, Formatting.Indented);

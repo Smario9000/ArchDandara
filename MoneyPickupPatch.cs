@@ -1,6 +1,7 @@
 using System;
 using MelonLoader;
 using HarmonyLib;
+
 namespace ArchDandara
 {
     [HarmonyPatch(typeof(MoneyPickup), "Effect")]

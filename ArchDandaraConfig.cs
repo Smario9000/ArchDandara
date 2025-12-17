@@ -34,13 +34,16 @@ namespace ArchDandara
         //  • LogAPDebug — Debug logs from Archipelago layer
         // ============================================================================================
         public static bool EnableRoomScanning { get; private set; }
-
+        public static bool DoorDatabaseReadonly { get; private set; }
+        public static bool LogArchipelago { get; private set; }
+        public static bool LogAPDebug { get; private set; }
         public static bool LogDebugPatch { get; private set; }
         public static bool LogDoorJsonManager { get; private set; }
         public static bool LogRoomDoorScanner { get; private set; }
-        public static bool LogArchipelago { get; private set; }
-        public static bool LogAPDebug { get; private set; }
-
+        public static bool LogDoorRandomizer { get; private set; }
+        public static bool LogMoneyPatch { get; private set; }
+        
+        
         // ============================================================================================
         //  INIT() — FIRST-TIME INITIALIZATION (Training Manual Style)
         // --------------------------------------------------------------------------------------------
@@ -87,13 +90,17 @@ namespace ArchDandara
         // ============================================================================================
         private static void LoadSettings()
         {
-            EnableRoomScanning = _config.GetBool("EnableRoomScanning", true);
-
-            LogDebugPatch       = _config.GetBool("LogDebugPatch", true);
-            LogDoorJsonManager  = _config.GetBool("LogDoorJsonManager", true);
-            LogRoomDoorScanner  = _config.GetBool("LogRoomDoorScanner", true);
-            LogArchipelago      = _config.GetBool("LogArchipelago", true);
-            LogAPDebug          = _config.GetBool("LogAPDebug", true);
+            EnableRoomScanning   = _config.GetBool("EnableRoomScanning", true);
+            DoorDatabaseReadonly = _config.GetBool("DoorDatabaseReadonly", true);
+                
+            LogArchipelago       = _config.GetBool("LogArchipelago", true);
+            LogAPDebug           = _config.GetBool("LogAPDebug", true);
+            LogDebugPatch        = _config.GetBool("LogDebugPatch", true);
+            LogDoorJsonManager   = _config.GetBool("LogDoorJsonManager", true);
+            LogDoorRandomizer    = _config.GetBool("LogDoorRandomizer", true); 
+            LogRoomDoorScanner   = _config.GetBool("LogRoomDoorScanner", true);
+            LogMoneyPatch          = _config.GetBool("LogMoneyPatch", true);
+            
         }
 
         // ============================================================================================
@@ -108,13 +115,16 @@ namespace ArchDandara
         private static void Save()
         {
             // Write values into ConfigFile's dictionary
-            _config.Set("EnableRoomScanning", EnableRoomScanning);
-
-            _config.Set("LogDebugPatch",       LogDebugPatch);
-            _config.Set("LogDoorJsonManager",  LogDoorJsonManager);
-            _config.Set("LogRoomDoorScanner",  LogRoomDoorScanner);
+            _config.Set("EnableRoomScanning",   EnableRoomScanning);
+            _config.Set("DoorDatabaseReadonly", DoorDatabaseReadonly);
+            
             _config.Set("LogArchipelago",      LogArchipelago);
             _config.Set("LogAPDebug",          LogAPDebug);
+            _config.Set("LogDebugPatch",       LogDebugPatch);
+            _config.Set("LogDoorJsonManager",  LogDoorJsonManager);
+            _config.Set("LogDoorRandomizer",   LogDoorRandomizer);
+            _config.Set("LogRoomDoorScanner",  LogRoomDoorScanner);
+            _config.Set("LogStopSave",         LogMoneyPatch);
 
             // Human-readable header
             string header =
@@ -124,7 +134,7 @@ namespace ArchDandara
 #  • Controls debug logging output (enable/disable logging categories)
 #  • Controls whether RoomDoorScanner runs and updates JSON
 #  • This file is automatically created and managed by the ArchDandara Mod
-#  • Edit values using: Key=Value
+#  • Edit values using: Key= True (on) | False (off)
 # ============================================================================================
 ";
             // Write file to disk

@@ -1,41 +1,114 @@
-// MainMod.cs
-
-// ====================================================================================================
-//  ArchDandara — Fully Commented Mod File (DOCUMENTED)
-//  This file contains the main MelonLoader mod entry point (MainMod) and global static objects.
-// ====================================================================================================
-
 using System;
-using MelonLoader;                // MelonLoader API: MelonMod base class and logger helpers
-using HarmonyLib;                 // Harmony for runtime patching
-using MelonLoader.Logging;        // MelonLogger types
-using UnityEngine;                // Unity types, used in Harmony patches below
+using UnityEngine;
+using MelonLoader;
+using Archipelago.MultiClient.Net;
+using Archipelago.MultiClient.Net.Enums;
+using MelonLoader.Logging;
 
-// MELON-LOADER ATTRIBUTES
-// These assembly attributes inform MelonLoader about this mod. Keep them intact.
-[assembly: MelonInfo(typeof(ArchDandara.MainMod), "ArchDandara", "0.0.4", "Smores9000")]
+[assembly: MelonInfo(typeof(ArchDandara.MainMod), "ArchDandara", "0.0.5", "Smores9000")]
 [assembly: MelonGame("Long Hat House", "Dandara")]
 
 namespace ArchDandara
 {
-    /// <summary>
-    /// MainMod is the root MelonMod class. MelonLoader will construct this and call lifecycle hooks such
-    /// as OnInitializeMelon() when the mod is loaded. It is responsible for:
-    ///  - Initializing global services (config, JSON manager, scanner, etc.)
-    ///  - Applying Harmony patches
-    ///  - Controlling which systems are enabled (based on your config)
-    /// </summary>
     public class MainMod : MelonMod
     {
-        // ------------------------
+        /*public static ArchipelagoSession Session;
+
+        private MelonPreferences_Category _category;
+        private MelonPreferences_Entry<string> _hostEntry;
+        private MelonPreferences_Entry<int> _portEntry;
+        private MelonPreferences_Entry<string> _slotNameEntry;
+        private MelonPreferences_Entry<string> _passwordEntry;
+        public override void OnInitializeMelon()
+        {
+            // Initialize configuration
+            _category = MelonPreferences.CreateCategory("DandaraArchipelago", "Dandara Archipelago Settings");
+            _category.SetFilePath("UserData/DandaraArchipelago.cfg"); // Force specific file path
+            _hostEntry = _category.CreateEntry("Host", "localhost");
+            _portEntry = _category.CreateEntry("Port", 38281);
+            _slotNameEntry = _category.CreateEntry("SlotName", "Player1");
+            _passwordEntry = _category.CreateEntry("Password", "");
+
+            // Force save immediately so the file appears
+            _category.SaveToFile();
+
+            LoggerInstance.Msg("Dandara Archipelago Mod Initialized!");
+            LoggerInstance.Msg("Press F5 to Connect.");
+            LoggerInstance.Msg("Press F1 to show settings.");
+
+            // Start the console listener in a background thread
+            // so we don't freeze the game.
+
+        }
+
+        public override void OnUpdate()
+        {
+            // Check for key presses every frame
+            if (Input.GetKeyDown(KeyCode.F5))
+            {
+                LoggerInstance.Msg("F5 Pressed - Attempting Connection...");
+                Connect();
+            }
+
+            if (Input.GetKeyDown(KeyCode.F1))
+            {
+                LoggerInstance.Msg($"Current Settings: Host={_hostEntry.Value}, Port={_portEntry.Value}, Slot={_slotNameEntry.Value}");
+            }
+        }
+
+        private void Connect()
+        {
+            string host = _hostEntry.Value;
+            int port = _portEntry.Value;
+            string uri = $"ws://{host}:{port}";
+
+            try
+            {
+                Session = ArchipelagoSessionFactory.CreateSession(uri);
+                Session.Items.ItemReceived += OnItemReceived;
+
+                LoggerInstance.Msg($"Connecting to {uri}...");
+
+                var result = Session.TryConnectAndLogin(
+                    "Dandara",
+                    _slotNameEntry.Value,
+                    ItemsHandlingFlags.AllItems,
+                    password: _passwordEntry.Value
+                );
+
+                if (result is LoginSuccessful)
+                {
+                    LoggerInstance.Msg($"Successfully connected to Archipelago as {_slotNameEntry.Value}!");
+                }
+                else if (result is LoginFailure failure)
+                {
+                    LoggerInstance.Error($"Failed to connect to Archipelago: {string.Join(", ", failure.Errors)}");
+                }
+            }
+            catch (Exception ex)
+            {
+                LoggerInstance.Error($"An error occurred while connecting: {ex.Message}");
+                LoggerInstance.Error(ex.StackTrace);
+            }
+        }
+
+        private void OnItemReceived(Archipelago.MultiClient.Net.Helpers.ReceivedItemsHelper helper)
+        {
+            var item = helper.DequeueItem();
+            string itemName = Session.Items.GetItemName(item.ItemId);
+            LoggerInstance.Msg($"Received item: {itemName}");
+
+            // TODO: Add logic here to actually give the item to the player in-game
+        }*/
         // Shared/global objects
         // ------------------------
         // These static properties let other classes reference the central services easily:
         public static ArchDandaraConfig Config{ get; private set; }
         public static ArchDandaraAPConfig APConfig{ get; private set; }
         public static DoorJsonManager DoorJsonManager { get; private set; }
+        public static DoorRandomizer DoorRandomizer { get; private set; }
         public static RoomDoorScanner RoomDoorScanner { get; private set; }
-
+        public static MoneyPickupPatch MoneyPatch { get; private set; }
         // Harmony instance used to patch methods at runtime (namespace+id identifies the patcher)
         private HarmonyLib.Harmony _harmony;
 
@@ -83,32 +156,38 @@ namespace ArchDandara
 
         public override void OnInitializeMelon()
         {
+            _harmony = HarmonyInstance;
             // Small, colored startup message — confirms the mod entry executed.
             MelonLogger.Msg(DefaultColor, "[MainMod] ArchDandara Mod Loaded — Now with Full Documentation!");
-
+            
             // ---- CONFIGURATION ----
             // Initialize the main config subsystem. This will ensure the file exists and load values.
-            ArchDandaraConfig.Init();
+            
 
             // Load Archipelago-specific config (separate file).
-            ArchDandaraAPConfig.Load();
-
+            ArchDandaraAPConfig.Init();
+            ArchDandaraConfig.Init();
             // DoorJsonManager.Init() ensures the JSON folder/file are prepared.
             // Use the Init/Load pattern for static managers that require disk IO early.
             DoorJsonManager.Init();
-
+            
+            // Info about it DoorRandomizer
+            DoorRandomizer.Init();
+            MoneyPickupPatch.Init();
             // Helpful message so you can see the debug flag state loading early in the log.
             MelonLogger.Msg("[MainMod] Debug Flags loaded.");
 
             // Create instances of your object-oriented config wrappers so other classes can use them.
             Config = new ArchDandaraConfig();
+            
+            // For setting up the connection to the server
             APConfig = new ArchDandaraAPConfig();
-
+            
             // Optional: if the user disabled archipelago debug logs, bail out early.
             // (Note: this returns from the whole method and prevents further initialization.)
             if (!ArchDandaraConfig.LogAPDebug)
             {
-                MelonLogger.Msg("[Archipelago] Logs is Off");
+                MelonLogger.Msg("[MainMod] Logs for [Archipelago] Client is Off.");
                 return;
             }
 
@@ -118,10 +197,23 @@ namespace ArchDandara
             // If user turned off the DoorJsonManager logs, inform and continue (not fatal).
             if (!ArchDandaraConfig.LogDoorJsonManager)
             {
-                MelonLogger.Msg("[DoorJsonManager] Logs is Off");
+                MelonLogger.Msg("[MainMod] Logs for [DoorJsonManager] is Off.");
                 // Note: we continue — logging being off does not disable the system itself.
             }
-
+            
+            // For using Randomizing the doors and where they will send you
+            DoorRandomizer = new DoorRandomizer();
+            
+            // Enable DoorRandomizer only if config says so. This avoids unnecessary scene hooks.
+            if (!ArchDandaraConfig.LogDoorRandomizer)
+            {
+                MelonLogger.Msg("[MainMod] Logs for [DoorRandomizer] is Off.");
+                // Intentionally do not create the RoomDoorScanner instance.
+                // We still create Harmony patches below (if you want patches only with scanner, gate those too).
+                return;
+            }
+            // Create the scanner now that config and DoorJsonManager are ready.
+            RoomDoorScanner = new RoomDoorScanner();
             // Enable RoomDoorScanner only if config says so. This avoids unnecessary scene hooks.
             if (!ArchDandaraConfig.EnableRoomScanning)
             {
@@ -130,20 +222,22 @@ namespace ArchDandara
                 // We still create Harmony patches below (if you want patches only with scanner, gate those too).
                 return;
             }
-
-            // Create the scanner now that config and DoorJsonManager are ready.
-            RoomDoorScanner = new RoomDoorScanner();
-
             // If room scanner logging is disabled — just note it.
             if (!ArchDandaraConfig.LogRoomDoorScanner)
             {
-                MelonLogger.Msg("[RoomDoorScanner] Logs is Off");
+                MelonLogger.Msg("[MainMod] Logs for [RoomDoorScanner] is Off.");
                 // Again: logging off doesn't disable functionality; it's about console noise.
             }
 
-            // Finally: create and apply Harmony patches for runtime instrumentation.
-            _harmony = new HarmonyLib.Harmony("com.you.archdandara");
-            _harmony.PatchAll();
+            MoneyPatch = new MoneyPickupPatch();
+            // If room scanner logging is disabled — just note it.
+            if (!ArchDandaraConfig.LogMoneyPatch)
+            {
+                MelonLogger.Msg("[MainMod] Logs for [MoneyPatch] is Off.");
+                // Again: logging off doesn't disable functionality; it's about console noise.
+            }
+            // Apply the save blocking patches
+            _harmony.PatchAll(System.Reflection.Assembly.GetExecutingAssembly());
         }
 
         // =====================================================================================
@@ -181,7 +275,7 @@ namespace ArchDandara
         // =====================================================================================
         // We patch UnityEngine.Debug.Log(object) so we can re-route or filter in-game logs.
         // Guarded by your config flag (ArchDandaraConfig.LogDebugPatch).
-        [HarmonyPatch(typeof(Debug), "Log", new[] { typeof(object) })]
+        [HarmonyLib.HarmonyPatch(typeof(Debug), "Log", new[] { typeof(object) })]
         private static class DebugLogPatch
         {
             static void Prefix(object message)
@@ -190,15 +284,61 @@ namespace ArchDandara
                     return;
 
                 string msg = message?.ToString() ?? "";
+                string lower = msg.ToLowerInvariant();
 
-                // Basic filter example — user wanted to remove the repetitive "[INPUT MODE]" spam.
-                if (msg.IndexOf("[INPUT MODE]", StringComparison.OrdinalIgnoreCase) >= 0)
+                // Ignore known spam
+                if (lower.Contains("[input mode]"))
                     return;
 
-                PrintWithColor($"[DebugLogPatch] {msg}", DebugColor);
+                bool interesting =
+                    lower.Contains("item") ||
+                    lower.Contains("pickup") ||
+                    lower.Contains("collect") ||
+                    lower.Contains("chest") ||
+                    lower.Contains("open") ||
+                    lower.Contains("treasure") ||
+                    lower.Contains("upgrade") ||
+                    lower.Contains("buy");
+
+                // Always print normal logs if debug is on
+                PrintWithColor($"[DebugLog] {msg}", DebugColor);
+
+                if (!interesting)
+                    return;
+
+                // 🔥 IMPORTANT PART — STACK TRACE
+                PrintWithColor("────────── 🔎 INTERESTING EVENT DETECTED 🔎 ──────────", DebugColor);
+
+                try
+                {
+                    var stack = new System.Diagnostics.StackTrace(2, false);
+                    foreach (var frame in stack.GetFrames())
+                    {
+                        var method = frame.GetMethod();
+                        var type = method?.DeclaringType;
+
+                        if (type == null)
+                            continue;
+
+                        // Skip Harmony / MelonLoader internals
+                        string ns = type.Namespace ?? "";
+                        if (ns.StartsWith("Harmony") || ns.StartsWith("MelonLoader"))
+                            continue;
+
+                        PrintWithColor(
+                            $" → {type.FullName}.{method.Name}",
+                            DebugColor
+                        );
+                    }
+                }
+                catch
+                {
+                    PrintWithColor("⚠ Failed to capture stack trace", DebugColor);
+                }
+
+                PrintWithColor("──────────────────────────────────────────────────────", DebugColor);
             }
         }
-
         // Small wrappers for structured logging
         private static void LogInfo(string msg) => PrintWithColor($"[INFO]  {msg}", InfoColor);
         private static void LogWarn(string msg) => PrintWithColor($"[WARN]  {msg}", WarningColor);
@@ -206,3 +346,5 @@ namespace ArchDandara
         private static void LogDebug(string msg) => PrintWithColor($"[DEBUG] {msg}", DebugColor);
     }
 }
+
+

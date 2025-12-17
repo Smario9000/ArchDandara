@@ -58,15 +58,15 @@ namespace ArchDandara
             switch (level)
             {
                 case 1:
-                    MelonLogger.Msg("[Archipelago] " + msg);
+                    Msg("[Archipelago] " + msg);
                     break;
 
                 case 2:
-                    MelonLogger.Warning("[Archipelago] " + msg);
+                    Warning("[Archipelago] " + msg);
                     break;
 
                 case 3:
-                    MelonLogger.Error("[Archipelago] " + msg);
+                    Error("[Archipelago] " + msg);
                     break;
             }
         }
@@ -84,7 +84,7 @@ namespace ArchDandara
         //      in MainMod.OnInitializeMelon or call Load() manually.
         //      Path: UserData/ArchDandara/ArchDandaraAP.cfg
         // ========================================================================================================
-        public ArchDandaraAPConfig()
+        public static void Init()
         {
             string folder = Path.Combine(MelonEnvironment.UserDataDirectory, "ArchDandara");
 
@@ -110,7 +110,7 @@ namespace ArchDandara
         //          → Save() writes missing defaults back to disk.
         //      Called automatically by constructor.
         // ========================================================================================================
-        public static void Load()
+        private static void Load()
         {
             if (_file == null)
                 return; // Prevent null crash if Load() called too early.

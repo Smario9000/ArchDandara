@@ -32,7 +32,10 @@ namespace ArchDandara
         // The destination scene this door leads to.
         public string OtherSideScene;
 
-        // Placeholder for future custom warp logic.
+        // NEW — vanilla reference spawn
+        public string SpawnID;
+
+        // NEW — randomized override (optional)
         public string FakeSpawnID;
 
         // Raw 3D position of the door in Unity space.
@@ -43,7 +46,7 @@ namespace ArchDandara
         // Human-readable summary.
         public override string ToString()
         {
-            return $"{DoorName} → {OtherSideScene}";
+            return $"{DoorName} → {OtherSideScene} → {SpawnID}";
         }
     }
 }

@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace ArchDandara
 {
-    /*[HarmonyPatch(typeof(ChestInteractable), "Interact")]
+    //[HarmonyPatch(typeof(ChestInteractable), "Interact")]
     public class ChestPatch
     {
-        [HarmonyPrefix]
+        /*[HarmonyPrefix]
         public static bool Prefix(ChestInteractable __instance)
         {
             // Helper method to access private/protected 'IsUsed' method using Reflection if needed.
@@ -41,6 +41,6 @@ namespace ArchDandara
             // For now, return TRUE to let the game play the opening animation.
             // Later, we might return FALSE if we want to stop the game from giving the vanilla item.
             return true; 
-        }
-    }*/
+        }*/
+    }
 }

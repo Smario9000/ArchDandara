@@ -1,10 +1,11 @@
-using System.Collections.Generic;
+/*using System.Collections.Generic;
 using MelonLoader;
+using Archipelago.MultiClient.Net;
 
 namespace ArchDandara
 {
     public static class LocationManager
-    {/*
+    {
         // Dictionary mapping Game ID -> Archipelago ID
         public static Dictionary<string, long> LocationMap = new Dictionary<string, long>()
         {
@@ -21,15 +22,15 @@ namespace ArchDandara
                 MelonLogger.Msg($"[Archipelago] Sending check for location: {gameId} (ID: {apId})");
                 
                 // Send to server!
-                if (DandaraArchipelagoMod.Session != null && DandaraArchipelagoMod.Session.Socket.Connected)
+                if (ArchDandara.Session != null && ArchDandara.Session.Socket.Connected)
                 {
-                    DandaraArchipelagoMod.Session.Locations.CompleteLocationChecksAsync(apId);
+                    ArchDandara.Session.Locations.CompleteLocationChecksAsync(apId);
                 }
             }
             else
             {
                 MelonLogger.Warning($"[Archipelago] Unknown location ID found: {gameId}. Please add this to LocationManager.cs!");
             }
-        }*/
+        }
     }
-}
+}*/
