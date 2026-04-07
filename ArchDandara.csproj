@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
+            Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{6FF73714-8071-4C02-B768-6AB924280093}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>ArchDandara</RootNamespace>
+        <AssemblyName>ArchDandara</AssemblyName>
+        <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+        <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+        <FileAlignment>512</FileAlignment>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+        <PlatformTarget>x86</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\x86\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+      <OutputPath>bin\x86\Release\</OutputPath>
+      <PlatformTarget>x86</PlatformTarget>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="0Harmony">
+          <HintPath>libs\0Harmony.dll</HintPath>
+        </Reference>
+        <Reference Include="Archipelago.MultiClient.Net, Version=6.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>packages\Archipelago.MultiClient.Net.6.7.0\lib\net45\Archipelago.MultiClient.Net.dll</HintPath>
+        </Reference>
+        <Reference Include="Assembly-CSharp">
+          <HintPath>libs\Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="MelonLoader">
+          <HintPath>libs\MelonLoader.dll</HintPath>
+        </Reference>
+        <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>packages\Archipelago.MultiClient.Net.6.7.0\lib\net45\Newtonsoft.Json.dll</HintPath>
+        </Reference>
+        <Reference Include="System"/>
+            <Reference Include="System.Core"/>
+        <Reference Include="System.Xml"/>
+        <Reference Include="System.Xml.Linq, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>packages\System.Xml.Linq.3.5.21022.801\lib\net20\System.Xml.Linq.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine">
+          <HintPath>libs\UnityEngine.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+          <HintPath>libs\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.IMGUIModule">
+          <HintPath>libs\UnityEngine.IMGUIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.InputModule">
+          <HintPath>libs\UnityEngine.InputModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.Physics2DModule">
+          <HintPath>libs\UnityEngine.Physics2DModule.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Archipelago\Client.cs" />
+        <Compile Include="Archipelago\Server.cs" />
+        <Compile Include="Database\DataBase.cs" />
+        <Compile Include="Debugging\DebugLogger.cs" />
+        <Compile Include="Gamehook\Checkpointlogic.cs" />
+        <Compile Include="Gamehook\Chestopenlogic.cs" />
+        <Compile Include="Gamehook\GreatRuinsTutorialSwitchLogic.cs" />
+        <Compile Include="Gamehook\Itempickuplogic.cs" />
+        <Compile Include="Gamehook\Mapexplorationlogic.cs" />
+        <Compile Include="Gamehook\MoneyLogic.cs" />
+        <Compile Include="Gamehook\NewGameSeedIntroStateLogic.cs" />
+        <Compile Include="Gamehook\NewGameSkipIntroLogic.cs" />
+        <Compile Include="Gamehook\NPCrewardlogic.cs" />
+        <Compile Include="Gamehook\PowerupProxylogic.cs" />
+        <Compile Include="Gamehook\Shoppurchaselogic.cs" />
+        <Compile Include="Gamehook\Soulcollectionlogic.cs" />
+        <Compile Include="Main.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs"/>
+        <Compile Include="Room-Area\ChestLogger.cs" />
+        <Compile Include="Room-Area\ChestScanner.cs" />
+        <Compile Include="Room-Area\DoorScanner.cs" />
+        <Compile Include="Room-Area\DoorLogger.cs" />
+        <Compile Include="Room-Area\NPCLogger.cs" />
+        <Compile Include="Room-Area\NPCScanner.cs" />
+        <Compile Include="Room-Area\ShopUpgradeLogger.cs" />
+        <Compile Include="Room-Area\ShopUpgradeScanner.cs" />
+        <Compile Include="Room-Area\SoulLogger.cs" />
+        <Compile Include="Room-Area\SoulScanner.cs" />
+        <Compile Include="Room-Area\StoryEventLogger.cs" />
+        <Compile Include="Room-Area\StoryEventScanner.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="packages.config" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Exec Command="COPY &quot;$(TargetPath)&quot; &quot;C:\Users\henta\Desktop\New folder\Dandara\Mods&quot;" />
+    </Target>
+</Project>
