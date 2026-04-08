@@ -11,51 +11,46 @@ namespace ArchDandara.Gamehook
     [HarmonyPatch(typeof(GameManager), "GetState")]
     public static class NewGameSkipIntroLogic
     {
-        // Room the game normally starts in on a fresh file.
         private const string IntroScene = "A1_Void4";
 
-        // Room we want to start in instead.
-        private const string FirstPlayableScene = "A1_ForestEdge";
-
-        // Enables extra console output for debugging this patch.
-        private static readonly bool VerboseDebug = true;
+        // Known-good fallback values.
+        private const string SafeFallbackCampScene = "A1_ForestEdge";
+        private const SpawnID SafeFallbackSpawn = SpawnID.Camp;
 
         private static void Postfix(GameManager __instance)
         {
             try
             {
-                // Safety check in case GameManager is not available yet.
-                if (__instance == null)
+                if (!SkipCutsceneConfig.Enabled)
+                    return;
+
+                if ((object)__instance == null)
                 {
                     MelonLogger.Warning("[NewGameSkipIntroLogic] GameManager instance was null.");
                     return;
                 }
 
-                // Detects whether this is an existing save or a fresh game.
                 bool hasExistingSave = false;
-                if (PersistentSingleton<SaveManager>.instance != null)
+                if ((object)PersistentSingleton<SaveManager>.instance != null)
                 {
                     hasExistingSave = PersistentSingleton<SaveManager>.instance.Has("GameManager.GameState");
                 }
 
-                if (VerboseDebug)
+                if (SkipCutsceneConfig.VerboseDebug)
                 {
                     MelonLogger.Msg(
                         "[NewGameSkipIntroLogic] GetState postfix fired. HasExistingSave=" +
                         hasExistingSave);
                 }
 
-                // Only skip the intro on a brand new game.
                 if (hasExistingSave)
                 {
-                    if (VerboseDebug)
-                    {
+                    if (SkipCutsceneConfig.VerboseDebug)
                         MelonLogger.Msg("[NewGameSkipIntroLogic] Existing save found. Intro skip not applied.");
-                    }
+
                     return;
                 }
 
-                // Reflection is used here because _gameState is a private field.
                 FieldInfo gameStateField = AccessTools.Field(typeof(GameManager), "_gameState");
                 if ((object)gameStateField == null)
                 {
@@ -63,10 +58,9 @@ namespace ArchDandara.Gamehook
                     return;
                 }
 
-                // Reads the current starting-state struct from the GameManager.
                 GameManager.GameState state = (GameManager.GameState)gameStateField.GetValue(__instance);
 
-                if (VerboseDebug)
+                if (SkipCutsceneConfig.VerboseDebug)
                 {
                     MelonLogger.Msg(
                         "[NewGameSkipIntroLogic] Original state: " +
@@ -76,10 +70,9 @@ namespace ArchDandara.Gamehook
                         " currentRoomNameID=" + Safe(state.currentRoomNameID));
                 }
 
-                // Only patch the state if it is still using the normal intro room.
                 if (state.currentScene != IntroScene)
                 {
-                    if (VerboseDebug)
+                    if (SkipCutsceneConfig.VerboseDebug)
                     {
                         MelonLogger.Msg(
                             "[NewGameSkipIntroLogic] Fresh game did not start in expected intro scene. " +
@@ -88,21 +81,26 @@ namespace ArchDandara.Gamehook
                     return;
                 }
 
-                // Rewrites the starting room to skip the intro.
-                state.lastScene = FirstPlayableScene;
-                state.currentScene = FirstPlayableScene;
-                state.currentSpawnID = SpawnID.Camp;
-                state.currentRoomNameID = FirstPlayableScene;
+                // Validate config values and fall back if needed.
+                string targetScene = GetSafeStartCampScene();
+                SpawnID targetSpawn = SafeFallbackSpawn;
 
-                // Writes the modified state back into the private GameManager field.
+                state.lastScene = targetScene;
+                state.currentScene = targetScene;
+                state.currentSpawnID = targetSpawn;
+
+                // Safer than forcing currentRoomNameID to whatever the config says.
+                // Let the game resolve the proper room identity from the scene itself.
+                state.currentRoomNameID = string.Empty;
+
                 gameStateField.SetValue(__instance, state);
 
                 MelonLogger.Msg(
                     "[NewGameSkipIntroLogic] SUCCESS: skipped first cutscene. " +
-                    IntroScene + " -> " + FirstPlayableScene +
-                    " | Spawn=" + state.currentSpawnID);
+                    IntroScene + " -> " + targetScene +
+                    " | Spawn=" + targetSpawn);
 
-                if (VerboseDebug)
+                if (SkipCutsceneConfig.VerboseDebug)
                 {
                     GameManager.GameState updatedState = (GameManager.GameState)gameStateField.GetValue(__instance);
 
@@ -120,7 +118,33 @@ namespace ArchDandara.Gamehook
             }
         }
 
-        // Returns a readable placeholder if a string is null/empty.
+        private static string GetSafeStartCampScene()
+        {
+            string scene = SkipCutsceneConfig.StartCampScene;
+
+            if (string.IsNullOrEmpty(scene))
+            {
+                MelonLogger.Warning("[NewGameSkipIntroLogic] StartCampScene was empty. Falling back to " + SafeFallbackCampScene);
+                return SafeFallbackCampScene;
+            }
+
+            scene = scene.Trim();
+
+            if (scene.Length == 0)
+            {
+                MelonLogger.Warning("[NewGameSkipIntroLogic] StartCampScene was blank. Falling back to " + SafeFallbackCampScene);
+                return SafeFallbackCampScene;
+            }
+
+            if (!scene.StartsWith("A"))
+            {
+                MelonLogger.Warning("[NewGameSkipIntroLogic] StartCampScene looked invalid: " + scene + ". Falling back to " + SafeFallbackCampScene);
+                return SafeFallbackCampScene;
+            }
+
+            return scene;
+        }
+
         private static string Safe(string value)
         {
             return string.IsNullOrEmpty(value) ? "<null-or-empty>" : value;

@@ -2,26 +2,11 @@
 // Handles temporary Archipelago money send/receive test logic.
 
 using ArchDandara.Archipelago;
-using HarmonyLib;
 using MelonLoader;
 
 namespace ArchDandara.Gamehook
 
 {
-    /* 
-    // Old test patch that would fully block AddMoney and redirect it.
-    [HarmonyPatch(typeof(PlayerController), "AddMoney")]
-    class Patch_AddMoney
-    {
-        static bool Prefix(ref int money)
-        {
-            MelonLogger.Msg("[AP][Money] Blocked AddMoney: " + money);
-
-            APMoney.OnMoneyCollected(money);
-
-            return false; // stop money completely
-        }
-    }*/
     public static class APMoney
     {
         // Called when the player gains money and you want to send an AP check.
@@ -69,6 +54,7 @@ namespace ArchDandara.Gamehook
             {
                 int before = player.state.currentMoney;
 
+                MoneyGrantContext.AllowNextMoneyGrant = true;
                 player.AddMoney(amount);
 
                 int after = player.state.currentMoney;

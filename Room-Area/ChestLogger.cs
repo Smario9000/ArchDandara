@@ -9,10 +9,8 @@ namespace ArchDandara.Room_Area
 {
     public static class ChestLogger
     {
-        // Tracks chest instance IDs already seen for debug messages.
         private static readonly HashSet<int> ScannedChests = new HashSet<int>();
 
-        // Saves valid chest data for the room.
         public static void LogChests(List<PowerupInteractable> list)
         {
             if (list == null || list.Count == 0)
@@ -23,10 +21,12 @@ namespace ArchDandara.Room_Area
             for (int i = 0; i < list.Count; i++)
             {
                 PowerupInteractable chest = list[i];
-                if (chest == null) continue;
+                if (chest == null)
+                    continue;
 
                 string lowerName = chest.name != null ? chest.name.ToLower() : "";
-                if (!lowerName.Contains("chest")) continue;
+                if (!lowerName.Contains("chest"))
+                    continue;
 
                 validChests.Add(chest);
             }
@@ -36,9 +36,8 @@ namespace ArchDandara.Room_Area
 
             string scene = GetCurrentScene();
 
-            DataManager.SaveRoomChests(scene, validChests);
+            DataManager.SaveRoomChestDetails(scene, validChests);
 
-            // Prints debug info only the first time each chest is seen.
             for (int i = 0; i < validChests.Count; i++)
             {
                 PowerupInteractable chest = validChests[i];
@@ -51,7 +50,6 @@ namespace ArchDandara.Room_Area
             }
         }
 
-        // Gets the current scene for saving.
         private static string GetCurrentScene()
         {
             var gm = PersistentSingleton<GameManager>.instance;

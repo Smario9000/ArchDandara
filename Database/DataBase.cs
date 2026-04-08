@@ -5,11 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Reflection;
 using System.Threading;
 using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 using ArchDandara.Debugging;
+using HarmonyLib;
 
 namespace ArchDandara.Database
 {
@@ -20,9 +22,11 @@ namespace ArchDandara.Database
         
         // Paths to the different output files.
         private static string _activityFile;
-        private static string _doorsFile;
+        private static string _campsFile;
         private static string _checksFile;
         private static string _chestsFile;
+        private static string _doorsFile;
+        private static string _mapFile;
         private static string _npcsFile;
         private static string _soulsFile;
         private static string _storyEventsFile;
@@ -31,6 +35,7 @@ namespace ArchDandara.Database
         // Per-room signatures used to detect whether room data changed.
         private static Dictionary<string, string> _roomDoorSignatures = new Dictionary<string, string>();
         private static Dictionary<string, string> _roomChestSignatures = new Dictionary<string, string>();
+        private static Dictionary<string, string> _roomMapSignatures = new Dictionary<string, string>();
         // ReSharper disable once InconsistentNaming
         private static Dictionary<string, string> _roomNPCSignatures = new Dictionary<string, string>();
         private static Dictionary<string, string> _roomSoulSignatures = new Dictionary<string, string>();
@@ -39,20 +44,26 @@ namespace ArchDandara.Database
 
         // Small recent-log cache used to stop repeated spam.
         private static readonly object _recentLogLock = new object();
+        private static readonly FieldInfo _chestPowerupField =
+            AccessTools.Field(typeof(PowerupInteractable), "_powerup");
         private static Dictionary<string, DateTime> _recentLogTimes = new Dictionary<string, DateTime>();
         
         // Tracks whether each file has already been loaded into memory.
-        private static bool _doorFileLoaded;
+        private static bool _campFileLoaded;
         private static bool _chestFileLoaded;
+        private static bool _doorFileLoaded;
+        private static bool _mapFileLoaded;
         private static bool _npcFileLoaded;
         private static bool _soulFileLoaded;
         private static bool _storyFileLoaded;
         private static bool _shopFileLoaded;
 
         // In-memory copy of each file's room blocks.
-        private static Dictionary<string, string> _doorRoomBlocks = new Dictionary<string, string>();
+        private static Dictionary<string, string> _campRoomBlocks = new Dictionary<string, string>();
         private static Dictionary<string, string> _chestRoomBlocks = new Dictionary<string, string>();
-        private static Dictionary<string, string> _npcRoomBlocks = new Dictionary<string, string>();
+        private static Dictionary<string, string> _doorRoomBlocks = new Dictionary<string, string>();
+        private static Dictionary<string, string> _mapRoomBlocks = new Dictionary<string, string>();        private static Dictionary<string, string> _npcRoomBlocks = new Dictionary<string, string>();
+        private static Dictionary<string, string> _roomCampSignatures = new Dictionary<string, string>();
         private static Dictionary<string, string> _soulRoomBlocks = new Dictionary<string, string>();
         private static Dictionary<string, string> _storyRoomBlocks = new Dictionary<string, string>();
         private static Dictionary<string, string> _shopRoomBlocks = new Dictionary<string, string>();
@@ -69,9 +80,11 @@ namespace ArchDandara.Database
             }
 
             _activityFile = Path.Combine(_folder, "activity_log.txt");
-            _doorsFile = Path.Combine(_folder, "doors.txt");
+            _campsFile = Path.Combine(_folder, "camps.txt");
             _checksFile = Path.Combine(_folder, "checks_log.txt");
             _chestsFile = Path.Combine(_folder, "chests.txt");
+            _doorsFile = Path.Combine(_folder, "doors.txt");
+            _mapFile = Path.Combine(_folder, "map.txt");
             _npcsFile = Path.Combine(_folder, "npcs.txt");
             _soulsFile = Path.Combine(_folder, "souls.txt");
             _storyEventsFile = Path.Combine(_folder, "storyevents.txt");
@@ -79,6 +92,76 @@ namespace ArchDandara.Database
         }
 
         // Saves door data for one room.
+        public static void SaveCamp(string scene, string pointType, string meta)
+        {
+            if (string.IsNullOrEmpty(scene))
+                return;
+
+            EnsureFileLoaded(_campsFile, ref _campFileLoaded, _campRoomBlocks);
+
+            string signature = scene + "|" + pointType + "|" + meta;
+            string block =
+                "The Camp: " + scene + "\n" +
+                "Camp -> " + pointType + (string.IsNullOrEmpty(meta) ? "" : " -> " + meta) + "\n" +
+                "--- END CAMP ---\n\n";
+
+            if (_roomCampSignatures.ContainsKey(scene) && _roomCampSignatures[scene] == signature)
+            {
+                DebugLogger.Log("Camp scan skipped: " + scene);
+                return;
+            }
+
+            _roomCampSignatures[scene] = signature;
+
+            if (_campRoomBlocks.TryGetValue(scene, out string existingBlock) && existingBlock == block)
+            {
+                DebugLogger.Log("Camp block already current: " + scene);
+                return;
+            }
+
+            _campRoomBlocks[scene] = block;
+            RewriteCampFile(_campsFile, _campRoomBlocks);
+        }
+        
+        public static void SaveMapRoom(string scene, string areaName, string roomName, int discoveredCount)
+        {
+            if (string.IsNullOrEmpty(scene))
+                return;
+
+            EnsureFileLoaded(_mapFile, ref _mapFileLoaded, _mapRoomBlocks);
+
+            string signature =
+                scene + "|" +
+                (areaName ?? string.Empty) + "|" +
+                (roomName ?? string.Empty) + "|" +
+                discoveredCount;
+
+            string block =
+                "The Room: " + scene + "\n" +
+                "Map -> " +
+                (string.IsNullOrEmpty(areaName) ? "Area=UNKNOWN" : "Area=" + areaName) + " -> " +
+                (string.IsNullOrEmpty(roomName) ? "Room=UNKNOWN" : "Room=" + roomName) + " -> " +
+                "DiscoveredCount=" + discoveredCount + "\n" +
+                "--- END ROOM ---\n\n";
+
+            if (_roomMapSignatures.ContainsKey(scene) && _roomMapSignatures[scene] == signature)
+            {
+                DebugLogger.Log("Map scan skipped: " + scene);
+                return;
+            }
+
+            _roomMapSignatures[scene] = signature;
+
+            if (_mapRoomBlocks.TryGetValue(scene, out string existingBlock) && existingBlock == block)
+            {
+                DebugLogger.Log("Map block already current: " + scene);
+                return;
+            }
+
+            _mapRoomBlocks[scene] = block;
+            RewriteFile(_mapFile, _mapRoomBlocks);
+        }
+        
         public static void SaveRoom(string scene, List<Door> doors)
         {
             if (doors == null || doors.Count == 0)
@@ -119,7 +202,34 @@ namespace ArchDandara.Database
                 _chestsFile,
                 "Chest");
         }
+        
+        public static void SaveRoomChestDetails(string scene, List<PowerupInteractable> chests)
+        {
+            if (chests == null)
+                return;
 
+            EnsureFileLoaded(_chestsFile, ref _chestFileLoaded, _chestRoomBlocks);
+
+            string signature = BuildChestSignature(chests);
+            string block = BuildChestBlock(scene, chests);
+
+            if (_roomChestSignatures.ContainsKey(scene) && _roomChestSignatures[scene] == signature)
+            {
+                DebugLogger.Log("Chest scan skipped: " + scene);
+                return;
+            }
+
+            _roomChestSignatures[scene] = signature;
+
+            if (_chestRoomBlocks.TryGetValue(scene, out string existingBlock) && existingBlock == block)
+            {
+                DebugLogger.Log("Chest block already current: " + scene);
+                return;
+            }
+
+            _chestRoomBlocks[scene] = block;
+            RewriteFile(_chestsFile, _chestRoomBlocks);
+        }
         // Saves NPC data for one room.
         public static void SaveRoomNPCs(string scene, List<DialogueInteractable> npcs)
         {
@@ -254,6 +364,79 @@ namespace ArchDandara.Database
 
             roomBlocks[scene] = block;
             RewriteFile(filePath, roomBlocks);
+        }
+        
+        private static string BuildChestSignature(List<PowerupInteractable> chests)
+        {
+            List<string> rows = new List<string>();
+        
+            for (int i = 0; i < chests.Count; i++)
+            {
+                PowerupInteractable chest = chests[i];
+                if (chest == null)
+                    continue;
+        
+                Vector3 pos = chest.transform.position;
+                string chestName = string.IsNullOrEmpty(chest.name) ? "Chest" : chest.name;
+                string typeName = chest.GetType().Name;
+                string rewardName = GetChestRewardName(chest);
+                string storyEvent = GetChestStoryEventName(chest);
+        
+                rows.Add(
+                    chestName + "|" +
+                    typeName + "|" +
+                    rewardName + "|" +
+                    storyEvent + "|" +
+                    Round3(pos.x) + "|" +
+                    Round3(pos.y) + "|" +
+                    Round3(pos.z));
+            }
+        
+            rows.Sort();
+            return JoinRows(rows);
+        }
+
+        private static string BuildChestBlock(string scene, List<PowerupInteractable> chests)
+        {
+           List<string> rows = new List<string>();
+
+           for (int i = 0; i < chests.Count; i++)
+           {
+               PowerupInteractable chest = chests[i];
+               if (chest == null)
+                   continue;
+
+               Vector3 pos = chest.transform.position;
+               string chestName = string.IsNullOrEmpty(chest.name) ? "Chest" : chest.name;
+               string typeName = chest.GetType().Name;
+               string rewardName = GetChestRewardName(chest);
+               string storyEvent = GetChestStoryEventName(chest);
+
+               rows.Add(
+                   "Chest -> " +
+                   chestName + " -> " +
+                   typeName + " -> " +
+                    "Reward=" + rewardName + " -> " +
+                    "StoryEvent=" + storyEvent + " -> (" +
+                    Round3(pos.x) + "," +
+                    Round3(pos.y) + "," +
+                    Round3(pos.z) + ")");
+           }
+           rows.Sort();
+           string text = "The Room: " + scene + "\n";
+           if (rows.Count == 0)
+           {
+               text += "Chest -> NONE\n";
+           }
+           else
+           {
+               for (int i = 0; i < rows.Count; i++)
+               {
+                   text += rows[i] + "\n";
+               }
+           }
+           text += "--- END ROOM ---\n\n";
+           return text;
         }
 
         // Builds a compact signature for one room's doors.
@@ -610,6 +793,61 @@ namespace ArchDandara.Database
             return text;
         }
         
+        private static Powerup GetChestPowerup(PowerupInteractable chest)
+        {
+            try
+            {
+                if ((object)_chestPowerupField == null || chest == null)
+                    return null;
+
+                return (Powerup)_chestPowerupField.GetValue(chest);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private static string GetChestRewardName(PowerupInteractable chest)
+        {
+            try
+            {
+                Powerup powerup = GetChestPowerup(chest);
+                if (powerup == null)
+                    return "NULL_POWERUP";
+
+                if (powerup.character != null && !string.IsNullOrEmpty(powerup.character.characterName))
+                    return powerup.character.characterName;
+
+                return !string.IsNullOrEmpty(powerup.name) ? powerup.name : "UNKNOWN_POWERUP";
+            }
+            catch (Exception ex)
+            {
+                MelonLogger.Warning("[DataManager] Failed reading chest reward name: " + ex.Message);
+                return "ERROR_REWARD";
+            }
+        }
+
+        private static string GetChestStoryEventName(PowerupInteractable chest)
+        {
+            try
+            {
+                Powerup powerup = GetChestPowerup(chest);
+                if (powerup == null)
+                    return "NONE";
+
+                if (powerup.character != null)
+                    return powerup.character.storyEvent.ToString();
+
+                return "NONE";
+            }
+            catch (Exception ex)
+            {
+                MelonLogger.Warning("[DataManager] Failed reading chest story event: " + ex.Message);
+                return "ERROR_EVENT";
+            }
+        }
+        
         // Looks up the room name shown on the in-game map.
         public static string GetRoomNameForScene(string scene)
         {
@@ -839,6 +1077,27 @@ namespace ArchDandara.Database
                 foreach (string key in keys)
                 {
                     allText += roomBlocks[key];
+                }
+
+                File.WriteAllText(filePath, allText);
+            }
+            catch (Exception ex)
+            {
+                MelonLogger.Error("[DataManager] Failed writing " + filePath + ": " + ex.Message);
+            }
+        }
+        private static void RewriteCampFile(string filePath, Dictionary<string, string> campBlocks)
+        {
+            try
+            {
+                List<string> keys = new List<string>(campBlocks.Keys);
+                keys.Sort(StringComparer.OrdinalIgnoreCase);
+
+                string allText = string.Empty;
+
+                for (int i = 0; i < keys.Count; i++)
+                {
+                    allText += campBlocks[keys[i]];
                 }
 
                 File.WriteAllText(filePath, allText);

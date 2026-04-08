@@ -11,21 +11,42 @@ namespace ArchDandara.Gamehook
     [HarmonyPatch(typeof(PlayerController), "AddMoney")]
     public static class Patch_AddMoney_Log
     {
-        // Runs after the player gains money.
-        private static void Postfix(int money)
+        [System.ThreadStatic]
+        private static int _beforeMoney;
+
+        private static void Prefix(PlayerController __instance, int money)
         {
+            if (__instance == null || __instance.state == null)
+            {
+                _beforeMoney = -1;
+                return;
+            }
+
+            _beforeMoney = __instance.state.currentMoney;
+        }
+
+        private static void Postfix(PlayerController __instance, int money)
+        {
+            if (__instance == null || __instance.state == null || _beforeMoney < 0)
+                return;
+
+            int afterMoney = __instance.state.currentMoney;
+            int delta = afterMoney - _beforeMoney;
+
+            if (delta <= 0)
+                return;
+
             string scene = GetCurrentScene();
 
             DataManager.LogActivity(
                 "MoneyGain",
                 scene,
                 "PlayerController.AddMoney",
-                "Amount=" + money);
+                "Amount=" + delta);
 
-            MelonLogger.Msg("[LOG][Money] " + scene + " -> +" + money);
+            MelonLogger.Msg("[LOG][Money] " + scene + " -> +" + delta);
         }
 
-        // Gets the current scene for logging.
         private static string GetCurrentScene()
         {
             var gm = PersistentSingleton<GameManager>.instance;
@@ -33,9 +54,7 @@ namespace ArchDandara.Gamehook
         }
     }
 
-    // Empty holder class for organization / future logic.
     public static class Soulcollectionlogic
     {
-        
     }
 }

@@ -1,6 +1,8 @@
 // MapExplorationLogic.cs
 // Logs when the map changes to a new room and when a room is newly explored.
 
+using System;
+using System.Collections.Generic;
 using HarmonyLib;
 using ArchDandara.Database;
 using MelonLoader;
@@ -10,21 +12,36 @@ namespace ArchDandara.Gamehook
     [HarmonyPatch(typeof(Map), "ChangingToScene")]
     public static class MapExplorationLogic
     {
-        // Stores state before the room change so we can compare after.
         [System.ThreadStatic]
         private static int _beforeCount;
 
         [System.ThreadStatic]
         private static string _sceneArg;
 
-        // Runs before Map.ChangingToScene().
+        private static Dictionary<string, DateTime> _recentMapLogs = new Dictionary<string, DateTime>();
+
+        private static bool ShouldSkipMapPrint(string scene, bool newlyExplored, int afterCount)
+        {
+            string key = scene + "|" + newlyExplored + "|" + afterCount;
+            DateTime now = DateTime.UtcNow;
+
+            DateTime last;
+            if (_recentMapLogs.TryGetValue(key, out last))
+            {
+                if ((now - last).TotalMilliseconds <= 1000)
+                    return true;
+            }
+
+            _recentMapLogs[key] = now;
+            return false;
+        }
+
         private static void Prefix(Map __instance, string scene)
         {
             _sceneArg = scene ?? "UNKNOWN_SCENE";
             _beforeCount = __instance != null ? __instance.GetNScenesDiscovered() : -1;
         }
 
-        // Runs after Map.ChangingToScene().
         private static void Postfix(Map __instance, string scene, MapRoom __result)
         {
             if (__instance == null)
@@ -32,8 +49,6 @@ namespace ArchDandara.Gamehook
 
             string targetScene = string.IsNullOrEmpty(scene) ? (_sceneArg ?? "UNKNOWN_SCENE") : scene;
             int afterCount = __instance.GetNScenesDiscovered();
-
-            // True if this room increased the discovered-room count.
             bool newlyExplored = _beforeCount >= 0 && afterCount > _beforeCount;
 
             string roomName = string.Empty;
@@ -41,7 +56,6 @@ namespace ArchDandara.Gamehook
 
             try
             {
-                // Prefer the direct returned MapRoom if available.
                 if (__result != null)
                 {
                     roomName = __result.GetRoomName() ?? string.Empty;
@@ -62,14 +76,18 @@ namespace ArchDandara.Gamehook
 
             string meta = BuildMeta(areaName, roomName, newlyExplored, _beforeCount, afterCount);
 
-            // Always logs room change info to the activity log.
             DataManager.LogActivity(
                 "MapChangingToScene",
                 targetScene,
                 "Map",
                 meta);
-
-            // Only logs a check when the room is truly first-time discovered.
+            
+            DataManager.SaveMapRoom(
+                targetScene,
+                areaName,
+                roomName,
+                afterCount);
+           
             if (newlyExplored)
             {
                 DataManager.LogCheck(
@@ -78,7 +96,13 @@ namespace ArchDandara.Gamehook
                     roomName,
                     areaName,
                     "DiscoveredCount=" + afterCount);
+            }
 
+            if (ShouldSkipMapPrint(targetScene, newlyExplored, afterCount))
+                return;
+
+            if (newlyExplored)
+            {
                 MelonLogger.Msg(
                     "[LOG][MapExplore] " +
                     targetScene +
@@ -97,7 +121,6 @@ namespace ArchDandara.Gamehook
             }
         }
 
-        // Builds one text line that explains the map change state.
         private static string BuildMeta(string areaName, string roomName, bool newlyExplored, int beforeCount, int afterCount)
         {
             string text = "NewRoom=" + newlyExplored +

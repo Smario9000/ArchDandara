@@ -74,13 +74,17 @@
     <ItemGroup>
         <Compile Include="Archipelago\Client.cs" />
         <Compile Include="Archipelago\Server.cs" />
+        <Compile Include="Config\SkipCutsceneConfig.cs" />
         <Compile Include="Database\DataBase.cs" />
         <Compile Include="Debugging\DebugLogger.cs" />
         <Compile Include="Gamehook\Checkpointlogic.cs" />
         <Compile Include="Gamehook\Chestopenlogic.cs" />
+        <Compile Include="Gamehook\ChestRewardTestLogic.cs" />
+        <Compile Include="Gamehook\DebugItemMenu.cs" />
         <Compile Include="Gamehook\GreatRuinsTutorialSwitchLogic.cs" />
         <Compile Include="Gamehook\Itempickuplogic.cs" />
         <Compile Include="Gamehook\Mapexplorationlogic.cs" />
+        <Compile Include="Gamehook\MoneyBlockLogic.cs" />
         <Compile Include="Gamehook\MoneyLogic.cs" />
         <Compile Include="Gamehook\NewGameSeedIntroStateLogic.cs" />
         <Compile Include="Gamehook\NewGameSkipIntroLogic.cs" />

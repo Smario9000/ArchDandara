@@ -10,13 +10,18 @@ namespace ArchDandara.Gamehook
     [HarmonyPatch(typeof(GameManager), "OnTransitionEnded")]
     public static class NewGameSeedIntroStateLogic
     {
-        // Prevents seeding more than once per session.
         private static bool _seedAttemptedThisSession;
 
         private static void Postfix()
         {
             try
             {
+                if (!SkipCutsceneConfig.Enabled)
+                    return;
+
+                if (!SkipCutsceneConfig.SeedIntroState)
+                    return;
+
                 if (_seedAttemptedThisSession)
                     return;
 
@@ -26,19 +31,8 @@ namespace ArchDandara.Gamehook
 
                 string scene = gm.GetCurrentScene();
 
-                // Only seed after landing in the new starting room.
-                if (scene != "A1_ForestEdge")
+                if (scene != SkipCutsceneConfig.StartCampScene)
                     return;
-
-                bool hasExistingSave = false;
-                if ((object)PersistentSingleton<SaveManager>.instance != null)
-                {
-                    hasExistingSave = PersistentSingleton<SaveManager>.instance.Has("StoryManager.StoryState");
-                }
-
-                MelonLogger.Msg(
-                    "[NewGameSeedIntroStateLogic] OnTransitionEnded in " + scene +
-                    " | HasStorySave=" + hasExistingSave);
 
                 if ((object)PersistentSingleton<StoryManager>.instance == null)
                 {
@@ -50,7 +44,6 @@ namespace ArchDandara.Gamehook
 
                 StoryManager story = PersistentSingleton<StoryManager>.instance;
 
-                // Marks core intro/tutorial events as completed.
                 UnlockIfNeeded(story, StoryEvent.Started);
                 UnlockIfNeeded(story, StoryEvent.PU_Health);
                 UnlockIfNeeded(story, StoryEvent.PU_Money);
@@ -66,20 +59,24 @@ namespace ArchDandara.Gamehook
             }
         }
 
-        // Unlocks a story event only if it is not already set.
         private static void UnlockIfNeeded(StoryManager story, StoryEvent eventId)
         {
             if (story.GetEvent(eventId))
             {
-                MelonLogger.Msg("[NewGameSeedIntroStateLogic] Already set: " + eventId);
+                if (SkipCutsceneConfig.VerboseDebug)
+                    MelonLogger.Msg("[NewGameSeedIntroStateLogic] Already set: " + eventId);
+
                 return;
             }
 
             bool result = story.UnlockEvent(eventId);
 
-            MelonLogger.Msg(
-                "[NewGameSeedIntroStateLogic] Set " + eventId +
-                " | Result=" + result);
+            if (SkipCutsceneConfig.VerboseDebug)
+            {
+                MelonLogger.Msg(
+                    "[NewGameSeedIntroStateLogic] Set " + eventId +
+                    " | Result=" + result);
+            }
         }
     }
 }

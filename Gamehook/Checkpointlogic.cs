@@ -41,20 +41,21 @@ namespace ArchDandara.Gamehook
             string currentScene = GetCurrentScene();
             string discoveredScene = string.IsNullOrEmpty(sceneName) ? "UNKNOWN_SCENE" : sceneName;
             string pointType = type.ToString();
-
+            string meta = DataManager.GetRoomMetaText(discoveredScene);
+            
             if (ShouldSkipTeleport(discoveredScene, pointType))
                 return;
 
             // Gets extra room/area text for cleaner logs.
-            string meta = DataManager.GetRoomMetaText(discoveredScene);
-
+            DataManager.SaveCamp(discoveredScene, pointType, meta);
+            
             DataManager.LogCheck(
                 "TeleportPointDiscovered",
                 currentScene,
                 discoveredScene,
                 pointType,
                 meta);
-
+            
             DataManager.LogActivity(
                 "TeleportPointDiscovered",
                 currentScene,
