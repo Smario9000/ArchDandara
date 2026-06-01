@@ -1,118 +1,90 @@
-# Dandara Trials of Fear Edition - Archipelago Mod
+# ArchDandara
 
-![Dandara Archipelago Mod Banner](./Banner.png)
+ArchDandara is a MelonLoader mod and Archipelago world for **Dandara: Trials of Fear Edition**.
 
-A work-in-progress Archipelago randomizer mod for **Dandara: Trials of Fear Edition**.
+The mod connects Dandara to an Archipelago server, turns chests/NPCs/altars/bosses/shop buys into Archipelago checks, applies received AP items back into the game, and includes a bridge helper for hosted `archipelago.gg` rooms.
 
-This project is focused on turning Dandara into a playable Archipelago experience by building the room graph, check logic, item handling, and game hooks needed for a full randomizer integration.
+![ArchDandara banner](./Banner.png)
 
-## Game Info
+## Download
 
-```text
-Game Name: Dandara
-Game Developer: Long Hat House
-Unity Version: 2018.4.12f1
-Game Version: 1.4.11
-Runtime Type: net35
-Game Type: MonoBleedingEdge
-Game Arch: x86
+For normal players, use the latest GitHub Release, not the source zip.
+
+The release package includes:
+
+- `Mods/ArchDandara.dll`
+- required mod dependency DLLs
+- `UserData/ArchDandaraData/Tools/ArchipelagoWssBridge.exe`
+- bridge dependency DLLs
+- `ArchDandara.apworld`
+- the APWorld source folder
+- `Banner.png`
+- `INSTALL.md`
+
+## Install
+
+See [INSTALL.md](./INSTALL.md) for the full setup steps.
+
+Short version:
+
+1. Install MelonLoader for Dandara.
+2. Copy the release `Mods` files into your Dandara `Mods` folder.
+3. Copy the release `UserData` files into your Dandara folder.
+4. Install `ArchDandara.apworld` into Archipelago's custom worlds folder.
+5. Generate a Dandara seed.
+6. Edit `APDandaraConfig.cfg` or use the in-game ArchSetting menu.
+7. Press `F3` in game to connect.
+
+## Building From Source
+
+This repository contains the mod source and APWorld source. It does not intentionally package Dandara's game assemblies in release downloads.
+
+Requirements:
+
+- Windows
+- .NET Framework build tools / MSBuild
+- NuGet package restore support
+- Dandara: Trials of Fear Edition installed
+- MelonLoader installed for Dandara
+- local game/MelonLoader reference DLLs available where the project file expects them
+
+Restore NuGet packages first if this is a fresh clone:
+
+```powershell
+nuget restore .\ArchDandara.sln
 ```
 
-## What This Mod Has Right Now
+Build the release package:
 
-- Archipelago connection code started
-- Room scanning and room-data export
-- Door logging for building room and region flow
-- Chest scanning and chest interaction logging
-- NPC scanning and NPC interaction logging
-- Soul scanning and money gain logging
-- Story event scanning and story unlock logging
-- Shop purchase logging and shop upgrade scanning
-- Map exploration logging for discovered rooms
-- Powerup unlock logging
-- Powerup proxy logging for reward sources
-- New game intro skip hook
-- Great Ruins tutorial lever auto-activation hook
-- Text log output for debugging and reverse-engineering
+```powershell
+.\Tools\BuildReleasePackage.ps1
+```
 
-## What It Does Not Have Yet
+The script builds:
 
-- Full Archipelago world implementation
-- Final `world.py`, `regions.py`, `locations.py`, `items.py`, and `__init__.py`
-- Finalized item pool
-- Finalized location/check list
-- Finalized progression rules
-- Full shop logic converted into AP checks
-- Full NPC reward logic cleanup
-- Full story event cleanup
-- Full duplicate/noise cleanup in every logging path
-- Full testing across the entire game
-- Multiplayer-ready balancing and AP rules validation
+- `ArchDandara.csproj`
+- `Tools/ArchipelagoWssBridge/ArchipelagoWssBridge.csproj`
+- `dist/ArchDandara-release.zip`
+- `dist/ArchDandara.apworld`
 
-## Current Goal
+## Repository Layout
 
-The current goal is to finish gathering accurate game data so the Dandara world can be converted into a proper Archipelago implementation.
+- `Archipelago/` - AP client, slot settings, bridge routing, DeathLink, hint/cache logic.
+- `Config/` - config files, install checks, and MelonLoader log filtering.
+- `Game/` - game-facing services for item grants, saves, shop visuals, HUD refreshes, and world object changes.
+- `Patches/` - Harmony patches into Dandara game classes.
+- `DandaraAPWorld/` - Archipelago world source and template YAML.
+- `Tools/ArchipelagoWssBridge/` - local websocket bridge used for hosted AP rooms.
+- `Banner.png` - project/release image asset.
 
-That means this mod is currently doing a lot of:
+## Runtime Notes
 
-- scanning scenes
-- exporting room data
-- logging checks and rewards
-- testing hooks
-- skipping unwanted intro/tutorial flow where needed
-- identifying progression gates and item sources
+Hosted Archipelago rooms use secure websocket connections. Dandara's old Unity/Mono runtime cannot reliably connect to hosted `wss://` rooms directly, so ArchDandara routes hosted connections through the included local bridge helper.
 
-## Main Data Being Collected
+The mod checks for required files on startup and logs clear missing-file messages when dependencies are not installed in the expected folders.
 
-The mod currently writes data into log and room files so the game can be mapped and analyzed.
+## License / Third-Party Files
 
-Examples include:
+This project depends on Dandara, MelonLoader, Archipelago.MultiClient.Net, websocket-sharp, Newtonsoft.Json, and HarmonyX. Those projects keep their own licenses.
 
-- `doors.txt`
-- `chests.txt`
-- `npcs.txt`
-- `souls.txt`
-- `storyevents.txt`
-- `shopupgrades.txt`
-- `activity_log.txt`
-- `checks_log.txt`
-
-These files are being used to:
-
-- build the room graph
-- identify checks
-- identify rewards
-- identify story gates
-- identify progression requirements
-- help generate Archipelago world files later
-
-## Planned Next Steps
-
-- Clean up remaining duplicate log spam
-- Improve shop logic and convert shop levels into real AP checks
-- Improve NPC reward detection
-- Improve soul reward detection
-- Improve story event filtering
-- Finalize intro skip configuration
-- Finalize Great Ruins tutorial skip behavior
-- Expand room and region graph coverage
-- Build a more complete map of the full game
-- Sort checks into progression, filler, and utility groups
-- Start writing the Archipelago world files
-- Test item sending and receiving with real AP progression logic
-- Replace temporary test values with real location IDs and item handling
-- Add better user config options
-- Add more fail-safe logging where needed
-- Do full progression testing from fresh save to endgame
-
-## Notes
-
-This is still an active work-in-progress project.
-
-Some systems are already functional, but a lot of the current code is still focused on data collection, hook validation, and reverse-engineering the game's logic so the final Archipelago implementation can be built correctly.
-
-## Contact
-
-To get in touch or follow the project discussion, use this Discord thread:
-
-<https://discord.com/channels/731205301247803413/1444298674279546971>
+Do not redistribute Dandara game files. Release packages should contain only this mod, its redistributable dependencies, the APWorld, the bridge helper, and project assets.

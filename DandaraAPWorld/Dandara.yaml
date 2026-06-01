@@ -1,0 +1,265 @@
+# Q. What is this file?
+# A. This file contains options which allow you to configure your multiworld experience while allowing
+#    others to play how they want as well.
+#
+# Q. How do I use it?
+# A. The options in this file are weighted. This means the higher number you assign to a value, the
+#    more chances you have for that option to be chosen. For example, an option like this:
+#
+#    map_shuffle:
+#      on: 5
+#      off: 15
+#
+#    Means you have 5 chances for map shuffle to occur, and 15 chances for map shuffle to be turned
+#    off.
+#
+# Q. I've never seen a file like this before. What characters am I allowed to use?
+# A. This is a .yaml file. You are allowed to use most characters.
+#    To test if your yaml is valid or not, you can use this website:
+#        http://www.yamllint.com/
+#    You can also verify that your Archipelago options are valid at this site:
+#        https://archipelago.gg/check
+
+# Your name in-game, limited to 16 characters.
+#     {player} will be replaced with the player's slot number.
+#     {PLAYER} will be replaced with the player's slot number, if that slot number is greater than 1.
+#     {number} will be replaced with the counter value of the name.
+#     {NUMBER} will be replaced with the counter value of the name, if the counter value is greater than 1.
+name: SmoreDara{NUMBER}
+
+# Used to describe your yaml. Useful if you have multiple files.
+description: Default Dandara Template
+
+game: Dandara
+requires:
+  version: 0.6.7 # Version of Archipelago required for this yaml to work as expected.
+  game:
+    Dandara: 0.1.0 # Version of the world required for this yaml to work as expected.
+
+Dandara:
+  ################
+  # Game Options #
+  ################
+  progression_balancing:
+    # A system that can move progression earlier, to try and prevent the player from getting stuck and bored early.
+    # 
+    # A lower setting means more getting stuck. A higher setting means less getting stuck.
+    #
+    # You can define additional values between the minimum and maximum values.
+    # Minimum value is 0
+    # Maximum value is 99
+    random: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-99: 0 # random value between 0 and 99
+    disabled: 0 # equivalent to 0
+    normal: 50 # equivalent to 50
+    extreme: 0 # equivalent to 99
+
+  accessibility:
+    # Set rules for reachability of your items/locations.
+    # 
+    # **Full:** ensure everything can be reached and acquired.
+    # 
+    # **Minimal:** ensure what is needed to reach your goal can be acquired.
+    full: 50
+    minimal: 0
+
+  goal_type:
+    # Which Boss to defeat as goal
+    final_boss: 10
+    true_ending: 10
+
+  death_link:
+    # When enabled, dying in Dandara sends a DeathLink to other players, and DeathLinks from other players kill Dandara.
+    # Can also be toggled by the Archipelago TextClient with /deathlink.
+    'false': 0
+    'true': 1
+
+  ammo_mana_cost:
+    # Changes the mana/ammo cost used by secondary weapons.
+    # No Change keeps the game's normal costs. Half Cost uses 50%. Quarter Cost uses 25%. Double Cost uses 200%.
+    # Double Cost is not fully represented in current AP logic; use it at your own risk.
+    no_change: 10
+    half_cost: 10
+    quarter_cost: 10
+    double_cost: 10
+
+  shop_cost:
+    # Changes shop upgrade prices.
+    # Normal uses the base table. Cheaper options reduce the table. More expensive options increase it.
+    normal: 10
+    15_percent_cheaper: 0
+    25_percent_cheaper: 0
+    64_percent_cheaper: 0
+    15_percent_more: 0
+    20_percent_more: 0
+    35_percent_more: 0
+
+  salt_drop_multiplier:
+    # Multiplier for salt dropped by the game world, as a percent.
+    # 100 is no change, 200 is 2x, 400 is 4x. Half and Quarter are provided as named options.
+    # Maximum is 800, which is 8x.
+    # This does not affect salt items sent by Archipelago.
+    no_change: 10
+    half: 0
+    quarter: 0
+    200: 0
+    400: 0
+    800: 0
+
+  death_recovery_percent:
+    # Percent of salt returned when recovering the dead player body.
+    # 100 is normal game behavior. 80 returns 80%, 50 returns 50%, and 10 returns 10%.
+    # You may choose any value from 1 to 100.
+    # This recovery is never affected by Salt Drop Multiplier.
+    100: 10
+    80: 0
+    50: 0
+    10: 0
+
+  ap_salt_amount:
+    # Multiplier for normal salt items sent by Archipelago.
+    normal_amount: 10
+    half: 0
+    200: 0
+    500: 0
+
+  ap_fear_salt_amount:
+    # Multiplier for fear salt items sent by Archipelago.
+    normal_amount: 10
+    half: 10
+    150: 10
+    300: 10
+
+  dandara_arrow_damage_upgrade_amount:
+    # How many Dandara Arrow Damage Upgrade items are added. These replace salt filler.
+    4_upgrades: 0
+    3_upgrades: 0
+    2_upgrades: 0
+    1_upgrade: 0
+    no_upgrades: 10
+
+  dandara_arrow_damage_upgrade_scale:
+    # Damage scale per received arrow upgrade. Use a value from 0.5 to 3.0.
+    # Example: 1.5
+    1.0: 10
+
+  dandara_weapon_damage_upgrade_amount:
+    # How many Dandara Weapon Damage Upgrade items are added. These replace salt filler.
+    4_upgrades: 0
+    3_upgrades: 0
+    2_upgrades: 0
+    1_upgrade: 0
+    no_upgrades: 10
+
+  dandara_weapon_damage_upgrade_scale:
+    # Damage scale per received weapon upgrade. Use a value from 0.5 to 3.0.
+    # Example: 1.5
+    1.0: 10
+
+  salts_awareness_upgrade:
+    # Adds one Salt's Awareness Upgrade item. This replaces salt filler.
+    'false': 10
+    'true': 0
+
+  salts_awareness_cost_reduction:
+    # Percent less salt spent over time while upgraded Salt's Awareness is active.
+    # Higher number means lower active drain. Minimum 5, maximum 75.
+    40: 10
+
+  bought_color:
+    # Choose the color scheme for one shop bar state.
+    # Use Custom to read that state's custom RGB options. RGB values are 0-255.
+    default: 50
+    red_blue_colorblind: 10
+    blue_green_colorblind: 10
+    green_red_colorblind: 10
+    high_contrast: 10
+    custom: 0
+
+  custom_bought_color_r:
+    custom_bought_color_set_r: 25
+
+  custom_bought_color_g:
+    custom_bought_color_set_g: 140
+
+  custom_bought_color_b:
+    custom_bought_color_set_b: 255
+
+  received_color:
+    # Choose the color scheme for one shop bar state.
+    # Use Custom to read that state's custom RGB options. RGB values are 0-255.
+    default: 50
+    red_blue_colorblind: 10
+    blue_green_colorblind: 10
+    green_red_colorblind: 10
+    high_contrast: 10
+    custom: 0
+
+  custom_received_color_r:
+    custom_received_color_set_r: 180
+
+  custom_received_color_g:
+    custom_received_color_set_g: 50
+
+  custom_received_color_b:
+    custom_received_color_set_b: 255
+
+  received_only_color:
+    # Choose the color scheme for one shop bar state.
+    # Use Custom to read that state's custom RGB options. RGB values are 0-255.
+    default: 50
+    red_blue_colorblind: 10
+    blue_green_colorblind: 10
+    green_red_colorblind: 10
+    high_contrast: 10
+    custom: 0
+
+  custom_received_only_color_r:
+    custom_received_only_color_set_r: 255
+
+  custom_received_only_color_g:
+    custom_received_only_color_set_g: 50
+
+  custom_received_only_color_b:
+    custom_received_only_color_set_b: 180
+
+  ###########################
+  # Item & Location Options #
+  ###########################
+  local_items:
+    # Forces these items to be in their native world.
+    []
+
+  non_local_items:
+    # Forces these items to be outside their native world.
+    []
+
+  start_inventory:
+    # Start with the specified amount of these items. Example: "Bomb: 1"
+    {}
+
+  start_hints:
+    # Start with these item's locations prefilled into the ``!hint`` command.
+    []
+
+  start_location_hints:
+    # Start with these locations and their item prefilled into the ``!hint`` command.
+    []
+
+  exclude_locations:
+    # Prevent these locations from having an important item.
+    []
+
+  priority_locations:
+    # Prevent these locations from having an unimportant item.
+    []
+
+  item_links:
+    # Share part of your item pool with other players.
+    []
+
+  plando_items:
+    # Generic items plando.
+    []

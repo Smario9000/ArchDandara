@@ -30,85 +30,136 @@
         <DefineConstants>TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
-      <OutputPath>bin\x86\Release\</OutputPath>
-      <PlatformTarget>x86</PlatformTarget>
+        <OutputPath>bin\x86\Release\</OutputPath>
+        <PlatformTarget>x86</PlatformTarget>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="0Harmony">
-          <HintPath>libs\0Harmony.dll</HintPath>
-        </Reference>
-        <Reference Include="Archipelago.MultiClient.Net, Version=6.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-          <HintPath>packages\Archipelago.MultiClient.Net.6.7.0\lib\net45\Archipelago.MultiClient.Net.dll</HintPath>
-        </Reference>
-        <Reference Include="Assembly-CSharp">
-          <HintPath>libs\Assembly-CSharp.dll</HintPath>
-        </Reference>
-        <Reference Include="MelonLoader">
-          <HintPath>libs\MelonLoader.dll</HintPath>
-        </Reference>
-        <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-          <HintPath>packages\Archipelago.MultiClient.Net.6.7.0\lib\net45\Newtonsoft.Json.dll</HintPath>
-        </Reference>
-        <Reference Include="System"/>
-            <Reference Include="System.Core"/>
-        <Reference Include="System.Xml"/>
-        <Reference Include="System.Xml.Linq, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-          <HintPath>packages\System.Xml.Linq.3.5.21022.801\lib\net20\System.Xml.Linq.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine">
-          <HintPath>libs\UnityEngine.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.CoreModule">
-          <HintPath>libs\UnityEngine.CoreModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.IMGUIModule">
-          <HintPath>libs\UnityEngine.IMGUIModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.InputModule">
-          <HintPath>libs\UnityEngine.InputModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.Physics2DModule">
-          <HintPath>libs\UnityEngine.Physics2DModule.dll</HintPath>
-        </Reference>
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Archipelago\Client.cs" />
-        <Compile Include="Archipelago\Server.cs" />
-        <Compile Include="Config\SkipCutsceneConfig.cs" />
-        <Compile Include="Database\DataBase.cs" />
-        <Compile Include="Debugging\DebugLogger.cs" />
-        <Compile Include="Gamehook\Checkpointlogic.cs" />
-        <Compile Include="Gamehook\Chestopenlogic.cs" />
-        <Compile Include="Gamehook\ChestRewardTestLogic.cs" />
-        <Compile Include="Gamehook\DebugItemMenu.cs" />
-        <Compile Include="Gamehook\GreatRuinsTutorialSwitchLogic.cs" />
-        <Compile Include="Gamehook\Itempickuplogic.cs" />
-        <Compile Include="Gamehook\Mapexplorationlogic.cs" />
-        <Compile Include="Gamehook\MoneyBlockLogic.cs" />
-        <Compile Include="Gamehook\MoneyLogic.cs" />
-        <Compile Include="Gamehook\NewGameSeedIntroStateLogic.cs" />
-        <Compile Include="Gamehook\NewGameSkipIntroLogic.cs" />
-        <Compile Include="Gamehook\NPCrewardlogic.cs" />
-        <Compile Include="Gamehook\PowerupProxylogic.cs" />
-        <Compile Include="Gamehook\Shoppurchaselogic.cs" />
-        <Compile Include="Gamehook\Soulcollectionlogic.cs" />
-        <Compile Include="Main.cs" />
+        <Compile Include="Archipelago\APClient.cs"/>
+        <Compile Include="Archipelago\APDeathLink.cs"/>
+        <Compile Include="Archipelago\APItemReceiver.cs"/>
+        <Compile Include="Archipelago\InProcessWssBridge.cs"/>
+        <Compile Include="Archipelago\APSlotSettingsFile.cs"/>
+        <Compile Include="Archipelago\APSlotSettings.cs"/>
+        <Compile Include="Archipelago\HintCache.cs"/>
+        <Compile Include="Archipelago\APLocationSender.cs"/>
+        <Compile Include="Archipelago\APServer.cs"/>
+        <Compile Include="Archipelago\LocationIds.cs"/>
+        <Compile Include="Archipelago\LocationKey.cs"/>
+        <Compile Include="Config\APConfig.cs"/>
+        <Compile Include="Config\InstallCheck.cs"/>
+        <Compile Include="Config\MLDandaraConfig.cs"/>
+        <Compile Include="Game\GameAccess.cs"/>
+        <Compile Include="Game\GrantContext.cs"/>
+        <Compile Include="Game\AmmoCostService.cs"/>
+        <Compile Include="Game\APSaveProfileService.cs"/>
+        <Compile Include="Game\DamageUpgradeService.cs"/>
+        <Compile Include="Game\GreatRuinsReturnService.cs"/>
+        <Compile Include="Game\HudRefreshService.cs"/>
+        <Compile Include="Game\InteractionGateService.cs"/>
+        <Compile Include="Game\ItemGrantService.cs"/>
+        <Compile Include="Game\ItemIds.cs"/>
+        <Compile Include="Game\JonnyBMissileFallbackService.cs"/>
+        <Compile Include="Game\MainMenuArchipelagoBrandingService.cs"/>
+        <Compile Include="Game\MainMenuArchipelagoSettingsService.cs"/>
+        <Compile Include="Game\RuntimeLocationResolver.cs"/>
+        <Compile Include="Game\SaveSync.cs"/>
+        <Compile Include="Game\ShopBarVisualService.cs"/>
+        <Compile Include="Game\ShopLocationResolver.cs"/>
+        <Compile Include="Game\ShopPriceService.cs"/>
+        <Compile Include="Game\ShopSaltBalanceService.cs"/>
+        <Compile Include="Game\SpecialNpcService.cs"/>
+        <Compile Include="Game\StoryLocationMap.cs"/>
+        <Compile Include="Game\WorldObjectGrantService.cs"/>
+        <Compile Include="Logging\MLLog.cs"/>
+        <Compile Include="Core.cs"/>
+        <Compile Include="Patches\BossPatches.cs"/>
+        <Compile Include="Patches\ChestPatches.cs"/>
+        <Compile Include="Patches\DamageUpgradePatches.cs"/>
+        <Compile Include="Patches\DeathLinkPatches.cs"/>
+        <Compile Include="Patches\FileSystemPatches.cs"/>
+        <Compile Include="Patches\HudAmmoPatches.cs"/>
+        <Compile Include="Patches\LocationName.cs"/>
+        <Compile Include="Patches\MoneyPatches.cs"/>
+        <Compile Include="Patches\NpcPatches.cs"/>
+        <Compile Include="Patches\PauseMenuPatches.cs"/>
+        <Compile Include="Patches\PowerupPatches.cs"/>
+        <Compile Include="Patches\PowerupProxyPatches.cs"/>
+        <Compile Include="Patches\RespawnPatches.cs"/>
+        <Compile Include="Patches\SaveManagerPatches.cs"/>
+        <Compile Include="Patches\ScreenShakePatches.cs"/>
+        <Compile Include="Patches\ShieldPatches.cs"/>
+        <Compile Include="Patches\ShopBarPatches.cs"/>
+        <Compile Include="Patches\ShopPatches.cs"/>
+        <Compile Include="Patches\ShopPricePatches.cs"/>
+        <Compile Include="Patches\StoryPatches.cs"/>
+        <Compile Include="Patches\UsedStatePatches.cs"/>
+        <Compile Include="Patches\WeaponAltarPatches.cs"/>
         <Compile Include="Properties\AssemblyInfo.cs"/>
-        <Compile Include="Room-Area\ChestLogger.cs" />
-        <Compile Include="Room-Area\ChestScanner.cs" />
-        <Compile Include="Room-Area\DoorScanner.cs" />
-        <Compile Include="Room-Area\DoorLogger.cs" />
-        <Compile Include="Room-Area\NPCLogger.cs" />
-        <Compile Include="Room-Area\NPCScanner.cs" />
-        <Compile Include="Room-Area\ShopUpgradeLogger.cs" />
-        <Compile Include="Room-Area\ShopUpgradeScanner.cs" />
-        <Compile Include="Room-Area\SoulLogger.cs" />
-        <Compile Include="Room-Area\SoulScanner.cs" />
-        <Compile Include="Room-Area\StoryEventLogger.cs" />
-        <Compile Include="Room-Area\StoryEventScanner.cs" />
     </ItemGroup>
     <ItemGroup>
-      <None Include="packages.config" />
+        <Folder Include="DandaraAPWorld\dandara\" />
+        <Folder Include="Handler\"/>
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="App.config"/>
+        <None Include="DandaraAPWorld\dandara\*.py">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </None>
+        <None Include="DandaraAPWorld\dandara\*.json">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </None>
+        <None Include="packages.config"/>
+    </ItemGroup>
+    <ItemGroup>
+      <Reference Include="0Harmony, Version=2.16.1.0, Culture=neutral, processorArchitecture=MSIL">
+        <HintPath>packages\HarmonyX.2.16.1\lib\net35\0Harmony.dll</HintPath>
+      </Reference>
+      <Reference Include="Archipelago.MultiClient.Net, Version=6.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+        <HintPath>packages\Archipelago.MultiClient.Net.6.7.1\lib\net35\Archipelago.MultiClient.Net.dll</HintPath>
+      </Reference>
+      <Reference Include="Assembly-CSharp">
+        <HintPath>libs\Assembly-CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="MelonLoader">
+        <HintPath>..\Dandara\MelonLoader\net35\MelonLoader.dll</HintPath>
+      </Reference>
+      <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+        <HintPath>packages\Archipelago.MultiClient.Net.6.7.1\lib\net35\Newtonsoft.Json.dll</HintPath>
+      </Reference>
+      <Reference Include="System" />
+      <Reference Include="websocket-sharp, Version=1.0.2.34775, Culture=neutral, PublicKeyToken=5660b08a1845a91e">
+        <HintPath>packages\Archipelago.MultiClient.Net.6.7.1\lib\net35\websocket-sharp.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine">
+        <HintPath>libs\UnityEngine.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AnimationModule">
+        <HintPath>..\Dandara\Dandara_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>libs\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.IMGUIModule">
+        <HintPath>libs\UnityEngine.IMGUIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ImageConversionModule">
+        <HintPath>..\Dandara\Dandara_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputModule">
+        <HintPath>libs\UnityEngine.InputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextRenderingModule">
+        <HintPath>..\Dandara\Dandara_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIModule">
+        <HintPath>..\Dandara\Dandara_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Physics2DModule">
+        <HintPath>libs\UnityEngine.Physics2DModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UI">
+        <HintPath>..\Dandara\Dandara_Data\Managed\UnityEngine.UI.dll</HintPath>
+      </Reference>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -119,6 +170,10 @@
     </Target>
     -->
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-        <Exec Command="COPY &quot;$(TargetPath)&quot; &quot;C:\Users\henta\Desktop\New folder\Dandara\Mods&quot;" />
+        <Exec Command="COPY &quot;$(TargetPath)&quot; &quot;E:\ProgramData\Arch\Dandara\Mods&quot;"/>
+        <Exec Command="COPY /Y &quot;$(MSBuildProjectDirectory)\packages\Archipelago.MultiClient.Net.6.7.1\lib\net35\Newtonsoft.Json.dll&quot; &quot;E:\ProgramData\Arch\Dandara\Mods&quot;"/>
+        <Exec Command="if not exist &quot;E:\ProgramData\Arch\Dandara\UserData\ArchDandaraData\Tools&quot; mkdir &quot;E:\ProgramData\Arch\Dandara\UserData\ArchDandaraData\Tools&quot;"/>
+        <Exec Command="if exist &quot;$(MSBuildProjectDirectory)\Tools\ArchipelagoWssBridge\bin\Release\ArchipelagoWssBridge.exe&quot; COPY /Y &quot;$(MSBuildProjectDirectory)\Tools\ArchipelagoWssBridge\bin\Release\ArchipelagoWssBridge.exe&quot; &quot;E:\ProgramData\Arch\Dandara\UserData\ArchDandaraData\Tools&quot; || exit /b 0"/>
+        <Exec Command="if exist &quot;$(MSBuildProjectDirectory)\Tools\ArchipelagoWssBridge\bin\Release\websocket-sharp.dll&quot; COPY /Y &quot;$(MSBuildProjectDirectory)\Tools\ArchipelagoWssBridge\bin\Release\websocket-sharp.dll&quot; &quot;E:\ProgramData\Arch\Dandara\UserData\ArchDandaraData\Tools&quot; || exit /b 0"/>
     </Target>
 </Project>
