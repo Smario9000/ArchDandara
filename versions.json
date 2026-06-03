@@ -1,0 +1,19 @@
+﻿{
+    "versions":  [
+                     {
+                         "package_version":  "0.0.25",
+                         "download_url":  "https://github.com/Smario9000/ArchDandara/releases/latest/download/DandaraAPTracker.zip",
+                         "sha256":  "47dd268c17365998bde4bacea799b59fc0cffb7a7a8d591bb7c8292a480a4b3d",
+                         "changelog":  [
+                                           "Updated AP item ID mapping to match the current Dandara APWorld raw_items order.",
+                                           "Added Dandara Arrow Damage Upgrade, Dandara Weapon Damage Upgrade, and Salt\u0027s Awareness Upgrade tracking.",
+                                           "Added A Good Bargain (70 Chest) to tracker locations and AP autotracking mappings.",
+                                           "Updated Arrow of Freedom to track 6 copies and added counted tracking for Scarf of Freedom.",
+                                           "Added staged Settings icons for goal, ammo/mana cost, and shop cost from AP slot data.",
+                                           "Added Overworld NPC Check 3 mirror tracking from Temple of Creation (3 NPC).",
+                                           "Fixed locations.json trailing comma, a bad MusicianPowerOn image path, and missing images/items/1.png.",
+                                           "Added PopTracker update metadata through versions_url and versions.json."
+                                       ]
+                     }
+                 ]
+}

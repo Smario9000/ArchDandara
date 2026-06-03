@@ -1,0 +1,16 @@
+[
+  {
+    "name": "overworld",
+    "location_size": 20,
+    "location_border_thickness": 2,
+    "location_shape": "rect",
+    "img": "images/maps/OverWorld.png"
+  },
+  {
+    "name": "fear_world",
+    "location_size": 20,
+    "location_border_thickness": 2,
+    "location_shape": "rect",
+    "img": "images/maps/FearWorld.png"
+  }
+]

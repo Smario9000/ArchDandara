@@ -1,0 +1,4087 @@
+[
+  {
+    "name": "Village of Artists",
+    "children": [
+      {
+        "name": "Kill Boss 1",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/1.png",
+        "sections": [
+          {
+            "name": "Kill Boss 1",
+            "short_name": "Boss",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,jonny_b_missiles",
+              "displaced_presence,logic_blast",
+              "jonny_b_missiles,music_platform,stone_creation",
+              "logic_blast,music_platform,stone_creation",
+              "jonny_b_missiles,stone_creation",
+              "logic_blast,stone_creation",
+              "jonny_b_missiles,paint_platform",
+              "logic_blast,paint_platform"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          }
+        ]
+      },
+      {
+        "name": "Missile Alter",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/1.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 313,
+            "y": 448,
+            "size": 32,
+            "shape": "trapezoid"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Missile Alter",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,jonny_b_missiles",
+              "displaced_presence,logic_blast",
+              "displaced_presence,music_platform",
+              "music_platform,paint_platform"
+            ],
+            "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "The Village Center",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 342,
+            "y": 586,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "The Village Center (1 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence",
+              "paint_platform",
+              "jonny_b_missiles,stone_creation",
+              "logic_blast,stone_creation",
+              "music_platform,stone_creation"
+            ],
+            "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Tarsila's House",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 272,
+            "y": 625,
+            "size": 32,
+            "shape": "diamond"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Tarsila's House (1 NPC)",
+            "short_name": "NPC",
+            "item_count": 1,
+            "access_rules": [],
+            "chest_unopened_img": "images/items/PainterNormal.png",
+            "chest_opened_img": "images/items/PainterSmilingPowered.png"
+          },
+          {
+            "name": "Tarsila's House (10 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "paint_platform",
+              "anxiety_shock,displaced_presence",
+              "displaced_presence,jonny_b_missiles",
+              "displaced_presence,logic_blast",
+              "displaced_presence,skin_knitter"
+            ],
+            "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Beautiful Horizon Avenue",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 455,
+            "y": 455,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Beautiful Horizon Avenue (11 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,jonny_b_missiles",
+              "displaced_presence,logic_blast",
+              "jonny_b_missiles,paint_platform",
+              "jonny_b_missiles,stone_creation",
+              "logic_blast,paint_platform",
+              "logic_blast,stone_creation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Garantido's Bar",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 400,
+            "y": 635,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Garantido's Bar (12 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "stone_creation",
+              "displaced_presence",
+              "music_platform",
+              "paint_platform"
+            ],
+            "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buritis",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 265,
+            "y": 480,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buritis (13 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,music_platform",
+              "displaced_presence,jonny_b_missiles",
+              "displaced_presence,logic_blast",
+              "music_platform,paint_platform"
+            ],
+            "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Dona Clara's Restaurant",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 290,
+            "y": 560,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Dona Clara's Restaurant (14 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,jonny_b_missiles",
+              "displaced_presence,logic_blast",
+              "music_platform,paint_platform",
+              "music_platform,jonny_b_missiles",
+              "music_platform,logic_blast"
+            ],
+            "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Lazúli's House",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 490,
+            "y": 515,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Lazúli's House (15 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "stone_creation",
+              "displaced_presence",
+              "music_platform",
+              "paint_platform"
+            ],
+            "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          },
+          {
+            "name": "Lazúli's House (16 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "stone_creation",
+              "displaced_presence",
+              "music_platform",
+              "paint_platform"
+            ],
+            "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Temple of Creation NPC",
+        "chest_unopened_img": "images/items/GuardCreationBridge.png",
+        "chest_opened_img": "images/items/GuardCreationNormal.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 355,
+            "y": 480,
+            "size": 32,
+            "shape": "diamond"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Temple of Creation (3 NPC)",
+            "short_name": "NPC",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,jonny_b_missiles",
+              "displaced_presence,logic_blast",
+              "jonny_b_missiles,paint_platform",
+              "jonny_b_missiles,stone_creation",
+              "logic_blast,paint_platform",
+              "logic_blast,stone_creation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Temple of Creation",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 355,
+            "y": 520,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Temple of Creation (17 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "boss_storyevent_key_1,displaced_presence,jonny_b_missiles",
+              "boss_storyevent_key_1,displaced_presence,logic_blast",
+              "boss_storyevent_key_1,jonny_b_missiles,paint_platform",
+              "boss_storyevent_key_1,jonny_b_missiles,stone_creation",
+              "boss_storyevent_key_1,logic_blast,paint_platform",
+              "boss_storyevent_key_1,logic_blast,stone_creation"
+            ],
+            "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          },
+          {
+            "name": "Temple of Creation (18 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "boss_storyevent_key_1,displaced_presence,jonny_b_missiles",
+              "boss_storyevent_key_1,displaced_presence,logic_blast",
+              "boss_storyevent_key_1,jonny_b_missiles,paint_platform",
+              "boss_storyevent_key_1,jonny_b_missiles,stone_creation",
+              "boss_storyevent_key_1,logic_blast,paint_platform",
+              "boss_storyevent_key_1,logic_blast,stone_creation"
+            ],
+            "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Thommaz's House",
+        "chest_unopened_img": "images/items/MusicianSad.png",
+        "chest_opened_img": "images/items/MusicianPowerOn.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 513,
+            "y": 405,
+            "size": 20,
+            "shape": "diamond"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Thommaz's House (2 NPC)",
+            "short_name": "NPC",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence",
+              "paint_platform",
+              "stone_creation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Paint Well",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 297,
+            "y": 646,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Paint Well (8 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": []
+          }
+        ]
+      },
+      {
+        "name": "Community Street",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 247,
+            "y": 680,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Community Street (9 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Primal Woods",
+    "children": [
+      {
+        "name": "Limits of Sanity",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 930,
+            "y": 540,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Limits of Sanity (19 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention",
+              "stone_creation,stone_intention"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Cave of Desire",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 630,
+            "y": 540,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Cave of Desire (51 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,rock_remembrance",
+              "displaced_presence,stone_intention",
+              "rock_remembrance,stone_creation",
+              "stone_creation,stone_intention"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Confusion Ruins",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 575,
+            "y": 517,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Confusion Ruins (6 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [],
+            "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          },
+          {
+            "name": "Confusion Ruins (7 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence",
+              "stone_creation"
+            ],
+            "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Remembrance Desert",
+    "children": [
+      {
+        "name": "Kill Boss 2",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/1.png",
+        "sections": [
+          {
+            "name": "Kill Boss 2",
+            "short_name": "Boss",
+            "item_count": 1,
+            "access_rules": [],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          }
+        ]
+      },
+      {
+        "name": "Remembrance Cliff",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1630,
+            "y": 64,
+            "size": 32,
+            "shape": "trapezoid"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Remembrance Cliff (2 Altar)",
+            "short_name": "Altar",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence",
+              "stone_creation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Museum Main Hall",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1267,
+            "y": 64,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Museum Main Hall (22 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,rock_remembrance",
+              "rock_remembrance,stone_creation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Main Warehouse",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1145,
+            "y": 143,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Main Warehouse (23 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence",
+              "stone_creation"
+            ]
+          },
+          {
+            "name": "Main Warehouse (24 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,jonny_b_missiles",
+              "displaced_presence,logic_blast",
+              "jonny_b_missiles,stone_creation",
+              "logic_blast,stone_creation"
+            ]
+          },
+          {
+            "name": "Main Warehouse (25 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,jonny_b_missiles",
+              "displaced_presence,logic_blast",
+              "jonny_b_missiles,stone_creation",
+              "logic_blast,stone_creation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Auditorium",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1226,
+            "y": 154,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Auditorium (26 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence",
+              "stone_creation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Overburden Deposits",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1285,
+            "y": 202,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Overburden Deposits (27 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,rock_remembrance"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "The Treasure",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1402,
+            "y": 56,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "The Treasure (28 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,rock_remembrance",
+              "rock_remembrance,stone_creation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Foyer of Formidable Burdens",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1051,
+            "y": 140,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Foyer of Formidable Burdens (29 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence",
+              "stone_creation"
+            ]
+          },
+          {
+            "name": "Foyer of Formidable Burdens (30 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence",
+              "stone_creation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Quarter of a Distant Love",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1261,
+            "y": 244,
+            "size": 32,
+            "shape": "trapezoid"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Quarter of a Distant Love (3 Altar)",
+            "short_name": "Altar",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,rock_remembrance",
+              "rock_remembrance,stone_creation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Broken Heart Archive",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1102,
+            "y": 201,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Broken Heart Archive (31 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,jonny_b_missiles,rock_remembrance",
+              "displaced_presence,logic_blast,rock_remembrance",
+              "jonny_b_missiles,rock_remembrance,stone_creation",
+              "logic_blast,rock_remembrance,stone_creation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Archive of the Child",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1090,
+            "y": 116,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Archive of the Child (32 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,jonny_b_missiles",
+              "displaced_presence,logic_blast",
+              "jonny_b_missiles,stone_creation",
+              "logic_blast,stone_creation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Overcast Gate Ruins",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 822,
+            "y": 265,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Overcast Gate Ruins (33 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "boss_storyevent_key_2,displaced_presence,rock_remembrance",
+              "boss_storyevent_key_2,rock_remembrance,stone_creation"
+            ]
+          },
+          {
+            "name": "Overcast Gate Ruins (34 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "boss_storyevent_key_2,displaced_presence,rock_remembrance",
+              "boss_storyevent_key_2,rock_remembrance,stone_creation"
+            ]
+          },
+          {
+            "name": "Overcast Gate Ruins (35 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "boss_storyevent_key_2,displaced_presence,rock_remembrance",
+              "boss_storyevent_key_2,rock_remembrance,stone_creation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Overcast Gate Ruins (NPC 4)",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/DLC_Key_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 819,
+            "y": 230,
+            "size": 32,
+            "shape": "diamond"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Overcast Gate Ruins (NPC 4)",
+            "short_name": "NPC",
+            "item_count": 1,
+            "access_rules": [
+              "boss_storyevent_key_2,displaced_presence,rock_remembrance",
+              "boss_storyevent_key_2,rock_remembrance,stone_creation"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Crib of Creation",
+    "children": [
+      {
+        "name": "Palmares Track",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 483,
+            "y": 711,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Palmares Track (2 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "jonny_b_missiles",
+              "logic_blast"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Pleasure Woods",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 592,
+            "y": 663,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Pleasure Woods (3 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "jonny_b_missiles,rock_remembrance",
+              "logic_blast,rock_remembrance"
+            ]
+          },
+          {
+            "name": "Pleasure Woods (4 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "jonny_b_missiles,rock_remembrance",
+              "logic_blast,rock_remembrance"
+            ]
+          },
+          {
+            "name": "Pleasure Woods (5 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "jonny_b_missiles,rock_remembrance",
+              "logic_blast,rock_remembrance"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Golden Fortress",
+    "children": [
+      {
+        "name": "Eldarian Gates",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1144,
+            "y": 523,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Eldarian Gates (20 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence",
+              "stone_creation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "No Pain, No Gain",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1082,
+            "y": 732,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "No Pain, No Gain (62 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention,wall_break",
+              "stone_creation,stone_intention,wall_break",
+              "displaced_presence,pearl_dreams,rock_remembrance,stone_intention",
+              "pearl_dreams,rock_remembrance,stone_creation,stone_intention"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Command Center",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1068,
+            "y": 687,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Command Center (63 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention,wall_break",
+              "stone_creation,stone_intention,wall_break",
+              "displaced_presence,pearl_dreams,rock_remembrance,stone_intention",
+              "pearl_dreams,rock_remembrance,stone_creation,stone_intention"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Greediness Space",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1185,
+            "y": 802,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Greediness Space (64 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention,wall_break",
+              "stone_creation,stone_intention,wall_break",
+              "displaced_presence,pearl_dreams,rock_remembrance,stone_intention",
+              "pearl_dreams,rock_remembrance,stone_creation,stone_intention"
+            ]
+          },
+          {
+            "name": "Greediness Space (65 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention,wall_break",
+              "stone_creation,stone_intention,wall_break",
+              "displaced_presence,pearl_dreams,rock_remembrance,stone_intention",
+              "pearl_dreams,rock_remembrance,stone_creation,stone_intention"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Miserliness Space",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1142,
+            "y": 800,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Miserliness Space (67 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention,wall_break",
+              "stone_creation,stone_intention,wall_break",
+              "displaced_presence,pearl_dreams,rock_remembrance,stone_intention",
+              "pearl_dreams,rock_remembrance,stone_creation,stone_intention"
+            ]
+          },
+          {
+            "name": "Miserliness Space (68 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention,wall_break",
+              "stone_creation,stone_intention,wall_break",
+              "displaced_presence,pearl_dreams,rock_remembrance,stone_intention",
+              "pearl_dreams,rock_remembrance,stone_creation,stone_intention"
+            ]
+          },
+          {
+            "name": "Miserliness Space (69 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention,wall_break",
+              "stone_creation,stone_intention,wall_break",
+              "displaced_presence,pearl_dreams,rock_remembrance,stone_intention",
+              "pearl_dreams,rock_remembrance,stone_creation,stone_intention"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Kill Eldar",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/EldarNormal.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1168,
+            "y": 748,
+            "size": 32,
+            "shape": "diamond"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Kill Eldar",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,pearl_dreams,rock_remembrance,stone_intention",
+              "displaced_presence,rock_remembrance,stone_intention,wall_break",
+              "pearl_dreams,rock_remembrance,stone_creation,stone_intention",
+              "rock_remembrance,stone_creation,stone_intention,wall_break"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "The Colossal Bridge",
+    "children": [
+      {
+        "name": "Wealth Lair",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 992,
+            "y": 370,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Wealth Lair (21 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence",
+              "stone_creation"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Intention Capital",
+    "children": [
+      {
+        "name": "Structural Cave",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1067,
+            "y": 507,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Structural Cave (36 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence",
+              "stone_creation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Side Turn",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1067,
+            "y": 411,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Side Turn (37 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,jonny_b_missiles",
+              "displaced_presence,logic_blast",
+              "stone_creation,stone_intention"
+            ]
+          },
+          {
+            "name": "Side Turn (38 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,jonny_b_missiles",
+              "displaced_presence,logic_blast",
+              "jonny_b_missiles,stone_creation,stone_intention",
+              "logic_blast,stone_creation,stone_intention"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Back Alley",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1252,
+            "y": 478,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Back Alley (39 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence",
+              "stone_creation"
+            ]
+          },
+          {
+            "name": "Back Alley (40 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence",
+              "stone_creation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Crib of Intention",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1599,
+            "y": 682,
+            "size": 20,
+            "shape": "trapezoid"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Crib of Intention (4 Altar)",
+            "short_name": "Altar",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence",
+              "rock_remembrance,stone_creation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Recycle Room",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1132,
+            "y": 471,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Recycle Room (41 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence",
+              "stone_creation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "The Golden Angle",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1015,
+            "y": 794,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "The Golden Angle (42 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,pearl_dreams,rock_remembrance",
+              "displaced_presence,stone_intention,wall_break",
+              "pearl_dreams,rock_remembrance,stone_creation",
+              "stone_creation,stone_intention,wall_break"
+            ],
+            "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          },
+          {
+            "name": "The Golden Angle (43 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,pearl_dreams,rock_remembrance",
+              "displaced_presence,stone_intention,wall_break",
+              "pearl_dreams,rock_remembrance,stone_creation",
+              "stone_creation,stone_intention,wall_break"
+            ],
+            "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Reasoning Lock",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1463,
+            "y": 518,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Reasoning Lock (44 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence",
+              "rock_remembrance,stone_creation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Parlance Road",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1291,
+            "y": 453,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Parlance Road (45 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence",
+              "stone_creation,stone_intention"
+            ],
+            "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "The Golden Storage",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1329,
+            "y": 682,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "The Golden Storage (46 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,pearl_dreams,stone_intention",
+              "displaced_presence,stone_intention,wall_break",
+              "pearl_dreams,stone_creation,stone_intention",
+              "stone_creation,stone_intention,wall_break"
+            ]
+          },
+          {
+            "name": "The Golden Storage (47 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,pearl_dreams,stone_intention",
+              "displaced_presence,stone_intention,wall_break",
+              "pearl_dreams,stone_creation,stone_intention",
+              "stone_creation,stone_intention,wall_break"
+            ]
+          },
+          {
+            "name": "The Golden Storage (48 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,pearl_dreams,stone_intention",
+              "displaced_presence,stone_intention,wall_break",
+              "pearl_dreams,stone_creation,stone_intention",
+              "stone_creation,stone_intention,wall_break"
+            ]
+          },
+          {
+            "name": "The Golden Storage (49 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,pearl_dreams,stone_intention",
+              "displaced_presence,stone_intention,wall_break",
+              "pearl_dreams,stone_creation,stone_intention",
+              "stone_creation,stone_intention,wall_break"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "A Good Bargain",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1358,
+            "y": 482,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "A Good Bargain (70 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,jonny_b_missiles",
+              "displaced_presence,logic_blast",
+              "jonny_b_missiles,stone_intention",
+              "logic_blast,stone_intention"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "The Perfect Corner",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1300,
+            "y": 305,
+            "size": 20,
+            "shape": "trapezoid"
+          }
+        ],
+        "sections": [
+          {
+            "name": "The Perfect Corner (6 Altar)",
+            "short_name": "Altar",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence",
+              "stone_creation,stone_intention"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Eagle Highway",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1144,
+            "y": 396,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Eagle Highway (61 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence",
+              "stone_creation,stone_intention"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "The Golden Corner",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1329,
+            "y": 803,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "The Golden Corner (66 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention,wall_break",
+              "stone_creation,stone_intention,wall_break",
+              "displaced_presence,pearl_dreams,rock_remembrance,stone_intention",
+              "pearl_dreams,rock_remembrance,stone_creation,stone_intention"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Dream Lands",
+    "children": [
+      {
+        "name": "Dream Lands",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 617,
+            "y": 251,
+            "size": 20,
+            "shape": "trapezoid"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Dream Lands (5 Altar)",
+            "short_name": "Altar",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention",
+              "stone_creation,stone_intention"
+            ]
+          },
+          {
+            "name": "Dream Lands (53 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention",
+              "stone_creation,stone_intention"
+            ]
+          },
+          {
+            "name": "Dream Lands (55 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention",
+              "stone_creation,stone_intention"
+            ]
+          },
+          {
+            "name": "Dream Lands (56 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention",
+              "stone_creation,stone_intention"
+            ]
+          },
+          {
+            "name": "Dream Lands (57 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention",
+              "stone_creation,stone_intention"
+            ]
+          },
+          {
+            "name": "Dream Lands (58 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention",
+              "stone_creation,stone_intention"
+            ]
+          },
+          {
+            "name": "Dream Lands (59 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention",
+              "stone_creation,stone_intention"
+            ]
+          },
+          {
+            "name": "Dream Lands (60 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention",
+              "stone_creation,stone_intention"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Corner's Club",
+        "chest_unopened_img": "images/items/OverWorld_Chest_locked.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 540,
+            "y": 252,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Corner's Club (52 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention",
+              "stone_creation,stone_intention"
+            ]
+          },
+          {
+            "name": "Shock Alter",
+            "short_name": "Altar",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention",
+              "stone_creation,stone_intention"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Hidden Realms",
+    "children": [
+      {
+        "name": "Crumbling Hollow",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Crumbling Hollow (1 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Incident Square",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Incident Square (10 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,rock_remembrance",
+              "rock_remembrance,stone_creation"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Through The Eyes of Fear",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Through The Eyes of Fear (15 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "jonny_b_missiles,shell_mirror,skin_knitter,stone_creation",
+              "logic_blast,shell_mirror,skin_knitter,stone_creation"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Hidden Eye",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Hidden Eye (16 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,jonny_b_missiles",
+              "displaced_presence,logic_blast"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Underlying Truth",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Underlying Truth (18 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "anxiety_shock,displaced_presence,memories_shaft",
+              "anxiety_shock,displaced_presence,skin_knitter",
+              "anxiety_shock,memories_shaft,stone_creation",
+              "anxiety_shock,skin_knitter,stone_creation",
+              "displaced_presence,memories_shaft,skin_knitter",
+              "memories_shaft,skin_knitter,stone_creation"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "True Explorers Treasure",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "True Explorers Treasure (19 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,skin_knitter",
+              "skin_knitter,stone_creation"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "A Dark Angle",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "A Dark Angle (2 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,rock_remembrance",
+              "rock_remembrance,stone_creation"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Finite Run",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Finite Run (3 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence",
+              "skin_knitter"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Students Way",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Students Way (4 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,jonny_b_missiles",
+              "displaced_presence,logic_blast",
+              "jonny_b_missiles,stone_creation",
+              "logic_blast,stone_creation"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Nevermore a Beautiful Horizon",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Nevermore a Beautiful Horizon (7 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,jonny_b_missiles",
+              "displaced_presence,logic_blast",
+              "jonny_b_missiles,paint_platform",
+              "jonny_b_missiles,stone_creation",
+              "logic_blast,paint_platform",
+              "logic_blast,stone_creation"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Windy Hall",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Windy Hall (9 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,jonny_b_missiles",
+              "displaced_presence,logic_blast",
+              "displaced_presence,skin_knitter",
+              "rock_remembrance,stone_creation"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Resilience Growth",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "trapezoid"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Resilience Growth (3 Altar)",
+            "short_name": "Altar",
+            "item_count": 1,
+            "access_rules": [],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Ephemeral Station",
+    "children": [
+      {
+        "name": "Station Rendezvous",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Station Rendezvous (11 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,jonny_b_missiles,rock_remembrance,stone_intention",
+              "displaced_presence,logic_blast,rock_remembrance,stone_intention",
+              "jonny_b_missiles,rock_remembrance,stone_creation,stone_intention",
+              "logic_blast,rock_remembrance,stone_creation,stone_intention"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          },
+          {
+            "name": "Station Rendezvous (12 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,jonny_b_missiles,rock_remembrance,stone_intention",
+              "displaced_presence,logic_blast,rock_remembrance,stone_intention",
+              "jonny_b_missiles,rock_remembrance,stone_creation,stone_intention",
+              "logic_blast,rock_remembrance,stone_creation,stone_intention"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Pusher's Assignment",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Pusher's Assignment (13 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,rock_remembrance,stone_intention",
+              "rock_remembrance,stone_creation,stone_intention"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Waiter's Room",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Waiter's Room (14 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,rock_remembrance,stone_intention",
+              "rock_remembrance,stone_creation,stone_intention"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Future Path Gate",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "trapezoid"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Future Path Gate (2 Altar)",
+            "short_name": "Altar",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,rock_remembrance,stone_intention",
+              "rock_remembrance,stone_creation,stone_intention"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "The Privileged Keep",
+    "children": [
+      {
+        "name": "Alchemist's Gallery",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Alchemist's Gallery (17 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,dlc_storyevent_1",
+              "dlc_storyevent_1,stone_creation"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Castle Entrance",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/1.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "diamond"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Castle Entrance (NPC 6)",
+            "short_name": "NPC",
+            "item_count": 1,
+            "access_rules": [
+              "dlc_storyevent_1"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          }
+        ]
+      },
+      {
+        "name": "Rest of the Acolyte",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/1.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "diamond"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Rest of the Acolyte (NPC 10)",
+            "short_name": "NPC",
+            "item_count": 1,
+            "access_rules": [
+              "dlc_storyevent_3"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          }
+        ]
+      },
+      {
+        "name": "Master Noble Introduction",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/1.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "diamond"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Event: Master Noble Introduction",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          }
+        ]
+      },
+      {
+        "name": "Master Noble Completed",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/1.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "diamond"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Event: Master Noble Completed",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "The Masquerade Ball",
+    "children": [
+      {
+        "name": "Friendly Gathering",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Friendly Gathering (20 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          },
+          {
+            "name": "Friendly Gathering (21 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Ostentation Room",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Ostentation Room (22 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Weak-Minded Segregation",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Weak-Minded Segregation (23 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Secrets Beneath Masks",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Secrets Beneath Masks (24 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,stone_intention"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "The Enduring Fortress",
+    "children": [
+      {
+        "name": "Pain Sanctuary",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Pain Sanctuary (5 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,dlc_storyevent_1",
+              "dlc_storyevent_1,jonny_b_missiles,stone_creation",
+              "dlc_storyevent_1,logic_blast,stone_creation",
+              "dlc_storyevent_1,skin_knitter,stone_creation"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          },
+          {
+            "name": "Pain Sanctuary (NPC 9)",
+            "short_name": "NPC",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,dlc_storyevent_4",
+              "dlc_storyevent_4,stone_creation"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          }
+        ]
+      },
+      {
+        "name": "Rock Cave",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/1.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "diamond"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Rock Cave (NPC 7)",
+            "short_name": "NPC",
+            "item_count": 1,
+            "access_rules": [
+              "dlc_storyevent_1"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          },
+          {
+            "name": "Rock Cave (NPC 11)",
+            "short_name": "NPC",
+            "item_count": 1,
+            "access_rules": [
+              "dlc_storyevent_4"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          }
+        ]
+      },
+      {
+        "name": "Master Persistent Introduction",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/1.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "diamond"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Event: Master Persistent Introduction",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          }
+        ]
+      },
+      {
+        "name": "Master Persistent Flag",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/1.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "diamond"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Event: Master Persistent Flag",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          }
+        ]
+      },
+      {
+        "name": "Master Persistent Completed",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/1.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "diamond"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Event: Master Persistent Completed",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "The Pioneer Facility",
+    "children": [
+      {
+        "name": "Wrecked Nakaturen Bridge",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Wrecked Nakaturen Bridge (6 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,dlc_storyevent_1,jonny_b_missiles",
+              "displaced_presence,dlc_storyevent_1,logic_blast",
+              "dlc_storyevent_1,jonny_b_missiles,stone_creation",
+              "dlc_storyevent_1,logic_blast,stone_creation"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          },
+          {
+            "name": "Wrecked Nakaturen Bridge (NPC 8)",
+            "short_name": "NPC",
+            "item_count": 1,
+            "access_rules": [
+              "dlc_storyevent_2,time_flag"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          }
+        ]
+      },
+      {
+        "name": "Nakaturen Frigate Elevator",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/1.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "diamond"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Nakaturen Frigate Elevator (NPC 5)",
+            "short_name": "NPC",
+            "item_count": 1,
+            "access_rules": [
+              "dlc_storyevent_1"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          }
+        ]
+      },
+      {
+        "name": "Master Explorer Introduction",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/1.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "diamond"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Event: Master Explorer Introduction",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          }
+        ]
+      },
+      {
+        "name": "Master Explorer Completed",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/1.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "diamond"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Event: Master Explorer Completed",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Masters' Auditorium",
+    "children": [
+      {
+        "name": "Auditorium Hall",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Auditorium Hall (8 Chest)",
+            "short_name": "Chest",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,jonny_b_missiles",
+              "displaced_presence,logic_blast",
+              "displaced_presence,rock_remembrance",
+              "displaced_presence,skin_knitter",
+              "jonny_b_missiles,stone_creation",
+              "logic_blast,stone_creation",
+              "rock_remembrance,stone_creation"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "The Grand Stage",
+        "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+        "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "trapezoid"
+          }
+        ],
+        "sections": [
+          {
+            "name": "The Grand Stage (1 Altar)",
+            "short_name": "Altar",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence,dlc_storyevent_1,dlc_storyevent_5,dlc_storyevent_6,dlc_storyevent_7",
+              "dlc_storyevent_1,dlc_storyevent_5,dlc_storyevent_6,dlc_storyevent_7,stone_creation"
+            ],
+            "chest_unopened_img": "images/items/LD_ChestFear_Locked.png",
+            "chest_opened_img": "images/items/LD_ChestFear_Unlocked.png"
+          },
+          {
+            "name": "The Grand Stage (NPC 1)",
+            "short_name": "NPC",
+            "item_count": 1,
+            "access_rules": [
+              "dlc_storyevent_1"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          },
+          {
+            "name": "The Grand Stage (NPC 2)",
+            "short_name": "NPC",
+            "item_count": 1,
+            "access_rules": [
+              "dlc_storyevent_1"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          },
+          {
+            "name": "The Grand Stage (NPC 3)",
+            "short_name": "NPC",
+            "item_count": 1,
+            "access_rules": [
+              "dlc_storyevent_1"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          },
+          {
+            "name": "The Grand Stage (NPC 4)",
+            "short_name": "NPC",
+            "item_count": 1,
+            "access_rules": [
+              "displaced_presence",
+              "stone_creation",
+              "displaced_presence,skin_knitter",
+              "skin_knitter,stone_creation",
+              "displaced_presence,jonny_b_missiles",
+              "displaced_presence,logic_blast",
+              "jonny_b_missiles,stone_creation",
+              "logic_blast,stone_creation"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          }
+        ]
+      },
+      {
+        "name": "Masters Introduction",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/1.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 20,
+            "shape": "diamond"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Event: Masters Introduction",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Shop",
+    "children": [
+      {
+        "name": "Buy Upgrade 1",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1467,
+            "y": 300,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 1",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 2",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1494,
+            "y": 300,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 2",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|1"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 3",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1524,
+            "y": 300,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 3",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|2"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 4",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1551,
+            "y": 300,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 4",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|3"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 5",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1578,
+            "y": 300,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 5",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|4"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 6",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1605,
+            "y": 300,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 6",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|5"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 7",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1632,
+            "y": 300,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 7",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|6"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 8",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1659,
+            "y": 300,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 8",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|7"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 9",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1686,
+            "y": 300,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 9",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|8"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 10",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1713,
+            "y": 300,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 10",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|9"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 11",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1509,
+            "y": 330,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 11",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|10"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 12",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1536,
+            "y": 330,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 12",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|11"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 13",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1563,
+            "y": 330,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 13",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|12"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 14",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1590,
+            "y": 330,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 14",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|13"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 15",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1617,
+            "y": 330,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 15",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|14"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 16",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1644,
+            "y": 330,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 16",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|15"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 17",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1671,
+            "y": 330,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 17",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|16"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Mana Shop",
+    "children": [
+      {
+        "name": "Buy Upgrade 18",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1467,
+            "y": 359,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 18",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|17"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 19",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1492,
+            "y": 359,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 19",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|18"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 20",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1517,
+            "y": 359,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 20",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|19"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 21",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1542,
+            "y": 359,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 21",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|20"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 22",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1567,
+            "y": 359,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 22",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|21"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 23",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1592,
+            "y": 359,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 23",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|22"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 24",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1617,
+            "y": 359,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 24",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|23"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 25",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1642,
+            "y": 359,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 25",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|24"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 26",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1667,
+            "y": 359,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 26",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|25"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 27",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1692,
+            "y": 359,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 27",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|26"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Health Flask Shop",
+    "children": [
+      {
+        "name": "Buy Upgrade 28",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1519,
+            "y": 390,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 28",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|27"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 29",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1544,
+            "y": 390,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 29",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|28"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 30",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1569,
+            "y": 390,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 30",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|29"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 31",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1594,
+            "y": 390,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 31",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|30"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 32",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1619,
+            "y": 390,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 32",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|31"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 33",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1644,
+            "y": 390,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 33",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|32"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 34",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1669,
+            "y": 390,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 34",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|33"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Mana Flask Shop",
+    "children": [
+      {
+        "name": "Buy Upgrade 35",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1519,
+            "y": 418,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 35",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|34"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 36",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1544,
+            "y": 418,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 36",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|35"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 37",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1569,
+            "y": 418,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 37",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|36"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 38",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1594,
+            "y": 418,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 38",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|37"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 39",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1619,
+            "y": 418,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 39",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|38"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 40",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1644,
+            "y": 418,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 40",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|39"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 41",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1669,
+            "y": 418,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 41",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|40"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 42",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1694,
+            "y": 418,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 42",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|41"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 43",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1719,
+            "y": 418,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 43",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|42"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      },
+      {
+        "name": "Buy Upgrade 44",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png",
+        "map_locations": [
+          {
+            "map": "overworld",
+            "x": 1744,
+            "y": 418,
+            "size": 20,
+            "shape": "rect"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Buy Upgrade 44",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "$shop_upgrade_bought|43"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/OverWorld_Chest_Unlocked.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Exile of Contemplations",
+    "children": [
+      {
+        "name": "Talk to Nara",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/1.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 32,
+            "shape": "diamond"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Event: Talk to Nara",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          }
+        ]
+      },
+      {
+        "name": "Nara's Cage",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/1.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 32,
+            "shape": "diamond"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Nara's Cage (NPC 12)",
+            "short_name": "NPC",
+            "item_count": 1,
+            "access_rules": [
+              "shell_mirror"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "The Salt Is Hesitant",
+    "children": [
+      {
+        "name": "Ture Ending",
+        "chest_unopened_img": "images/items/Lock.png",
+        "chest_opened_img": "images/items/1.png",
+        "map_locations": [
+          {
+            "map": "fear_world",
+            "x": 32,
+            "y": 32,
+            "size": 32,
+            "shape": "diamond"
+          }
+        ],
+        "sections": [
+          {
+            "name": "Event: Ture Ending",
+            "short_name": "Storyevent",
+            "item_count": 1,
+            "access_rules": [
+              "event_kill_eldar,free_nara"
+            ],
+            "chest_unopened_img": "images/items/Lock.png",
+            "chest_opened_img": "images/items/1.png"
+          }
+        ]
+      }
+    ]
+  }
+]

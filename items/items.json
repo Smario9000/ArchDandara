@@ -1,0 +1,755 @@
+[
+  {
+    "name": "FearKey",
+    "type": "toggle",
+    "codes": "fear_key",
+    "img": "images/items/DLCFearKey.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "FreeNara",
+    "type": "toggle",
+    "codes": "free_nara",
+    "disabled_img": "images/items/Free_Nara_Locked.png",
+    "img": "images/items/Free_Nara_Unlocked.png"
+  },
+  {
+    "name": "Wall Break",
+    "type": "toggle",
+    "codes": "wall_break",
+    "img": "images/items/WallBreaker.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "SuperDandara",
+    "type": "toggle",
+    "codes": "salts_awareness",
+    "disabled_img": "images/items/ITEM_SuperDandara_Altar_Locked.png",
+    "img": "images/items/ITEM_SuperDandara_Altar_Unlocked.png"
+  },
+  {
+    "name": "Stone of Creation",
+    "type": "toggle",
+    "codes": "stone_creation",
+    "img": "images/items/StonePortraitsCreation.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "Rock of Remembrance",
+    "type": "toggle",
+    "codes": "rock_remembrance",
+    "img": "images/items/StonePortraitsRemembrance.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "Stone of Intention",
+    "type": "toggle",
+    "codes": "stone_intention",
+    "img": "images/items/StonePortraitsIntention.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "Pearl of Dreams",
+    "type": "toggle",
+    "codes": "pearl_dreams",
+    "img": "images/items/StonePortraitsDreams.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "Shell Mirror",
+    "type": "toggle",
+    "codes": "shell_mirror",
+    "img": "images/items/WPN_Shell_Mirror_Unlocked.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "Heart of the Great Salt",
+    "type": "consumable",
+    "codes": "heart_great_salt",
+    "img": "images/items/PowerupHealth.png",
+    "disabled_img_mods": "@disabled",
+    "max_quantity": 17,
+    "overlay_background": "#80000000",
+    "overlay_font_size": 13,
+    "overlay_align": "right"
+  },
+  {
+    "name": "Scarf of Freedom",
+    "type": "consumable",
+    "codes": "scarf_freedom",
+    "img": "images/items/PowerupAmmo.png",
+    "disabled_img_mods": "@disabled",
+    "max_quantity": 9,
+    "overlay_background": "#80000000",
+    "overlay_font_size": 13,
+    "overlay_align": "right"
+  },
+  {
+    "name": "Essence of Salt",
+    "type": "consumable",
+    "codes": "essence_salt",
+    "img": "images/items/PowerupFlask.png",
+    "disabled_img_mods": "@disabled",
+    "max_quantity": 9,
+    "overlay_background": "#80000000",
+    "overlay_font_size": 13,
+    "overlay_align": "right"
+  },
+  {
+    "name": "Infusion of Salt",
+    "type": "consumable",
+    "codes": "infusion_salt",
+    "img": "images/items/ManaFlask.png",
+    "disabled_img_mods": "@disabled",
+    "max_quantity": 9,
+    "overlay_background": "#80000000",
+    "overlay_font_size": 13,
+    "overlay_align": "right"
+  },
+  {
+    "name": "Essence of Salt Enhancer",
+    "type": "consumable",
+    "codes": "essence_salt_enhancer",
+    "img": "images/items/HealthFlaskUpgrade.png",
+    "disabled_img_mods": "@disabled",
+    "max_quantity": 6,
+    "overlay_background": "#80000000",
+    "overlay_font_size": 13,
+    "overlay_align": "right"
+  },
+  {
+    "name": "Infusion of Salt Enhancer",
+    "type": "consumable",
+    "codes": "infusion_salt_enhancer",
+    "img": "images/items/ManaFlaskUpgrade.png",
+    "disabled_img_mods": "@disabled",
+    "max_quantity": 6,
+    "overlay_background": "#80000000",
+    "overlay_font_size": 13,
+    "overlay_align": "right"
+  },
+  {
+    "name": "Jonny B. Missiles",
+    "type": "toggle",
+    "codes": "jonny_b_missiles",
+    "img": "images/items/WeaponMissile.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "Logic Blast",
+    "type": "toggle",
+    "codes": "logic_blast",
+    "img": "images/items/WeaponBounce.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "Memories Shaft",
+    "type": "toggle",
+    "codes": "memories_shaft",
+    "img": "images/items/WeaponRemembrance.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "Anxiety Shock",
+    "type": "toggle",
+    "codes": "anxiety_shock",
+    "img": "images/items/WeaponEnergyBall.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "Skin Knitter",
+    "type": "toggle",
+    "codes": "skin_knitter",
+    "img": "images/items/Weapon_Water_Bomb_Unlocked.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "Displaced Presence",
+    "type": "toggle",
+    "codes": "displaced_presence",
+    "img": "images/items/WPN_AltarTeleport_Unlocked.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "Paint Platform",
+    "type": "toggle",
+    "codes": "paint_platform",
+    "img": "images/items/PainterSmilingPowered.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "Music Platform",
+    "type": "toggle",
+    "codes": "music_platform",
+    "img": "images/items/MusicianPowerOn.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "Overworld NPC Check 3",
+    "type": "toggle",
+    "codes": "overworld_npc_check_3",
+    "img": "images/items/GuardCreationNormal.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "Goal",
+    "type": "progressive",
+    "codes": "setting_goal",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "stages": [
+      {
+        "name": "Final Boss",
+        "codes": "setting_goal,setting_goal_final_boss",
+        "img": "images/items/EldarNormal.png"
+      },
+      {
+        "name": "True Ending",
+        "codes": "setting_goal,setting_goal_true_ending",
+        "img": "images/items/FearBoss.png"
+      }
+    ]
+  },
+  {
+    "name": "Ammo/Mana Cost",
+    "type": "progressive",
+    "codes": "setting_ammo_mana_cost",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "stages": [
+      {
+        "name": "No Change",
+        "codes": "setting_ammo_mana_cost,setting_ammo_no_change",
+        "img": "images/items/PowerupArrow.png",
+        "img_mods": "@disabled"
+      },
+      {
+        "name": "Half Cost",
+        "codes": "setting_ammo_mana_cost,setting_ammo_half_cost",
+        "img": "images/items/setting_ammo_half_cost.png"
+      },
+      {
+        "name": "Quarter Cost",
+        "codes": "setting_ammo_mana_cost,setting_ammo_quarter_cost",
+        "img": "images/items/setting_ammo_quarter_cost.png"
+      },
+      {
+        "name": "Double Cost",
+        "codes": "setting_ammo_mana_cost,setting_ammo_double_cost",
+        "img": "images/items/setting_ammo_double_cost.png"
+      }
+    ]
+  },
+  {
+    "name": "Shop Cost",
+    "type": "progressive",
+    "codes": "setting_shop_cost",
+    "allow_disabled": false,
+    "initial_stage_idx": 0,
+    "stages": [
+      {
+        "name": "Normal",
+        "codes": "setting_shop_cost,setting_shop_normal",
+        "img": "images/items/Camp_0.png",
+        "img_mods": "@disabled"
+      },
+      {
+        "name": "15% Cheaper",
+        "codes": "setting_shop_cost,setting_shop_15_cheaper",
+        "img": "images/items/setting_shop_15_down.png"
+      },
+      {
+        "name": "25% Cheaper",
+        "codes": "setting_shop_cost,setting_shop_25_cheaper",
+        "img": "images/items/setting_shop_25_down.png"
+      },
+      {
+        "name": "64% Cheaper",
+        "codes": "setting_shop_cost,setting_shop_64_cheaper",
+        "img": "images/items/setting_shop_64_down.png"
+      },
+      {
+        "name": "15% More",
+        "codes": "setting_shop_cost,setting_shop_15_more",
+        "img": "images/items/setting_shop_15_up.png"
+      },
+      {
+        "name": "20% More",
+        "codes": "setting_shop_cost,setting_shop_20_more",
+        "img": "images/items/setting_shop_20_up.png"
+      },
+      {
+        "name": "35% More",
+        "codes": "setting_shop_cost,setting_shop_35_more",
+        "img": "images/items/setting_shop_35_up.png"
+      }
+    ]
+  },
+  {
+    "name": "Essence Enhancer Permit",
+    "type": "toggle",
+    "codes": "essence_enhancer_permit",
+    "disabled_img": "images/items/PermitLock.png",
+    "img": "images/items/essence_enhancer_permit.png"
+  },
+  {
+    "name": "Infusion Enhancer Permit",
+    "type": "toggle",
+    "codes": "infusion_enhancer_permit",
+    "disabled_img": "images/items/PermitLock.png",
+    "img": "images/items/infusion_enhancer_permit.png"
+  },
+  {
+    "name": "Freedom Enhancer Permit",
+    "type": "toggle",
+    "codes": "freedom_enhancer_permit",
+    "disabled_img": "images/items/PermitLock.png",
+    "img": "images/items/freedom_enhancer_permit.png"
+  },
+  {
+    "name": "Heart Enhancer Permit",
+    "type": "toggle",
+    "codes": "heart_enhancer_permit",
+    "disabled_img": "images/items/PermitLock.png",
+    "img": "images/items/heart_enhancer_permit.png"
+  },
+  {
+    "name": "Map",
+    "type": "toggle",
+    "codes": "map",
+    "img": "images/items/PowerupMap.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "Bracers of the Patient",
+    "type": "toggle",
+    "codes": "bracers_patient",
+    "img": "images/items/PowerupShield.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "Arrow of Freedom",
+    "type": "consumable",
+    "codes": "arrow_freedom",
+    "img": "images/items/PowerupArrow.png",
+    "disabled_img_mods": "@disabled",
+    "max_quantity": 3,
+    "overlay_background": "#80000000",
+    "overlay_font_size": 13,
+    "overlay_align": "right"
+  },
+  {
+    "name": "Dandara Arrow Damage Upgrade",
+    "type": "consumable",
+    "codes": "dandara_arrow_damage_upgrade",
+    "img": "images/items/PowerupArrow.png",
+    "disabled_img_mods": "@disabled",
+    "max_quantity": 4,
+    "overlay_background": "#80000000",
+    "overlay_font_size": 13,
+    "overlay_align": "right"
+  },
+  {
+    "name": "Dandara Weapon Damage Upgrade",
+    "type": "consumable",
+    "codes": "dandara_weapon_damage_upgrade",
+    "img": "images/items/WeaponEnergyBall.png",
+    "disabled_img_mods": "@disabled",
+    "max_quantity": 4,
+    "overlay_background": "#80000000",
+    "overlay_font_size": 13,
+    "overlay_align": "right"
+  },
+  {
+    "name": "Salt's Awareness",
+    "type": "toggle",
+    "codes": "salts_awareness",
+    "img": "images/items/PowerupMap.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "Salt's Awareness Upgrade",
+    "type": "consumable",
+    "codes": "salts_awareness_upgrade",
+    "img": "images/items/PowerupMap.png",
+    "disabled_img_mods": "@disabled",
+    "max_quantity": 1,
+    "overlay_background": "#80000000",
+    "overlay_font_size": 13,
+    "overlay_align": "right"
+  },
+  {
+    "name": "Pleas of the Salt Fear",
+    "type": "consumable",
+    "codes": "pleas_salt_fear",
+    "img": "images/items/LD_ChestFear_Unlocked.png",
+    "disabled_img_mods": "@disabled",
+    "max_quantity": 24,
+    "overlay_background": "#80000000",
+    "overlay_font_size": 13,
+    "overlay_align": "right"
+  },
+  {
+    "name": "Pleas of the Salt",
+    "type": "consumable",
+    "codes": "pleas_salt",
+    "img": "images/items/OverWorld_Chest_Unlocked.png",
+    "disabled_img_mods": "@disabled",
+    "max_quantity": 44,
+    "overlay_background": "#80000000",
+    "overlay_font_size": 13,
+    "overlay_align": "right"
+  },
+  {
+    "name": "Salt",
+    "type": "toggle",
+    "codes": "salt",
+    "img": "images/items/1.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "D_DLCF_MastersIntroduction",
+    "type": "toggle",
+    "codes": "event_masters_introduction"
+  },
+  {
+    "name": "D_DLCF_ExplorerStart",
+    "type": "toggle",
+    "codes": "event_master_explorer_introduction"
+  },
+  {
+    "name": "D_DLCF_NobleStart",
+    "type": "toggle",
+    "codes": "event_master_noble_introduction"
+  },
+  {
+    "name": "D_DLCF_PersistentStart",
+    "type": "toggle",
+    "codes": "event_master_persistent_introduction"
+  },
+  {
+    "name": "D_DLCF_ExplorerFinish",
+    "type": "toggle",
+    "codes": "event_master_explorer_completed"
+  },
+  {
+    "name": "DLCF_TimeFlagTrap",
+    "type": "toggle",
+    "codes": "event_master_persistent_flag"
+  },
+  {
+    "name": "D_DLCF_NobleFinish",
+    "type": "toggle",
+    "codes": "event_master_noble_completed"
+  },
+  {
+    "name": "D_DLCF_PersistentFinish",
+    "type": "toggle",
+    "codes": "event_master_persistent_completed"
+  },
+  {
+    "name": "FinalBoss_Kill",
+    "type": "toggle",
+    "codes": "event_kill_eldar"
+  },
+  {
+    "name": "DLCF_FreedNara",
+    "type": "toggle",
+    "codes": "event_talk_to_nara"
+  },
+  {
+    "name": "DLCF_FearEnded",
+    "type": "toggle",
+    "codes": "event_true_ending"
+  },
+  {
+    "name": "TimeFlag",
+    "type": "toggle",
+    "codes": "time_flag",
+    "img": "images/items/Lock.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "Boss StoryEvent Key 1",
+    "type": "toggle",
+    "codes": "boss_storyevent_key_1",
+    "img": "images/items/Lock.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "Boss StoryEvent Key 2",
+    "type": "toggle",
+    "codes": "boss_storyevent_key_2",
+    "img": "images/items/Lock.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "DLC StoryEvent 1",
+    "type": "toggle",
+    "codes": "dlc_storyevent_1",
+    "img": "images/items/Lock.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "DLC StoryEvent 2",
+    "type": "toggle",
+    "codes": "dlc_storyevent_2",
+    "img": "images/items/Lock.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "DLC StoryEvent 3",
+    "type": "toggle",
+    "codes": "dlc_storyevent_3",
+    "img": "images/items/Lock.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "DLC StoryEvent 4",
+    "type": "toggle",
+    "codes": "dlc_storyevent_4",
+    "img": "images/items/Lock.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "DLC StoryEvent 5",
+    "type": "toggle",
+    "codes": "dlc_storyevent_5",
+    "img": "images/items/Lock.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "DLC StoryEvent 6",
+    "type": "toggle",
+    "codes": "dlc_storyevent_6",
+    "img": "images/items/Lock.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "DLC StoryEvent 7",
+    "type": "toggle",
+    "codes": "dlc_storyevent_7",
+    "img": "images/items/Lock.png",
+    "disabled_img_mods": "@disabled"
+  },
+  {
+    "name": "Buy Upgrade 1 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_1_checked"
+  },
+  {
+    "name": "Buy Upgrade 2 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_2_checked"
+  },
+  {
+    "name": "Buy Upgrade 3 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_3_checked"
+  },
+  {
+    "name": "Buy Upgrade 4 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_4_checked"
+  },
+  {
+    "name": "Buy Upgrade 5 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_5_checked"
+  },
+  {
+    "name": "Buy Upgrade 6 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_6_checked"
+  },
+  {
+    "name": "Buy Upgrade 7 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_7_checked"
+  },
+  {
+    "name": "Buy Upgrade 8 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_8_checked"
+  },
+  {
+    "name": "Buy Upgrade 9 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_9_checked"
+  },
+  {
+    "name": "Buy Upgrade 10 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_10_checked"
+  },
+  {
+    "name": "Buy Upgrade 11 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_11_checked"
+  },
+  {
+    "name": "Buy Upgrade 12 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_12_checked"
+  },
+  {
+    "name": "Buy Upgrade 13 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_13_checked"
+  },
+  {
+    "name": "Buy Upgrade 14 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_14_checked"
+  },
+  {
+    "name": "Buy Upgrade 15 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_15_checked"
+  },
+  {
+    "name": "Buy Upgrade 16 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_16_checked"
+  },
+  {
+    "name": "Buy Upgrade 17 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_17_checked"
+  },
+  {
+    "name": "Buy Upgrade 18 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_18_checked"
+  },
+  {
+    "name": "Buy Upgrade 19 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_19_checked"
+  },
+  {
+    "name": "Buy Upgrade 20 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_20_checked"
+  },
+  {
+    "name": "Buy Upgrade 21 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_21_checked"
+  },
+  {
+    "name": "Buy Upgrade 22 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_22_checked"
+  },
+  {
+    "name": "Buy Upgrade 23 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_23_checked"
+  },
+  {
+    "name": "Buy Upgrade 24 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_24_checked"
+  },
+  {
+    "name": "Buy Upgrade 25 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_25_checked"
+  },
+  {
+    "name": "Buy Upgrade 26 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_26_checked"
+  },
+  {
+    "name": "Buy Upgrade 27 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_27_checked"
+  },
+  {
+    "name": "Buy Upgrade 28 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_28_checked"
+  },
+  {
+    "name": "Buy Upgrade 29 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_29_checked"
+  },
+  {
+    "name": "Buy Upgrade 30 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_30_checked"
+  },
+  {
+    "name": "Buy Upgrade 31 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_31_checked"
+  },
+  {
+    "name": "Buy Upgrade 32 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_32_checked"
+  },
+  {
+    "name": "Buy Upgrade 33 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_33_checked"
+  },
+  {
+    "name": "Buy Upgrade 34 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_34_checked"
+  },
+  {
+    "name": "Buy Upgrade 35 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_35_checked"
+  },
+  {
+    "name": "Buy Upgrade 36 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_36_checked"
+  },
+  {
+    "name": "Buy Upgrade 37 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_37_checked"
+  },
+  {
+    "name": "Buy Upgrade 38 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_38_checked"
+  },
+  {
+    "name": "Buy Upgrade 39 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_39_checked"
+  },
+  {
+    "name": "Buy Upgrade 40 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_40_checked"
+  },
+  {
+    "name": "Buy Upgrade 41 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_41_checked"
+  },
+  {
+    "name": "Buy Upgrade 42 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_42_checked"
+  },
+  {
+    "name": "Buy Upgrade 43 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_43_checked"
+  },
+  {
+    "name": "Buy Upgrade 44 Checked",
+    "type": "toggle",
+    "codes": "buy_upgrade_44_checked"
+  }
+]

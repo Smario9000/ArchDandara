@@ -1,0 +1,223 @@
+﻿{
+  "tracker_broadcast": {
+    "type": "array",
+    "orientation": "vertical",
+    "content": [
+      {
+        "type": "itemgrid",
+        "item_margin": 2,
+        "item_size": 32,
+        "rows": [
+          [
+            "fear_key",
+            "free_nara",
+            "boss_storyevent_key_1",
+            "boss_storyevent_key_2",
+            "stone_creation",
+            "rock_remembrance",
+            "stone_intention",
+            "pearl_dreams"
+          ],
+          [
+            "shell_mirror",
+            "heart_great_salt",
+            "scarf_freedom",
+            "essence_salt",
+            "infusion_salt",
+            "essence_salt_enhancer",
+            "infusion_salt_enhancer",
+            "jonny_b_missiles"
+          ],
+          [
+            "anxiety_shock",
+            "memories_shaft",
+            "logic_blast",
+            "skin_knitter",
+            "displaced_presence",
+            "paint_platform",
+            "music_platform",
+            "wall_break"
+          ],
+          [
+            "essence_enhancer_permit",
+            "infusion_enhancer_permit",
+            "freedom_enhancer_permit",
+            "heart_enhancer_permit"
+          ],
+          [
+            "map",
+            "bracers_patient",
+            "arrow_freedom",
+            "salts_awareness"
+          ],
+          [
+            "pleas_salt_fear",
+            "pleas_salt",
+            "salt"
+          ]
+        ]
+      }
+    ]
+  },
+  "tracker_default": {
+    "type": "array",
+    "orientation": "vertical",
+    "content": [
+      {
+        "type": "array",
+        "orientation": "horizontal",
+        "content": [
+          {
+            "type": "group",
+            "header": "Items",
+            "content": {
+              "type": "itemgrid",
+              "item_margin": 2,
+              "item_size": 32,
+              "rows": [
+                [
+                  "fear_key",
+                  "free_nara",
+                  "wall_break",
+                  "salts_awareness",
+                  "stone_creation",
+                  "rock_remembrance",
+                  "stone_intention",
+                  "pearl_dreams"
+                ],
+                [
+                  "shell_mirror",
+                  "jonny_b_missiles",
+                  "memories_shaft",
+                  "anxiety_shock",
+                  "logic_blast",
+                  "skin_knitter",
+                  "displaced_presence"
+                ],
+                [
+                  "heart_great_salt",
+                  "scarf_freedom",
+                  "essence_salt",
+                  "infusion_salt",
+                  "essence_salt_enhancer",
+                  "infusion_salt_enhancer"
+                ],
+                [
+                  "map",
+                  "bracers_patient",
+                  "arrow_freedom",
+                  "dandara_arrow_damage_upgrade",
+                  "dandara_weapon_damage_upgrade",
+                  "salts_awareness_upgrade"
+                ],
+                [
+                  "heart_enhancer_permit",
+                  "freedom_enhancer_permit",
+                  "essence_enhancer_permit",
+                  "infusion_enhancer_permit"
+                ]
+              ]
+            }
+          },
+          {
+            "type": "group",
+            "header": "NPC",
+            "content": {
+              "type": "itemgrid",
+              "item_margin": 2,
+              "item_size": 32,
+              "rows": [
+                [
+                  "paint_platform",
+                  "music_platform",
+                  "overworld_npc_check_3"
+                ]
+              ]
+            }
+          },
+          {
+            "type": "group",
+            "header": "D_DLCF",
+            "content": {
+              "type": "itemgrid",
+              "item_margin": 2,
+              "item_size": 32,
+              "rows": [
+                [
+                  "dlc_storyevent_1",
+                  "dlc_storyevent_2",
+                  "dlc_storyevent_3",
+                  "dlc_storyevent_4",
+                  "dlc_storyevent_5",
+                  "dlc_storyevent_6",
+                  "dlc_storyevent_7"
+                ]
+              ]
+            }
+          },
+          {
+            "type": "group",
+            "header": "Settings",
+            "content": {
+              "type": "itemgrid",
+              "item_margin": 2,
+              "item_size": 32,
+              "rows": [
+                [
+                  "setting_goal",
+                  "setting_ammo_mana_cost",
+                  "setting_shop_cost"
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "type": "tabbed",
+        "tabs": [
+          {
+            "title": "Overworld",
+            "content": {
+              "type": "map",
+              "maps": [
+                "overworld"
+              ]
+            }
+          },
+          {
+            "title": "Fear World",
+            "content": {
+              "type": "map",
+              "maps": [
+                "fear_world"
+              ]
+            }
+          },
+          {
+            "title": "Locations",
+            "content": {
+              "type": "group",
+              "header": "Village of Artists",
+              "content": {
+                "type": "map",
+                "maps": [
+                  "overworld"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "tracker_horizontal": {
+    "type": "layout",
+    "key": "tracker_default"
+  },
+  "tracker_vertical": {
+    "type": "layout",
+    "key": "tracker_default"
+  }
+}
+
