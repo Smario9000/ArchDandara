@@ -18,7 +18,7 @@ The release package includes:
 - bridge dependency DLLs
 - `ArchDandara.apworld`
 - the APWorld source folder
-- `Banner.png`
+- `TrialsOfArchipelagoTitle.png`
 - `INSTALL.md`
 
 ## Install
