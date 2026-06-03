@@ -13,7 +13,7 @@ using UnityEngine;
 
 [assembly: MelonInfo(typeof(ArchDandara.Core),
     "Dandara Randomizer",
-    "0.1.1-010", 
+    "0.1.1-012", 
     "Smores9000")]
 [assembly: MelonGame(
     "Long Hat House",

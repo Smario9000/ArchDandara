@@ -68,7 +68,11 @@ namespace ArchDandara.Game
             if (GetCheckedCount(category) >= category.MaxBuyCount)
                 return false;
 
-            for (int i = 1; i <= ShopPriceService.MaxShopChecks; i++)
+            int nextShopIndex = SaveSync.GetTotalShopBoughtCount() + 1;
+            if (nextShopIndex < 1)
+                nextShopIndex = 1;
+
+            for (int i = nextShopIndex; i <= ShopPriceService.MaxShopChecks; i++)
             {
                 string candidateName = "Buy Upgrade " + i;
                 long candidateId;
@@ -88,10 +92,30 @@ namespace ArchDandara.Game
                 }
             }
 
+            for (int i = 1; i < nextShopIndex && i <= ShopPriceService.MaxShopChecks; i++)
+            {
+                string candidateName = "Buy Upgrade " + i;
+                long candidateId;
+                if (!LocationIds.TryGetLocationIdByName(candidateName, out candidateId))
+                    return false;
+
+                if (!SaveSync.HasCheckedLocation(candidateId))
+                {
+                    locationId = candidateId;
+                    locationName = candidateName;
+                    return true;
+                }
+            }
+
             return false;
         }
 
         public static int GetGlobalCheckedCount()
+        {
+            return SaveSync.GetTotalShopBoughtCount();
+        }
+
+        public static int GetCheckedShopLocationCount()
         {
             int count = 0;
             for (int i = 1; i <= ShopPriceService.MaxShopChecks; i++)

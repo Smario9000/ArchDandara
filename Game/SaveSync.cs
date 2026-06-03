@@ -165,6 +165,18 @@ namespace ArchDandara.Game
             return ShopBoughtCounts.TryGetValue(categoryName, out count) ? count : 0;
         }
 
+        public static int GetTotalShopBoughtCount()
+        {
+            int total = 0;
+            foreach (KeyValuePair<string, int> boughtCount in ShopBoughtCounts)
+            {
+                if (boughtCount.Value > 0)
+                    total += boughtCount.Value;
+            }
+
+            return total;
+        }
+
         public static void AddShopSaltSpent(int amount)
         {
             if (amount <= 0)

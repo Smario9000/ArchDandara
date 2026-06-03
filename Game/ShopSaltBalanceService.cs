@@ -30,7 +30,7 @@ namespace ArchDandara.Game
                 return;
             }
 
-            int checkedShopLocations = ShopLocationResolver.GetGlobalCheckedCount();
+            int checkedShopLocations = ShopLocationResolver.GetCheckedShopLocationCount();
             int spent = 0;
             for (int i = 0; i < checkedShopLocations; i++)
                 spent += ShopPriceService.PriceForLevel(i);

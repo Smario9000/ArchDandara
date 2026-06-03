@@ -21,14 +21,17 @@ namespace ArchDandara.Game
             if (TryGrantBossRoomKey(itemName))
                 return true;
 
-            if (TryGrantShopPermit(itemName))
-                return true;
-
             if (TryGrantMoney(itemName))
                 return true;
 
             if (ItemIds.IsMoneyItem(itemName))
                 return false;
+
+            if (TryConvertDuplicateReceivedItem(itemName))
+                return true;
+
+            if (TryGrantShopPermit(itemName))
+                return true;
 
             // Upgrade counters are AP-only progression. The game has no vanilla pickup object
             // for these, so SaveSync tracks counts and the relevant services apply the effect.
@@ -48,11 +51,6 @@ namespace ArchDandara.Game
             if (WorldObjectGrantService.TryGrant(itemName))
                 return true;
 
-            // Multiple movement copies exist in the AP pool for early-placement safety. Once the
-            // player owns any movement item, later movement copies become salt instead.
-            if (TryConvertDuplicateMovementItem(itemName))
-                return true;
-
             StoryEvent storyEvent;
             if (ItemIds.TryGetStoryEvent(itemName, out storyEvent))
             {
@@ -64,21 +62,91 @@ namespace ArchDandara.Game
             return true;
         }
 
-        private static bool TryConvertDuplicateMovementItem(string itemName)
+        private static bool TryConvertDuplicateReceivedItem(string itemName)
         {
-            if (itemName != "Stone of Creation" && itemName != "Displaced Presence")
+            if (TryConvertFinalBossOnlyItem(itemName))
+                return true;
+
+            if (IsTrueEndingChanceItem(itemName) && HasReceivedDuplicate(itemName, 1))
+                return ConvertDuplicateToMoney(itemName, "Pleas of the Salt Fear");
+
+            if (itemName == "Arrow of Freedom" && SaveSync.GetReceivedItemCount(itemName) >= 3)
+                return ConvertDuplicateToMoney(itemName, "Pleas of the Salt");
+
+            if (IsOneOwnedNormalChanceItem(itemName) && HasReceivedDuplicate(itemName, 1))
+                return ConvertDuplicateToMoney(itemName, "Pleas of the Salt");
+
+            if (IsShopPermitChanceItem(itemName) &&
+                (SaveSync.HasShopPermit(itemName) || SaveSync.GetReceivedItemCount(itemName) >= 1))
+                return ConvertDuplicateToMoney(itemName, "Pleas of the Salt");
+
+            return false;
+        }
+
+        private static bool TryConvertFinalBossOnlyItem(string itemName)
+        {
+            if (itemName != "FreeNara")
                 return false;
+
+            if (!ArchDandara.Archipelago.APSlotSettings.IsFinalBossGoal)
+                return false;
+
+            return ConvertDuplicateToMoney(itemName, "Pleas of the Salt Fear");
+        }
+
+        private static bool HasReceivedDuplicate(string itemName, int usableCount)
+        {
+            if (SaveSync.GetReceivedItemCount(itemName) >= usableCount)
+                return true;
 
             StoryManager storyManager = GameAccess.StoryManager;
             if (object.ReferenceEquals(storyManager, null))
                 return false;
 
-            if (!storyManager.GetEvent(StoryEvent.PU_Stone_Creation) &&
-                !storyManager.GetEvent(StoryEvent.Weapon_Teleport))
+            StoryEvent eventId;
+            if (!ItemIds.TryGetStoryEvent(itemName, out eventId))
                 return false;
 
-            MLLog.Msg("[ItemGrant] Converted duplicate movement item to Pleas of the Salt: " + itemName);
-            return TryGrantMoney("Pleas of the Salt");
+            return storyManager.GetEvent(eventId);
+        }
+
+        private static bool ConvertDuplicateToMoney(string itemName, string moneyItemName)
+        {
+            MLLog.Msg("[ItemGrant] Converted duplicate AP item to " + moneyItemName + ": " + itemName);
+            return TryGrantMoney(moneyItemName);
+        }
+
+        private static bool IsOneOwnedNormalChanceItem(string itemName)
+        {
+            return itemName == "Stone of Creation" ||
+                   itemName == "Rock of Remembrance" ||
+                   itemName == "Stone of Intention" ||
+                   itemName == "Pearl of Dreams" ||
+                   itemName == "Jonny B. Missiles" ||
+                   itemName == "Anxiety Shock" ||
+                   itemName == "Memories Shaft" ||
+                   itemName == "Logic Blast" ||
+                   itemName == "Skin Knitter" ||
+                   itemName == "Paint Platform" ||
+                   itemName == "Music Platform" ||
+                   itemName == "Map" ||
+                   itemName == "Bracers of the Patient" ||
+                   itemName == "Salt's Awareness";
+        }
+
+        private static bool IsTrueEndingChanceItem(string itemName)
+        {
+            return itemName == "Shell Mirror" ||
+                   itemName == "FearKey" ||
+                   itemName == "FreeNara";
+        }
+
+        private static bool IsShopPermitChanceItem(string itemName)
+        {
+            return itemName == "Essence Enhancer Permit" ||
+                   itemName == "Infusion Enhancer Permit" ||
+                   itemName == "Freedom Enhancer Permit" ||
+                   itemName == "Heart Enhancer Permit";
         }
 
         private static bool TryGrantBossRoomKey(string itemName)

@@ -63,7 +63,7 @@ namespace ArchDandara.Patches
             if (InteractionGateService.ShouldBlockChest(GameAccess.CurrentScene))
                 return false;
 
-            if (GrantContext.IsArchipelagoGrant || LocationName.TryGetPowerupInteractableIsUsed(__instance))
+            if (GrantContext.IsArchipelagoGrant)
             {
                 LocationName.ForcePowerupInteractableUsedVisual(__instance);
                 return false;
@@ -76,8 +76,15 @@ namespace ArchDandara.Patches
                               out locationId) ||
                           RuntimeLocationResolver.TryResolvePowerupChest(__instance, roomName, out locationId);
 
+            bool checkedAlready = mapped && SaveSync.HasCheckedLocation(locationId);
+            bool vanillaUsed = LocationName.TryGetPowerupInteractableIsUsed(__instance);
+            if (vanillaUsed && (!mapped || checkedAlready))
+            {
+                LocationName.ForcePowerupInteractableUsedVisual(__instance);
+                return false;
+            }
+
             bool sent = false;
-            bool checkedAlready = false;
             if (mapped)
             {
                 string key = LocationKey.Build("PowerupInteractable", roomName, objectName);
@@ -90,7 +97,7 @@ namespace ArchDandara.Patches
                 LocationName.ForcePowerupInteractableUsedVisual(__instance);
                 MLLog.Msg("[Patch][PowerupInteractable] Interaction: " + roomName + " | " +
                                 objectName + " | location=" + locationId + " | sent=" + sent +
-                                " | checked=" + checkedAlready);
+                                " | checked=" + checkedAlready + " | vanillaUsed=" + vanillaUsed);
                 return false;
             }
 
